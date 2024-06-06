@@ -1,0 +1,64 @@
+//---------------------------------------------------------
+//------------------------TYPOGRAPHY-----------------------
+//---------------------------------------------------------
+
+@mixin baseFontSize() {
+    font-size: clamp(0.9rem, 4vw + 0.1rem, 1.05rem);
+}
+@mixin titleFontSize() {
+    font-size: clamp(1rem, 5vw + 0.1rem, 1.5rem);
+}
+
+@mixin xltitleFontSize() {
+    font-size: clamp(1.5rem, 6vw + 0.1rem, 2rem);
+}
+@mixin heroFontSize() {
+    font-size: clamp(3rem, 6vw + 0.1rem, 5rem);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span {
+    @include baseFontSize();
+    font-weight: 400;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6vw + 0.1rem, 5rem);
+}
+.section-title {
+    font-size: clamp(1.7rem, 6vw + 0.1rem, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    // margin-bottom: 1em;
+    span {
+        font-size: clamp(1.7rem, 6vw + 0.1rem, 2.5rem);
+        color: var(--primary);
+    }
+}
+.small-title {
+    // @include titleFontSize();
+    // margin-top: 3em;
+    font-weight: 600;
+    text-shadow: 0 0 50px rgba(var(--primary), 30%);
+    text-transform: uppercase;
+    color: var(--primary);
+}
+// .medium-text {
+//     @include titleFontSize();
+// }
+.explainer-text {
+    opacity: 0.8;
+    font-size: clamp(0.7rem, 4vw + 0.1rem, 0.85rem);
+}
+.text--light {
+    font-size: 80%;
+    font-style: italic;
+    opacity: 0.8;
+}

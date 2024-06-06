@@ -1,0 +1,44 @@
+//---------------------------------------------------------
+//-------------------- SCROLL BALL-------------------------
+//---------------------------------------------------------
+
+::-webkit-scrollbar {
+    //ez csak a body scrollingra hat
+    width: 0.8em;
+    //ez csak a vertical scrollingra hat
+    height: 0.8em;
+}
+::-webkit-scrollbar-track {
+    background: color-mix(in srgb, var(--bg-100) 80%, var(--text-100));
+    //top and bottom
+    // margin-block: 0.2em;
+    //left and right
+    margin-inline: 5em;
+}
+//
+::-webkit-scrollbar-thumb {
+    border-radius: $borderRad;
+    background: linear-gradient(var(--primary), var(--secondary));
+}
+
+//firefox support
+//first argument is thumb
+//second is track
+@supports (
+    scrollbar-color: var(--primary),
+    var(
+        --primary,
+    )
+) {
+    * {
+        scrollbar-color: var(--primary), color-mix(in srgb, var(--bg-100) 50%, transparent);
+        scrollbar-width: auto; //thin, auto, none
+    }
+}
+
+.sor {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

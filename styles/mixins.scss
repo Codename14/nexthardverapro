@@ -1,0 +1,62 @@
+@mixin transFast() {
+    transition: all 0.25s ease-in-out;
+}
+@mixin transMed() {
+    transition: all 0.3s ease-in-out;
+}
+@mixin transSlow() {
+    transition: all 0.4s ease-in-out;
+}
+@mixin centerLine() {
+    content: '';
+    display: block;
+    margin-top: 2rem;
+    width: 100px;
+    height: 3px;
+    box-shadow: 1px 0 20px var(--primary);
+    background: var(--primary);
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+@mixin leftLine($size) {
+    &:after {
+        content: ' ';
+        display: block;
+        margin-top: 1rem;
+        width: $size;
+        height: 3px;
+        box-shadow: 1px 0 20px var(--primary);
+        background: var(--primary);
+        position: relative;
+        left: 0;
+    }
+}
+@mixin flexCenter() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin iconHoverActive() {
+    cursor: pointer;
+    @include transFast();
+    &:hover {
+        fill: var(--primary);
+    }
+    &:active {
+        scale: 0.9;
+    }
+}
+
+@mixin glassSurface() {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+@mixin glassSurfaceInner() {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}

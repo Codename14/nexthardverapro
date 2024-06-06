@@ -1,0 +1,14 @@
+//----------------------------------------------
+//----------------  FOOTER  --------------------
+//----------------------------------------------
+
+footer {
+    // background: rgba(var(--accent-100), 0.9);
+    // backdrop-filter: blur(15px);
+    > * {
+        padding-block: 20px 20px;
+        padding-inline: 10px;
+        border-top: 1px dotted var(--bg-100);
+    }
+    // background: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,194 @@
+//---------------------------------------------------------
+//--------------------NAVIGATION---------------------------
+//---------------------------------------------------------
+
+.navbar {
+    top: 0;
+    z-index: 10;
+    border: none;
+    // position: sticky;
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    @include transFast();
+}
+
+.navbar__container {
+    display: flex;
+    flex-direction: column;
+    width: min($maxWidth, 100%);
+    margin-inline: auto;
+}
+//akkor tölt be ha legörgetnek
+.scroll-navbar {
+    background: color-mix(in srgb, var(--bg-100) 50%, transparent);
+    backdrop-filter: blur(1px);
+    border-color: color-mix(in srgb, var(--text-100) 50%, transparent);
+}
+
+.navbar__title-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav__title {
+        margin-left: 15px;
+        @include titleFontSize();
+        text-transform: uppercase;
+        cursor: pointer;
+        @include transSlow();
+        &:hover {
+            //TODO: transition make
+            transform: perspective(1000px) rotateX(180deg);
+        }
+    }
+    @media screen and (width > $navBreakPoint) {
+        justify-self: flex-start;
+        width: inherit;
+    }
+}
+.nav__toggle {
+    right: 0px;
+    top: 0px;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-200);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: all 0.5s ease;
+
+    .burger {
+        width: 100%;
+        &::after,
+        &::before {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 40%;
+            margin: auto;
+            background-color: var(--text-100);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        &::after {
+            top: -5px;
+        }
+
+        &::before {
+            top: 5px;
+        }
+    }
+    .burger--active {
+        &::after {
+            transform: rotate(45deg);
+            top: -1px;
+        }
+        &::before {
+            transform: rotate(-45deg);
+            top: 0px;
+        }
+    }
+}
+
+//!mobil version
+.nav-list {
+    opacity: 0;
+    flex-direction: column;
+    pointer-events: none;
+    max-height: 0px;
+    overflow: hidden;
+    line-height: 4rem;
+    width: 100%;
+    @include transSlow();
+    transition: all 0.4s ease-in-out;
+    gap: 0;
+    .navitem {
+        // border-radius: $borderRad;
+        margin-block: 0;
+        @include transFast();
+        width: 100%;
+        a {
+            display: block;
+            @include transFast();
+        }
+        &:hover:not(.btn) {
+            a {
+                color: var(--primary);
+            }
+            background: color-mix(in srgb, var(--primary) 20%, transparent);
+        }
+        &:not(:last-child) {
+            border-bottom: 1px dotted color-mix(in srgb, var(--primary) 80%, transparent);
+        }
+    }
+}
+
+.navtog__rotate {
+    transform: rotate(0);
+}
+@media screen and (max-width: $navBreakPoint) {
+    .collapsible--expanded {
+        background: color-mix(in srgb, var(--bg-100) 95%, transparent);
+
+        .nav-list {
+            max-height: 100vh;
+            pointer-events: all;
+            z-index: initial;
+            opacity: 1;
+        }
+        .navtog__rotate {
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+    }
+}
+
+@keyframes navTrans {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+//!PC version
+@media screen and (min-width: $navBreakPoint) {
+    //PC-tablet verison
+    .navbar__container {
+        flex-direction: row;
+        justify-content: space-between;
+        .navbar__title-bar {
+            width: fit-content;
+        }
+        .nav-list {
+            pointer-events: all;
+            z-index: initial;
+            max-height: 100%;
+            opacity: 1;
+            width: auto;
+            flex-direction: row;
+            padding: 0.3em;
+            .navitem {
+                border-radius: $borderRad;
+                padding: 0.1em 1em;
+                margin: 0.5em 0.2em;
+                width: auto;
+                line-height: 2em;
+                margin-bottom: 10px;
+                &:not(.btn) {
+                    border-bottom: none;
+                }
+            }
+        }
+        .nav__toggle {
+            display: none;
+        }
+    }
+}
