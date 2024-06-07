@@ -2,6 +2,13 @@ import type { Metadata } from 'next';
 import AnimatedBg from '@/components/AnimatedBg';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Inter } from 'next/font/google';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Toaster } from 'sonner';
+import LoginWindowContextProvider from '@/contexts/LoginWindowContext';
+import LoginWindow from '@/components/login/LoginWindow';
+import { createSerClient } from '@/lib/supabase/server';
+import { unstable_setRequestLocale } from 'next-intl/server';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -19,13 +26,23 @@ interface RootLayoutProps {
 }
 export default function RootLayout({ children, params: { locale } }: Readonly<RootLayoutProps>) {
     const messages = useMessages();
-    // unstable_setRequestLocale(locale);
+    unstable_setRequestLocale(locale);
     // const t = useTranslations('Hero');
-
+    // const supabase = await createSerClient();
+    // const user = await supabase.auth.getUser();
+    // console.log('user', user);
     return (
         <html lang='en'>
             <body className={inter.className}>
-                <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+                <NextIntlClientProvider messages={messages}>
+                    <LoginWindowContextProvider>
+                        <Header />
+                        <LoginWindow />
+                    </LoginWindowContextProvider>
+                    {children}
+                    <Footer />
+                    <Toaster position='bottom-left' className='toaster' />
+                </NextIntlClientProvider>
                 <AnimatedBg />
             </body>
         </html>

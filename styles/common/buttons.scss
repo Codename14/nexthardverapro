@@ -123,3 +123,73 @@
         scale: 0.95;
     }
 }
+
+.login-google-btn {
+    @include flexCenter();
+    @include transFast();
+    height: 50px;
+    gap: 10px;
+    margin-block: 3px;
+    color: gray;
+    font-weight: 600;
+    background: white;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    border-radius: $borderRad;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.242);
+    max-height: 2.5rem;
+    overflow: hidden;
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+    .two-side-button {
+        border-radius: 0;
+        width: 100%;
+        .texts .submit-title,
+        .loading-title {
+            padding: 0;
+        }
+    }
+    &:hover {
+        background: rgb(216, 216, 216);
+        .two-side-button {
+            box-shadow: initial;
+        }
+        .texts {
+            transform: none;
+        }
+    }
+    .loading-title {
+        background: initial;
+    }
+    &:active {
+        scale: 0.95;
+    }
+    &.google-loading {
+        .texts {
+            transform: translateY(-2.5rem);
+        }
+        svg {
+            animation: rotations 0.8s ease-in-out infinite;
+        }
+        .loading-title {
+            animation: loadingText 3s ease infinite;
+        }
+        // pointer-events: none;
+    }
+}
+
+@keyframes loadingText {
+    0%,
+    100% {
+        transform: translateX(0px);
+    }
+    25%,
+    70% {
+        transform: translatey(-1px);
+    }
+    50% {
+        transform: translateX(1px);
+    }
+}

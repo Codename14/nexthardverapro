@@ -6,7 +6,7 @@ import { ChangeEvent, useRef, useTransition } from 'react';
 
 export default function LangToggle() {
     const [isPending, startTransition] = useTransition();
-    const { isLoading, setIsLoading } = useLoadingContext();
+    // const { isLoading, setIsLoading } = useLoadingContext();
     const toggle = useRef(null);
 
     const router = useRouter();
@@ -14,7 +14,7 @@ export default function LangToggle() {
 
     const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const nextLocale = e.target.value;
-        setIsLoading(isPending); //háttér
+        // setIsLoading(isPending); //háttér
         startTransition(() => {
             router.replace(`/${nextLocale}`);
         });
@@ -22,7 +22,7 @@ export default function LangToggle() {
     const handleLanguage = (lang: string) => {
         // console.log('handle', lang);
         const nextLocale = lang;
-        setIsLoading(isPending); //háttér
+        // setIsLoading(isPending); //háttér
         startTransition(() => {
             router.replace(`/${nextLocale}`);
         });
@@ -38,11 +38,14 @@ export default function LangToggle() {
                 </select>
             </label> */}
             <div ref={toggle} className='languages flex'>
-                <button className={`${localActive === 'en' && 'selected-lang'}`} onClick={() => handleLanguage('en')}>
+                <button className={`${localActive === 'en' && 'selected-lang bg-gray-400'}`} onClick={() => handleLanguage('en')}>
                     EN
                 </button>
-                <button className={`${localActive === 'hu' && 'selected-lang'}`} onClick={() => handleLanguage('hu')}>
+                <button className={`${localActive === 'hu' && 'selected-lang bg-gray-400'}`} onClick={() => handleLanguage('hu')}>
                     HU
+                </button>
+                <button className={`${localActive === 'de' && 'selected-lang bg-gray-400'}`} onClick={() => handleLanguage('de')}>
+                    DE
                 </button>
             </div>
             {/* <p>{isPending && 'loading...'}</p> */}
