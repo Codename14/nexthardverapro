@@ -1,11 +1,1 @@
-{
-"Navigation":{
-    "contact": "Contact",
-    "navigation": "Navigation",
-    "home": "Home",
-    "portfolio": "Portfolio",
-    "about": "About",
-    "skills": "Process",
-    "rights": "All right reserved. © Alex Banai 2024"
-  }
-}
+{"Navigation":{"contact":"Contact","login":"Entry","mainpage":"main page","rights":"All rights reserved. © Banai Alex 2024"}}

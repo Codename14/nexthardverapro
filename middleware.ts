@@ -1,10 +1,18 @@
-import { NextRequest } from 'next/server';
-import { updateSession } from './lib/supabase/middleware';
+import createMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function middleware(request: NextRequest) {
-    const response = await updateSession(request);
-    return response;
+const nextIntMiddleware = createMiddleware({
+    // A list of all locales that are supported
+    locales: ['hu', 'en', 'de'],
+    // Used when no locale matches
+    defaultLocale: 'hu',
+});
+
+export default function (req: NextRequest): NextResponse {
+    return nextIntMiddleware(req);
 }
+
 export const config = {
-    matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
+    // Match only internationalized pathnames
+    matcher: ['/', '/(hu|en)/:path*'],
 };

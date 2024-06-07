@@ -1,12 +1,1 @@
-
-{
-  "Navigation":{
-    "contact": "Kapcsolat",
-    "navigation": "Navigáció",
-    "home": "Főoldal",
-    "portfolio": "Projektek",
-    "about": "Rólam",
-    "skills": "Folyamat",
-    "rights": "Minden jog fenntartva. © Banai Alex 2024"
-  }
-}
+{"Navigation":{"contact":"Kapcsolat","login":"Belépés","mainpage":"Főoldal","rights":"Minden jog fenntartva. © Banai Alex 2024"}}
