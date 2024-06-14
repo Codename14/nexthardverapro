@@ -1,5 +1,17 @@
+import { useTranslations } from 'next-intl';
 import React from 'react';
+import ThemeToggle from './header/ThemeToggle';
 
 export default function Footer() {
-    return <div>Footer</div>;
+    const t = useTranslations('Footer');
+    return (
+        <>
+            <footer>
+                <div className='limit-width'>
+                    <ThemeToggle />
+                    <small>Sell Stuff &copy; {t('rights')} 2024.</small>
+                </div>
+            </footer>
+        </>
+    );
 }

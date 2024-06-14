@@ -11,7 +11,7 @@ export default function NotFoundPage() {
                         </div>
                         <h3 className='section-title'>Úgy tűnik elvesztél,</h3>
                         <div className='flex'>
-                            <p>az oldal amit keresel nem található!</p>
+                            <p>Az oldal amit keresel nem található!</p>
                         </div>
                         <Link href='/' className='btn btn--secondary'>
                             Vissza a főoldalra

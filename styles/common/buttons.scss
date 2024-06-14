@@ -15,7 +15,7 @@
 
 // PRIMARY BUTTON
 .btn--primary {
-    @include glassSurface();
+    // @include glassSurface();
     border: 1px solid var(--primary);
     background: var(--primary);
     color: var(--bg-100);
@@ -124,7 +124,46 @@
     }
 }
 
+// GoogleLogin
+.two-side-button {
+    display: flex;
+    flex-direction: column;
+    height: 2.5rem;
+    border-radius: $borderRad;
+    // box-shadow: 0 0.625em 1em 0 rgba(30, 143, 255, 0.35);
+    overflow: hidden;
+    &,
+    .texts {
+        transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .texts {
+        transform: translateY(0px);
+        // width: 100%;
+        .submit-title,
+        .loading-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 2.5rem;
+            padding: 0.75em 1.125em;
+        }
+    }
+    .submit-title {
+        // background-color: #1e90ff;
+    }
+    .loading-title {
+        background-color: #21dc62;
+    }
+    &:hover {
+        box-shadow: 0 0.625em 1em 0 rgba(33, 220, 98, 0.35);
+        .texts {
+            transform: translateY(-2.5rem);
+        }
+    }
+}
+
 .login-google-btn {
+    margin-inline: auto;
     @include flexCenter();
     @include transFast();
     height: 50px;

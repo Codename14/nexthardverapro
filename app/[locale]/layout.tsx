@@ -9,6 +9,7 @@ import LoginWindowContextProvider from '@/contexts/LoginWindowContext';
 import LoginWindow from '@/components/login/LoginWindow';
 import { createSerClient } from '@/lib/supabase/server';
 import { unstable_setRequestLocale } from 'next-intl/server';
+import LoadingContextProvider from '@/contexts/LoadingContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ interface RootLayoutProps {
         locale: 'hu' | 'en' | 'de';
     };
 }
+
 export default function RootLayout({ children, params: { locale } }: Readonly<RootLayoutProps>) {
     const messages = useMessages();
     unstable_setRequestLocale(locale);
@@ -31,17 +33,20 @@ export default function RootLayout({ children, params: { locale } }: Readonly<Ro
     // const supabase = await createSerClient();
     // const user = await supabase.auth.getUser();
     // console.log('user', user);
+
     return (
         <html lang='en'>
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
-                    <LoginWindowContextProvider>
-                        <Header />
-                        <LoginWindow />
-                    </LoginWindowContextProvider>
-                    {children}
-                    <Footer />
-                    <Toaster position='bottom-left' className='toaster' />
+                    <LoadingContextProvider>
+                        <LoginWindowContextProvider>
+                            <Header />
+                            <LoginWindow />
+                        </LoginWindowContextProvider>
+                        <main className='main-content'>{children}</main>
+                        <Footer />
+                        <Toaster position='bottom-left' className='toaster' />
+                    </LoadingContextProvider>
                 </NextIntlClientProvider>
                 <AnimatedBg />
             </body>

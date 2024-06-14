@@ -2,6 +2,7 @@
 import { type NextRequest } from 'next/server';
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import createIntlMiddleware from 'next-intl/middleware';
+import { updateSession } from './lib/supabase/middleware';
 
 const handleI18nRouting = createIntlMiddleware({
     locales: ['hu', 'en', 'de'],
@@ -31,6 +32,12 @@ export async function middleware(request: NextRequest) {
     return response;
 }
 
+// export async function middleware(request: NextRequest) {
+//     const response = await updateSession(request);
+//     return response;
+// }
+
 export const config = {
     matcher: ['/', '/(hu|en|de)/:path*'],
+    // matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
 };

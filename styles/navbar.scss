@@ -1,0 +1,4 @@
+.nav-list {
+    @include flexCenter();
+    gap: 1em;
+}

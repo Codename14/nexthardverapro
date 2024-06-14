@@ -13,38 +13,38 @@ export default function AnimatedBg() {
     // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 900px)' });
     const isMobile = useMediaQuery({ maxWidth: 900 });
 
-    let curX = 0;
-    let curY = 0;
-    let tgX = 0;
-    let tgY = 0;
-    function move() {
-        curX += (tgX - curX) / 40;
-        curY += (tgY - curY) / 40;
-        if (interBubbleRef.current) {
-            interBubbleRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
-        }
-        requestAnimationFrame(() => {
-            move();
-        });
-    }
-    useEffect(() => {
-        if (!isMobile && !pathName.includes('app')) {
-            const handleMouseMove = (event: MouseEvent) => {
-                if (interBubbleRef.current) {
-                    tgX = event.clientX;
-                    tgY = event.clientY;
-                    // interBubbleRef.current.style = `${event.clientX}px`;
-                    // interBubbleRef.current.style.top = `${event.clientY}px`;
-                    move();
-                }
-            };
-            window.addEventListener('mousemove', handleMouseMove);
-            // Cleanup function to remove the event listener
-            return () => {
-                window.removeEventListener('mousemove', handleMouseMove);
-            };
-        }
-    }, []);
+    // let curX = 0;
+    // let curY = 0;
+    // let tgX = 0;
+    // let tgY = 0;
+    // function move() {
+    //     curX += (tgX - curX) / 40;
+    //     curY += (tgY - curY) / 40;
+    //     if (interBubbleRef.current) {
+    //         interBubbleRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+    //     }
+    //     requestAnimationFrame(() => {
+    //         move();
+    //     });
+    // }
+    // useEffect(() => {
+    //     if (!isMobile && !pathName.includes('app')) {
+    //         const handleMouseMove = (event: MouseEvent) => {
+    //             if (interBubbleRef.current) {
+    //                 tgX = event.clientX;
+    //                 tgY = event.clientY;
+    //                 // interBubbleRef.current.style = `${event.clientX}px`;
+    //                 // interBubbleRef.current.style.top = `${event.clientY}px`;
+    //                 move();
+    //             }
+    //         };
+    //         window.addEventListener('mousemove', handleMouseMove);
+    //         // Cleanup function to remove the event listener
+    //         return () => {
+    //             window.removeEventListener('mousemove', handleMouseMove);
+    //         };
+    //     }
+    // }, []);
 
     return (
         <>

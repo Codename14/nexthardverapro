@@ -297,6 +297,8 @@ model users {
   mfa_factors                 mfa_factors[]
   one_time_tokens             one_time_tokens[]
   sessions                    sessions[]
+  comments                    comments[]
+  products                    products[]
   user_data                   user_data[]
   user_role                   user_role[]
 
@@ -316,17 +318,6 @@ model roles {
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model user_data {
-  id         BigInt   @id @default(autoincrement())
-  user_id    String   @db.Uuid
-  created_at DateTime @default(now()) @db.Timestamptz(6)
-  email      String?
-  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-
-  @@schema("public")
-}
-
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_role {
   id         BigInt   @id @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
@@ -334,6 +325,82 @@ model user_role {
   role_id    BigInt?
   roles      roles?   @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@schema("public")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model user_data {
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  email      String?
+  name       String?
+  user_id    String?  @db.Uuid
+  users      users?   @relation(fields: [user_id], references: [id])
+
+  @@schema("public")
+}
+
+model products {
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  description String?
+  created_at  DateTime?    @db.Timestamptz(6)
+  updated_at  DateTime?    @db.Timestamptz(6)
+  place       String
+  likes       Int
+  new         Boolean
+  status      String
+  price       Int
+  user_id     String?      @db.Uuid
+  user_name   String?
+  tumbnailUrl String
+  videoUrl    String?
+  comments    comments[]
+  users       users?       @relation(fields: [user_id], references: [id])
+  categories  categories[] @relation("categoriesToproducts")
+
+  @@schema("public")
+}
+
+model categories {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  description String?
+  created_at  DateTime?  @db.Timestamptz(6)
+  updated_at  DateTime?  @db.Timestamptz(6)
+  products    products[] @relation("categoriesToproducts")
+
+  @@schema("public")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model comments {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  text         String
+  created_at   DateTime? @db.Timestamptz(6)
+  updated_at   DateTime? @db.Timestamptz(6)
+  user_id      String?   @db.Uuid
+  user_name    String?
+  product_id   String?   @db.Uuid
+  product_name String?
+  products     products? @relation(fields: [product_id], references: [id])
+  users        users?    @relation(fields: [user_id], references: [id])
+
+  @@schema("public")
+}
+
+// Have to find out how to make this work properly
+model user_message {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  text        String
+  createdAt   DateTime? @db.Timestamptz(6)
+  senderId    BigInt    @db.BigInt
+  receiverId  BigInt    @db.BigInt
+  // sender     users?    @relation("SentMessages", fields: [senderId], references: [id])
+  // reciever   users?    @relation("recieveMessages", fields: [receiverId], references: [id])
+  sender_id   String?   @db.Uuid
+  receiver_id String?   @db.Uuid
 
   @@schema("public")
 }
