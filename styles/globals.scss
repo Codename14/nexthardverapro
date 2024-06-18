@@ -323,3 +323,37 @@ textarea {
         font-weight: 700;
     }
 }
+
+//=======================================================
+// Popover
+//=======================================================
+
+.popover {
+    position: relative;
+    @include flexCenter;
+}
+.popover-button {
+    // border: 1px solid red;
+    border-radius: 50vw;
+    outline: none;
+}
+.popover-list {
+    @include flexCenter();
+    @include glassSurface();
+    border-radius: $borderRad();
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 1em;
+    width: min(200px, 100%);
+    a {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.5em 1em;
+        @include transFast();
+        &:hover {
+            text-decoration: line-through;
+        }
+        // border: 1px solid red;
+    }
+}

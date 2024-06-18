@@ -4,13 +4,14 @@ import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 import { readUserData } from '@/lib/actions';
 import { toast } from 'sonner';
+import SearchBar from '@/components/SearchBar';
 
 export default async function Products() {
     const user = await readUserData();
     const products = await prisma.products.findMany({
         where: {
             // price: { gt: 105000 },
-            user_id: user?.id,
+            // user_id: user?.id,
         },
     });
 
@@ -21,7 +22,8 @@ export default async function Products() {
     // }
     return (
         <div className='limit-width'>
-            <p>{user?.id}</p>
+            <p>UserID: {user?.id}</p>
+            <SearchBar />
             <section className='products-grid'>
                 {products.map((product) => (
                     <div className='product__item glass-card' key={product.id}>

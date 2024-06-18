@@ -10,7 +10,7 @@ import LoginButton from './header/LoginButton';
 import NotificationDropDown from './header/NotificationDropDown';
 import SignOutButton from './header/SignOutButton';
 import ThemeToggle from './header/ThemeToggle';
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
+import ProfileMenu from './header/ProfileMenu';
 
 export default async function Header() {
     const t = useTranslations('Navigation');
@@ -34,35 +34,27 @@ export default async function Header() {
                     {user ? (
                         <>
                             <li>
-                                <Link href={'/messages'}>
-                                    <LuMessageCircle size={25} />
-                                </Link>
+                                <NotificationDropDown />
                             </li>
-                            <NotificationDropDown />
                             <li>
                                 <Link href={'/wishlist'}>
                                     <GoHeart size={25} />
                                 </Link>
                             </li>
                             <li>
-                                <Popover className='relative'>
-                                    <PopoverButton>{t('account')}</PopoverButton>
-                                    <PopoverPanel anchor='bottom' className='flex flex-col'>
-                                        <Link href='/analytics'>Analytics</Link>
-                                        <Link href='/engagement'>Engagement</Link>
-                                        <Link href='/security'>Security</Link>
-                                        <Link href='/integrations'>Integrations</Link>
-                                    </PopoverPanel>
-                                </Popover>
+                                <Link href={'/messages'}>
+                                    <LuMessageCircle size={25} />
+                                </Link>
+                            </li>
+
+                            <li>
+                                <ProfileMenu />
                                 {/* <Link href={'/account'}>{t('account')}</Link> */}
                             </li>
                             <li className=''>
-                                <Link href={'/items/new'} className='flex gap-2'>
+                                <Link href={'/items/new'} className='btn btn--primary flex gap-2'>
                                     {t('sellnow')} <FcMoneyTransfer />
                                 </Link>
-                            </li>
-                            <li>
-                                <SignOutButton />
                             </li>
                         </>
                     ) : (

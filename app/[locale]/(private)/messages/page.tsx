@@ -48,26 +48,16 @@ export default function Page() {
             <div className='under-navbar text-center'>
                 <section className='message-section glass-card'>
                     <div className='message-sidebar'>
-                        <div className='message__title'>
-                            <h2>Beérkezett üzenetek</h2>
-                            <FaMessage />
-                        </div>
                         <form className='message-search'>
                             <div className='search-input'>
                                 <input type='text' placeholder='keresés' />
-                                <button>
-                                    <FaSearch />
-                                </button>
                             </div>
-                            <button className='glass-card p-2'>
-                                <FaPlus />
-                            </button>
                         </form>
                         <div className='message__header-wrapper'>
                             {messages.map((message, i) => (
                                 <div className={`message__header-item ${i === 2 ? 'active' : ''}`} key={message.id}>
                                     <div className='header__img'>
-                                        <Image src={message.img} alt={message.name} width={40} height={40} />
+                                        <Image src={message.img} alt={message.name} fill />
                                     </div>
                                     <div className='header__body'>
                                         <h4 className='header__sender-name'>{message.name}</h4>
