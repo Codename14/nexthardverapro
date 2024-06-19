@@ -8,9 +8,14 @@
     @include transFast();
     padding: 0.5em 1.5em;
 }
-
-.btn--big {
-    padding: 1em 2.5em;
+.btn--wicon {
+    @include flexCenter();
+    gap: 0.5em;
+    width: fit-content;
+    margin-inline: auto;
+    svg {
+        fill: var(--text-100);
+    }
 }
 
 // PRIMARY BUTTON
@@ -33,7 +38,7 @@
 }
 
 .btn--outlined {
-    &:hover {
+    &:hover:not(&.active) {
         color: var(--accent);
         text-decoration: line-through;
     }
@@ -43,6 +48,9 @@
     &:disabled {
         cursor: not-allowed;
         opacity: 0.5;
+    }
+    &.active {
+        text-decoration: underline;
     }
 }
 

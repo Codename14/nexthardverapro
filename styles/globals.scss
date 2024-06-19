@@ -425,3 +425,13 @@ textarea {
         }
     }
 }
+
+.account__menu {
+    margin-top: 1em;
+
+    .acc__title {
+        font-weight: 600;
+        // @include titleFontSize();
+        margin-bottom: 1em;
+    }
+}

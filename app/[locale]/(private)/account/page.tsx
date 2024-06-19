@@ -4,6 +4,7 @@ import { DEFAULT_IMG } from '@/lib/constants';
 import Image from 'next/image';
 import { FaLocationDot, FaMedal, FaPlaceOfWorship, FaVoicemail, FaWifi } from 'react-icons/fa6';
 import { Link } from '@/navigation';
+import AccountBottonMenu from './AccountBottonMenu';
 export default async function AccountPage() {
     const user = await readUserData();
 
@@ -39,19 +40,12 @@ export default async function AccountPage() {
                         </div>
                     </div>
                 </div>
-
                 <Link href='/user-settings' className='btn btn--primary'>
                     Profil szerkesztése
                 </Link>
             </section>
-            <p>{user.last_sign_in_at}</p>
-
-            <section>
-                <div className='flex gap-2 action'>
-                    <button className='btn btn--primary'>Termékek</button>
-                    <button className='btn btn--primary'>Értékelések</button>
-                </div>
-            </section>
+            {/* <p>{user.last_sign_in_at}</p> */}
+            <AccountBottonMenu />
         </div>
     );
 }
