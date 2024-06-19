@@ -6,3 +6,18 @@
         transform: rotate(-360deg);
     }
 }
+@keyframes rotations {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-anim {
+    animation: rotations 0.8s linear infinite;
+}
+.icon-color {
+    fill: var(--text-100);
+}

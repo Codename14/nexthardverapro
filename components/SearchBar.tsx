@@ -2,11 +2,13 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import LoadingIcon from './LoadingIcon';
 
 export default function SearchBar() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         setIsLoading(false);
     }, [searchParams]);
@@ -23,12 +25,13 @@ export default function SearchBar() {
     // const limitValue = watch('limit');
 
     const onSubmit = async (data: FieldValues) => {
-        console.log('data', data);
         // console.log('url change');
-        setIsLoading(true);
-        const newSearchParams = new URLSearchParams(searchParams);
-        newSearchParams.set('query', data?.query);
-        router.replace('?' + newSearchParams.toString());
+        if (data?.query !== searchParams.get('query')) {
+            setIsLoading(true);
+            const newSearchParams = new URLSearchParams(searchParams);
+            newSearchParams.set('query', data?.query);
+            router.replace('?' + newSearchParams.toString());
+        }
     };
 
     return (
@@ -42,8 +45,8 @@ export default function SearchBar() {
                     placeholder='keresés'
                     className='search-input input--primary'
                 />
-                <button disabled={!isDirty} className='btn btn--primary'>
-                    keresés
+                <button disabled={!isDirty || isLoading} className='btn btn--primary flex gap-2'>
+                    Keresés {isLoading && <LoadingIcon />}
                 </button>
             </form>
         </>
