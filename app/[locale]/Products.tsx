@@ -16,10 +16,8 @@ export default async function Products({ categoryID, query }: { categoryID: stri
     const products = await prisma.products.findMany({
         where: {
             category_id: categoryID,
-            OR: [
-                { name: { contains: query?.toLowerCase(), mode: 'insensitive' } },
-                { name: { contains: query?.toUpperCase(), mode: 'insensitive' } },
-            ],
+            name: { contains: query?.toLowerCase(), mode: 'insensitive' },
+
             // price: { gt: 105000 },
             // user_id: user?.id?.toLowerCase(),
         },
