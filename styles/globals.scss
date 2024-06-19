@@ -180,6 +180,9 @@ textarea {
     height: calc(100svh - $headerSize);
     margin-bottom: 1em;
 }
+.card-padding {
+    padding: $cardPadding;
+}
 
 .toaster {
     li {
