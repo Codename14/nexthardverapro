@@ -15,7 +15,7 @@ export default function SearchBar() {
     const {
         handleSubmit,
         register,
-        formState: { errors },
+        formState: { errors, isDirty },
         watch,
         setValue,
         setError,
@@ -27,16 +27,24 @@ export default function SearchBar() {
         // console.log('url change');
         setIsLoading(true);
         const newSearchParams = new URLSearchParams(searchParams);
-        newSearchParams.set('term', data?.term);
-        newSearchParams.set('limit', data?.limit);
+        newSearchParams.set('query', data?.query);
         router.replace('?' + newSearchParams.toString());
     };
 
     return (
         <>
-            <form action='' className='flex gap-2'>
-                <input type='text' placeholder='keresés' className='search-input input--primary' />
-                <button className='btn btn--primary'>keresés</button>
+            <form action='' onSubmit={handleSubmit(onSubmit)} className='flex gap-2'>
+                <input
+                    {...register('query', {
+                        required: true,
+                    })}
+                    type='text'
+                    placeholder='keresés'
+                    className='search-input input--primary'
+                />
+                <button disabled={!isDirty} className='btn btn--primary'>
+                    keresés
+                </button>
             </form>
         </>
     );

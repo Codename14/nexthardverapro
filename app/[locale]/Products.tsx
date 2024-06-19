@@ -10,14 +10,18 @@ import { CiHeart } from 'react-icons/ci';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
 
-export default async function Products({ categoryID }: { categoryID: string | undefined }) {
+export default async function Products({ categoryID, query }: { categoryID: string | undefined; query: string | undefined }) {
     const user = await readUserData();
-
+    console.log('query:', query);
     const products = await prisma.products.findMany({
         where: {
             category_id: categoryID,
+            OR: [
+                { name: { contains: query?.toLowerCase(), mode: 'insensitive' } },
+                { name: { contains: query?.toUpperCase(), mode: 'insensitive' } },
+            ],
             // price: { gt: 105000 },
-            // user_id: user?.id,
+            // user_id: user?.id?.toLowerCase(),
         },
     });
 

@@ -5,6 +5,18 @@ import { Link } from '@/navigation';
 
 export default async function Page({ searchParams }: { searchParams: SearchParamsType }) {
     const categories = await prisma.categories.findMany();
+
+    const createHref = (categoryIdenfier: string) => {
+        if (searchParams.categoryID === categoryIdenfier) {
+            // If the category is already active, create a URL without the categoryID
+            const { categoryID, ...rest } = searchParams;
+            const queryString = new URLSearchParams(rest).toString();
+            return queryString ? `?${queryString}` : '.';
+        } else {
+            // If the category is not active, create a URL with the categoryID
+            return `?categoryID=${categoryIdenfier}`;
+        }
+    };
     console.log('par:', searchParams);
     return (
         <>
@@ -14,7 +26,8 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
                     {categories.map((category) => (
                         <>
                             <Link
-                                href={`?categoryID=${category.id}`}
+                                // href={`?categoryID=${category.id}`}
+                                href={createHref(category.id)}
                                 className={`porduct-categories glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
                                 key={category.id}
                             >
@@ -24,7 +37,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
                     ))}
                 </div>
             </section>
-            <Products categoryID={searchParams.categoryID} />
+            <Products categoryID={searchParams.categoryID} query={searchParams.query} />
         </>
     );
 }

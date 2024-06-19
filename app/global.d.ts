@@ -17,6 +17,6 @@ declare global {
     //     type searchParamType = { [key: string]: string | string[] | undefined } /* nextjs searchParam type from documentation */
 }
 type SearchParamsType = {
-    searchParams: string;
+    query: string;
     categoryID: string;
 };
