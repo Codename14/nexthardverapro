@@ -4,6 +4,7 @@ import { Popover, PopoverButton, PopoverPanel, useClose } from '@headlessui/reac
 import Image from 'next/image';
 import { DEFAULT_IMG } from '@/lib/constants';
 import { Link } from '@/navigation';
+import SignOutButton from './SignOutButton';
 
 export default function ProfileMenu() {
     let close = useClose();
@@ -23,7 +24,7 @@ export default function ProfileMenu() {
                         Settings
                     </Link>
                     <Link onClick={() => close()} href='/' className='flex'>
-                        Sign out
+                        <SignOutButton text='Kijelentkezés' />
                     </Link>
                 </PopoverPanel>
             </Popover>

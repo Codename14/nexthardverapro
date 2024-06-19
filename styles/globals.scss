@@ -284,6 +284,7 @@ textarea {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1em;
+    margin-top: 1em;
     .product__item {
         overflow: hidden;
         height: 400px;
