@@ -3,6 +3,7 @@ import { createSerClient } from '@/lib/supabase/server';
 import { DEFAULT_IMG } from '@/lib/constants';
 import Image from 'next/image';
 import { FaLocationDot, FaMedal, FaPlaceOfWorship, FaVoicemail, FaWifi } from 'react-icons/fa6';
+import { Link } from '@/navigation';
 export default async function AccountPage() {
     const user = await readUserData();
 
@@ -39,7 +40,9 @@ export default async function AccountPage() {
                     </div>
                 </div>
 
-                <button className='btn btn--primary'>Profil szerkesztése</button>
+                <Link href='/user-settings' className='btn btn--primary'>
+                    Profil szerkesztése
+                </Link>
             </section>
             <p>{user.last_sign_in_at}</p>
 
