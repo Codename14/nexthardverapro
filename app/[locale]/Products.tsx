@@ -28,11 +28,13 @@ export default async function Products({ categoryID }: { categoryID: string | un
     // }
     return (
         <>
-            {products.length === 0 && (
+            {products.length === 0 ? (
                 <div className='flex flex-col'>
                     <FaSearch size={40} className='mb-2 mt-6' />
                     <p className='font-bold'>Sajnos nincs találat</p>
                 </div>
+            ) : (
+                <p className='text--light mx-auto'>Találatok száma: {products.length}</p>
             )}
             <section className='products-grid mb-6'>
                 {products.map((product) => (
