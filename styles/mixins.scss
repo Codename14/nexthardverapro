@@ -53,15 +53,18 @@
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(20px);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: $borderRad;
 }
 @mixin glassSurfaceActive() {
     background: rgba(131, 191, 184, 0.3);
     backdrop-filter: blur(20px);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: $borderRad;
 }
 
 @mixin glassSurfaceInner() {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(20px);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: $borderRad;
 }

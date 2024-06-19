@@ -11,7 +11,7 @@ export default function ProfileMenu() {
         <>
             <Popover className='popover'>
                 <PopoverButton className={'popover-button'}>
-                    <div className='header__img size-7 '>
+                    <div className='profile_img '>
                         <Image src={DEFAULT_IMG} alt={'profile'} fill className='rounded-xl w-full h-full object-cover' />
                     </div>
                 </PopoverButton>

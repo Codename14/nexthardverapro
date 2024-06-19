@@ -149,11 +149,9 @@ textarea {
 }
 .glass-card {
     @include glassSurface();
-    border-radius: $borderRad;
 }
 .glass-card-inner {
     @include glassSurfaceInner();
-    border-radius: $borderRad;
 }
 .glass-surface {
     @include glassSurface();
@@ -176,16 +174,12 @@ textarea {
     backdrop-filter: blur(4px) saturate(50%);
 }
 //---------------------------------------------------------
+.screen-container {
+    @include glassSurface();
+    height: calc(100vh - $headerSize);
+    height: calc(100svh - $headerSize);
+}
 
-.pet-notes {
-    height: min(50vh, 300px);
-}
-.pet-list-item {
-    @include transFast();
-    &:hover {
-        background: color-mix(in srgb, var(--secondary) 50%, transparent);
-    }
-}
 .toaster {
     li {
         @include glassSurface();
@@ -205,6 +199,21 @@ textarea {
     width: min(100%, 300px); // 100%;
     &:focus {
         outline: 2px solid var(--primary);
+    }
+}
+.profile_img {
+    position: relative;
+    overflow: hidden;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 50vw;
+    border: 1px solid transparent;
+    &:hover {
+        border-color: var(--primary);
+    }
+    img {
+        border-radius: 50vw;
+        object-fit: cover;
     }
 }
 
@@ -369,3 +378,10 @@ textarea {
         // border: 1px solid red;
     }
 }
+
+//=======================================================
+// Language
+//=======================================================
+// .lang-toggle {
+
+// }

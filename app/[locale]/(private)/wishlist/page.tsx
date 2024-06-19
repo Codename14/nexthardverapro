@@ -3,7 +3,7 @@ import FavoriteIcon from './FavoriteIcon';
 
 export default function Page() {
     return (
-        <div className='under-navbar text-center'>
+        <div className='under-navbar text-center screen-container'>
             <h1 className='hero-title font-semibold'>Kedvenc termékek</h1>
             <div className='mt-10 mb-6'>
                 <div className='flex mb-2 mt-4'>

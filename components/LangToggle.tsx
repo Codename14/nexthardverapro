@@ -2,15 +2,15 @@
 import { useLoadingContext } from '@/contexts/LoadingContext';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useRef, useTransition } from 'react';
+import { ChangeEvent, useRef, useState, useTransition } from 'react';
 
 export default function LangToggle() {
-    const [isPending, startTransition] = useTransition();
-    // const { isLoading, setIsLoading } = useLoadingContext();
-    const toggle = useRef(null);
-
     const router = useRouter();
     const localActive = useLocale();
+    const toggle = useRef(null);
+
+    const [isPending, startTransition] = useTransition();
+    const [selectedLanguage, setSelectedLanguage] = useState(localActive);
 
     const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const nextLocale = e.target.value;
@@ -27,28 +27,21 @@ export default function LangToggle() {
             router.replace(`/${nextLocale}`);
         });
     };
+    const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        const newLanguage = event.target.value;
+        setSelectedLanguage(newLanguage);
+        handleLanguage(newLanguage);
+    };
 
     return (
         <>
-            {/* <label className='border-2 rounded text-xl'>
-                <p className='sr-only'>change language</p>
-                <select defaultValue={localActive} className='bg-transparent py-2' onChange={onSelectChange} disabled={isPending}>
-                    <option value='en'>English</option>
-                    <option value='hu'>Hungary</option>
-                </select>
-            </label> */}
             <div ref={toggle} className='languages flex'>
-                <button className={`${localActive === 'en' && 'selected-lang bg-gray-400'}`} onClick={() => handleLanguage('en')}>
-                    EN
-                </button>
-                <button className={`${localActive === 'hu' && 'selected-lang bg-gray-400'}`} onClick={() => handleLanguage('hu')}>
-                    HU
-                </button>
-                <button className={`${localActive === 'de' && 'selected-lang bg-gray-400'}`} onClick={() => handleLanguage('de')}>
-                    DE
-                </button>
+                <select value={selectedLanguage} onChange={handleLanguageChange} className='language-dropdow p-2  glass-card'>
+                    <option value='en'>EN</option>
+                    <option value='hu'>HU</option>
+                    <option value='de'>DE</option>
+                </select>
             </div>
-            {/* <p>{isPending && 'loading...'}</p> */}
         </>
     );
 }

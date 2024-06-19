@@ -1,7 +1,6 @@
-import { FaMessage, FaPlus } from 'react-icons/fa6';
-import Image from 'next/image';
 import { DEFAULT_IMG } from '@/lib/constants';
-import { FaSearch } from 'react-icons/fa';
+import Image from 'next/image';
+import MessageDetails from './MessageDetails';
 
 export default function Page() {
     const messages = [
@@ -41,12 +40,66 @@ export default function Page() {
             message: 'Donec ut mauris eget massa tempor convallis.',
             img: DEFAULT_IMG,
         },
+        {
+            id: 7,
+            name: 'David Smith',
+            message: 'Maecenas sed diam eget risus varius blandit sit amet non magna.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 8,
+            name: 'Elizabeth Johnson',
+            message: 'Donec id elit non mi porta gravida at eget metus.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 9,
+            name: 'William Wilson',
+            message: 'Nulla vitae elit libero, a pharetra augue.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 10,
+            name: 'Sophia Davis',
+            message: 'Etiam porta sem malesuada magna mollis euismod.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 11,
+            name: 'Daniel Martinez',
+            message: 'Sed posuere consectetur est at lobortis.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 12,
+            name: 'Olivia Taylor',
+            message: 'Aenean lacinia bibendum nulla sed consectetur.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 13,
+            name: 'Ethan Hernandez',
+            message: 'Donec id elit non mi porta gravida at eget metus.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 14,
+            name: 'Ava Thompson',
+            message: 'Maecenas faucibus mollis interdum.',
+            img: DEFAULT_IMG,
+        },
+        {
+            id: 15,
+            name: 'Michael Lee',
+            message: 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
+            img: DEFAULT_IMG,
+        },
     ];
 
     return (
         <>
             <div className='under-navbar text-center'>
-                <section className='message-section glass-card'>
+                <section className='message-section  screen-container'>
                     <div className='message-sidebar'>
                         <form className='message-search'>
                             <div className='search-input'>
@@ -67,9 +120,7 @@ export default function Page() {
                             ))}
                         </div>
                     </div>
-                    <div className='message-wrapper'>
-                        <div className='message'>fasf</div>
-                    </div>
+                    <MessageDetails />
                 </section>
             </div>
         </>
