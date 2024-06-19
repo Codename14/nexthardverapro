@@ -2,7 +2,6 @@
 import { type NextRequest } from 'next/server';
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import createIntlMiddleware from 'next-intl/middleware';
-import { updateSession } from './lib/supabase/middleware';
 
 const handleI18nRouting = createIntlMiddleware({
     locales: ['hu', 'en', 'de'],
