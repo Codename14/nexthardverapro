@@ -16,3 +16,7 @@ declare global {
     //     type ToppingCategoriesConnect = DB['public']['Tables']['toppings_food_connect']['Row'];
     //     type searchParamType = { [key: string]: string | string[] | undefined } /* nextjs searchParam type from documentation */
 }
+type SearchParamsType = {
+    searchParams: string;
+    categoryID: string;
+};

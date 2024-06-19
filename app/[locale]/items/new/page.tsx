@@ -1,6 +1,9 @@
+import prisma from '@/lib/pismaDB';
 import React from 'react';
 
-export default function Page() {
+export default async function Page() {
+    const categories = await prisma.categories.findMany();
+
     return (
         <>
             <section>
@@ -16,10 +19,12 @@ export default function Page() {
                     <textarea cols={50} className='input--primary' placeholder='product description' />
 
                     <label htmlFor=''>Kategória</label>
-                    <select name='Kategória' id=''>
-                        <option value=''>AAA</option>
-                        <option value=''>BBB</option>
-                        <option value=''>CCC</option>
+                    <select name='Kategória' id='' className='input--primary'>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
                     </select>
                     <label htmlFor=''>Hely</label>
                     <input className='input--primary' type='text' placeholder='hely' />

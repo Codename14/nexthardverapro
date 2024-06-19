@@ -1,33 +1,30 @@
 import SearchBar from '@/components/SearchBar';
 import Products from './Products';
+import prisma from '@/lib/pismaDB';
+import { Link } from '@/navigation';
 
-export default async function Home() {
-    const categories = [
-        { id: 1, name: 'PC' },
-        { id: 2, name: 'hardware' },
-        { id: 3, name: 'konzol' },
-        { id: 3, name: 'photo-videó' },
-        { id: 3, name: 'mobil' },
-        { id: 3, name: 'tablet' },
-        { id: 3, name: 'laptop' },
-        { id: 3, name: 'audió' },
-        { id: 3, name: 'tv' },
-    ];
-
+export default async function Page({ searchParams }: { searchParams: SearchParamsType }) {
+    const categories = await prisma.categories.findMany();
+    console.log('par:', searchParams);
     return (
         <>
             <section className='under-navbar'>
                 <SearchBar />
                 <div className='flex mt-4 mb-6'>
                     {categories.map((category) => (
-                        <button className='glass-card py-2 px-4' key={category.id}>
-                            {category.name}
-                        </button>
+                        <>
+                            <Link
+                                href={`?categoryID=${category.id}`}
+                                className={`porduct-categories glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
+                                key={category.id}
+                            >
+                                {category.name}
+                            </Link>
+                        </>
                     ))}
                 </div>
-                {/* <p>UserID: {user?.id}</p> */}
             </section>
-            <Products />
+            <Products categoryID={searchParams.categoryID} />
         </>
     );
 }

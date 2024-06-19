@@ -280,6 +280,11 @@ textarea {
 //-----------------------------------------------
 //-------------- Products ------------------
 //-----------------------------------------------
+.porduct-categories {
+    &.active {
+        background: var(--primary);
+    }
+}
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

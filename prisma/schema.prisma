@@ -342,34 +342,37 @@ model user_data {
 }
 
 model products {
-  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String
-  description String?
-  created_at  DateTime?    @db.Timestamptz(6)
-  updated_at  DateTime?    @db.Timestamptz(6)
-  place       String
-  likes       Int
-  new         Boolean
-  status      String
-  price       Int
-  user_id     String?      @db.Uuid
-  user_name   String?
-  tumbnailUrl String
-  videoUrl    String?
-  comments    comments[]
-  users       users?       @relation(fields: [user_id], references: [id])
-  categories  categories[] @relation("categoriesToproducts")
+  id                                          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                                        String
+  description                                 String?
+  created_at                                  DateTime?    @default(now()) @db.Timestamptz(6)
+  updated_at                                  DateTime?    @default(now()) @db.Timestamptz(6)
+  place                                       String
+  likes                                       Int
+  new                                         Boolean
+  status                                      String
+  price                                       Int
+  user_id                                     String?      @db.Uuid
+  user_name                                   String?
+  tumbnailUrl                                 String
+  videoUrl                                    String?
+  category_id                                 String       @db.Uuid
+  comments                                    comments[]
+  categories_products_category_idTocategories categories   @relation("products_category_idTocategories", fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users                                       users?       @relation(fields: [user_id], references: [id])
+  categories                                  categories[] @relation("categoriesToproducts")
 
   @@schema("public")
 }
 
 model categories {
-  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String
-  description String?
-  created_at  DateTime?  @db.Timestamptz(6)
-  updated_at  DateTime?  @db.Timestamptz(6)
-  products    products[] @relation("categoriesToproducts")
+  id                                        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                                      String
+  description                               String?
+  created_at                                DateTime?  @db.Timestamptz(6)
+  updated_at                                DateTime?  @db.Timestamptz(6)
+  products_products_category_idTocategories products[] @relation("products_category_idTocategories")
+  products                                  products[] @relation("categoriesToproducts")
 
   @@schema("public")
 }
@@ -390,15 +393,12 @@ model comments {
   @@schema("public")
 }
 
-// Have to find out how to make this work properly
 model user_message {
   id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   text        String
   createdAt   DateTime? @db.Timestamptz(6)
-  senderId    BigInt    @db.BigInt
-  receiverId  BigInt    @db.BigInt
-  // sender     users?    @relation("SentMessages", fields: [senderId], references: [id])
-  // reciever   users?    @relation("recieveMessages", fields: [receiverId], references: [id])
+  senderId    BigInt
+  receiverId  BigInt
   sender_id   String?   @db.Uuid
   receiver_id String?   @db.Uuid
 
