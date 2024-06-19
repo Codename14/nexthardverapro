@@ -1,14 +1,13 @@
 .message-section {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 1em;
+    // gap: 1em;
     // padding: 0.8em;
     margin-bottom: 1em;
 }
-$messagePadding: 1em;
 .message-sidebar {
     // padding: 1em;
-    padding: $messagePadding;
+    padding: $cardPadding;
     overflow-y: scroll;
 }
 
@@ -97,14 +96,28 @@ $messagePadding: 1em;
     flex-direction: column;
 }
 .messages-container {
+    padding: $cardPadding;
+    // padding-left: 0;
     flex-grow: 2;
     width: 100%;
+    text-align: left;
+    .user-img {
+        position: relative;
+        width: 2em;
+        height: 2em;
+        img {
+            border-radius: 50vw;
+            object-fit: cover;
+        }
+    }
 }
 .message-action {
     position: relative;
     width: 100%;
     @include flexCenter();
-    padding: $messagePadding;
+    padding: $cardPadding;
+    // padding-left: 0;
+
     gap: 0.5em;
     input {
         width: 100%;
@@ -114,7 +127,8 @@ $messagePadding: 1em;
 // }
 .emoji-picker {
     position: absolute;
-    bottom: 1em;
+    bottom: 3em;
     right: 1em;
+
     // transform: translate(-50%, -50%);
 }

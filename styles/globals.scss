@@ -178,6 +178,7 @@ textarea {
     @include glassSurface();
     height: calc(100vh - $headerSize);
     height: calc(100svh - $headerSize);
+    margin-bottom: 1em;
 }
 
 .toaster {
@@ -385,3 +386,39 @@ textarea {
 // .lang-toggle {
 
 // }
+//=======================================================
+// OWN PROFILE
+//=======================================================
+
+.own-profile {
+    @include flexCenter();
+    justify-content: initial;
+    padding: $cardPadding;
+    gap: 1em;
+    justify-content: space-around;
+    .profile__img {
+        height: 12vw;
+        width: 12vw;
+        position: relative;
+        border-radius: 50vw;
+        @include imageBoxShadow();
+        img {
+            object-fit: cover;
+            border-radius: 50vw;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .profile__details {
+        text-align: left;
+    }
+    .profile__title {
+        @include titleFontSize();
+        margin-bottom: 1em;
+    }
+    .profile__info {
+        div {
+            justify-content: flex-start;
+        }
+    }
+}
