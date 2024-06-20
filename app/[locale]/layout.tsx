@@ -10,6 +10,7 @@ import LoginWindow from '@/components/login/LoginWindow';
 import { createSerClient } from '@/lib/supabase/server';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import LoadingContextProvider from '@/contexts/LoadingContext';
+import NextTopLoader from 'nextjs-toploader';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({ children, params: { locale } }: Readonly<Ro
                             <Header />
                             <LoginWindow />
                         </LoginWindowContextProvider>
+                        <NextTopLoader color={'var(--primary)'} />
                         <main className='main-content'>{children}</main>
                         <Footer />
                         <Toaster position='bottom-left' className='toaster' />
