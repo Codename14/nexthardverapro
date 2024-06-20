@@ -22,13 +22,13 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
         <>
             <section className='under-navbar'>
                 <SearchBar />
-                <div className='flex mt-4 mb-6'>
+                <div className='porduct-categories flex mt-4 mb-6'>
                     {categories.map((category) => (
                         <>
                             <Link
                                 // href={`?categoryID=${category.id}`}
                                 href={createHref(category.id)}
-                                className={`porduct-categories glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
+                                className={`glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
                                 key={category.id}
                             >
                                 {category.name}

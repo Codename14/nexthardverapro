@@ -44,7 +44,7 @@ export default function RootLayout({ children, params: { locale } }: Readonly<Ro
                             <Header />
                             <LoginWindow />
                         </LoginWindowContextProvider>
-                        <NextTopLoader color={'var(--primary)'} />
+                        <NextTopLoader color={'var(--primary)'} showSpinner={false} />
                         <main className='main-content'>{children}</main>
                         <Footer />
                         <Toaster position='bottom-left' className='toaster' />

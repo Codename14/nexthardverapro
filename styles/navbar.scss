@@ -1,4 +1,104 @@
+.navbar {
+    z-index: 10;
+    width: min($maxWidth, 100%);
+    margin-inline: auto;
+    &:has(.burger--active) {
+        padding-bottom: 1em;
+        background: color-mix(in srgb, var(--primary) 50%, transparent);
+        .nav-list {
+            opacity: 1;
+            max-height: 100vh;
+            overflow: initial;
+            pointer-events: all;
+        }
+    }
+}
+.navbar__mobile {
+    @include flexCenter();
+    justify-content: space-between;
+    width: 100%;
+    // border: 1px solid red;
+}
 .nav-list {
+    @include transFast();
     @include flexCenter();
     gap: 1em;
+    flex-direction: column;
+}
+.nav__toggle {
+    // border: 1px solid red;
+    right: 0px;
+    top: 0px;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-200);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: all 0.5s ease;
+    .burger {
+        width: 100%;
+        &::after,
+        &::before {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 60%;
+            margin: auto;
+            background-color: var(--text-100);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        &::after {
+            top: -5px;
+        }
+
+        &::before {
+            top: 5px;
+        }
+    }
+    .burger--active {
+        &::after {
+            transform: rotate(45deg);
+            top: -2px;
+        }
+        &::before {
+            transform: rotate(-45deg);
+            top: 0px;
+        }
+    }
+}
+
+//MOBILE
+@media (max-width: $navBreakPoint) {
+    .navbar {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(10px);
+        background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+    .nav-list {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+}
+
+//DESKTOP
+@media (min-width: $navBreakPoint) {
+    .navbar {
+        @include flexCenter();
+        padding: 0.5em 1em;
+    }
+    .nav-list {
+        flex-direction: row;
+    }
+    .nav__toggle {
+        display: none;
+    }
 }

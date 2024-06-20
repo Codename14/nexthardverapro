@@ -281,7 +281,8 @@ textarea {
 //-------------- Products ------------------
 //-----------------------------------------------
 .porduct-categories {
-    &.active {
+    flex-wrap: wrap;
+    .active {
         background: var(--primary);
     }
 }
