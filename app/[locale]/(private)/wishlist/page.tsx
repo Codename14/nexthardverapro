@@ -12,7 +12,7 @@ export default function Page() {
                 <h2 className='small-title'>Mentsd el a kedvenceid</h2>
                 <p className='mx-auto'>A kedvencként megjelölt terméket itt láthatod</p>
             </div>
-            <Link href={'/items'} className='btn btn--primary mt-4'>
+            <Link href={'/'} className='btn btn--primary mt-4'>
                 Böngészés
             </Link>
         </div>

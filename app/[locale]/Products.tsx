@@ -13,13 +13,14 @@ import { FaSearch } from 'react-icons/fa';
 export default async function Products({ categoryID, query }: { categoryID: string | undefined; query: string | undefined }) {
     const user = await readUserData();
     console.log('query:', query);
+
     const products = await prisma.products.findMany({
         where: {
             category_id: categoryID,
             name: { contains: query?.toLowerCase(), mode: 'insensitive' },
+            // user_id: user?.id?.toLowerCase(),
 
             // price: { gt: 105000 },
-            // user_id: user?.id?.toLowerCase(),
         },
     });
 

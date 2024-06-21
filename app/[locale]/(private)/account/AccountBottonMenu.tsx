@@ -3,8 +3,13 @@ import { useState } from 'react';
 import { FaProductHunt } from 'react-icons/fa6';
 import OwnRatings from './OwnRatings';
 import OwnItems from './OwnItems';
+import { products } from '@prisma/client';
 
-export default function AccountBottonMenu() {
+interface Props {
+    ownProducts: products[];
+}
+
+export default function AccountBottonMenu({ ownProducts }: Props) {
     const [menu, setMenu] = useState('products');
     return (
         <div>
@@ -18,7 +23,7 @@ export default function AccountBottonMenu() {
                     </button>
                 </div>
             </section>
-            <section>{menu === 'products' ? <OwnItems /> : <OwnRatings />}</section>
+            <section>{menu === 'products' ? <OwnItems ownProducts={ownProducts} /> : <OwnRatings />}</section>
         </div>
     );
 }

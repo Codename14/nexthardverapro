@@ -5,13 +5,14 @@ import Image from 'next/image';
 import { FaLocationDot, FaMedal, FaPlaceOfWorship, FaVoicemail, FaWifi } from 'react-icons/fa6';
 import { Link } from '@/navigation';
 import AccountBottonMenu from './AccountBottonMenu';
+import prisma from '@/lib/pismaDB';
+
 export default async function AccountPage() {
     const user = await readUserData();
-
     if (!user) {
         return <p>There is no user</p>;
     }
-    console.log('user', user);
+    const ownProducts = await prisma.products.findMany({ where: { user_id: user.id } });
     return (
         <div className='under-navbar screen-container'>
             <section className='own-profile'>
@@ -45,7 +46,7 @@ export default async function AccountPage() {
                 </Link>
             </section>
             {/* <p>{user.last_sign_in_at}</p> */}
-            <AccountBottonMenu />
+            <AccountBottonMenu ownProducts={ownProducts} />
         </div>
     );
 }

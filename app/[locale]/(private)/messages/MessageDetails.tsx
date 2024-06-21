@@ -34,16 +34,30 @@ export default function MessageDetails() {
             <div className='message-wrapper'>
                 <div className='messages-container'>
                     <div className='message'>
-                        <div className='flex'>
+                        <div className='message-details'>
                             <div className='user-img'>
                                 <Image src={DEFAULT_IMG} alt={'aaa'} fill />
                             </div>
-                            <p className='message-text'>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab debitis neque molestias, cum corporis recusandae
-                                perspiciatis autem voluptates itaque.
-                            </p>
+                            <div className='message-text'>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab debitis neque molestias, cum corporis
+                                    recusandae perspiciatis autem voluptates itaque.
+                                </p>
+                                <span className='text--light'>5 min ago</span>
+                            </div>
                         </div>
-                        <p>5 min ago</p>
+                        <div className='message-details own '>
+                            <div className='user-img'>
+                                <Image src={DEFAULT_IMG} alt={'aaa'} fill />
+                            </div>
+                            <div className='message-text'>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab debitis neque molestias, cum corporis
+                                    recusandae perspiciatis autem voluptates itaque.
+                                </p>
+                                <span className='text--light'>5 min ago</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <form className='message-action'>

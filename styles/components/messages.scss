@@ -97,6 +97,8 @@
 }
 .messages-container {
     padding: $cardPadding;
+    padding-inline: 0.5em;
+
     // padding-left: 0;
     flex-grow: 2;
     width: 100%;
@@ -121,6 +123,33 @@
     gap: 0.5em;
     input {
         width: 100%;
+    }
+}
+.message-details {
+    // border: 1px solid red;
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    margin-bottom: 1em;
+    .user-img {
+        width: 40px;
+        height: 40px;
+        align-self: flex-end;
+    }
+    .message-text {
+        max-width: 70%;
+        background: var(--primary);
+        border-radius: $borderRad;
+        @include imageBoxShadow();
+        padding: 0.5em 1em;
+    }
+    &.own {
+        grid-template-columns: 1fr;
+        .user-img {
+            display: none;
+        }
+        justify-items: flex-end;
     }
 }
 // .btn--emoji {

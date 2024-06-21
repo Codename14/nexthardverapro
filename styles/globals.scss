@@ -63,8 +63,8 @@ body:has(.light-theme) {
     }
 }
 svg {
-    stroke: var(--primary);
-    fill: var(--primary);
+    stroke: var(--text-100);
+    fill: var(--text-100);
 }
 
 //---------------------------------------------------------
@@ -441,4 +441,41 @@ textarea {
         // @include titleFontSize();
         margin-bottom: 1em;
     }
+}
+.acc__product-list {
+    display: grid;
+    padding-inline: 0.5em;
+    grid-template-columns: repeat(auto-fill, minmax(min(600px, 100%), 1fr));
+    gap: 0.5em;
+}
+
+.acc__product-item {
+    @include glassSurfaceInner();
+    display: flex;
+    width: 100%;
+    margin-inline: auto;
+    height: 10em;
+    overflow: hidden;
+    text-align: left;
+    .acc__product-body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0.5em 0.8em;
+    }
+    .acc__product-image {
+        position: relative;
+        width: 10em;
+        img {
+            object-fit: cover;
+        }
+    }
+}
+.acc__product-name {
+    font-weight: 600;
+}
+
+.acc__product-likes {
+    @include flexCenter();
+    gap: 0.2em;
 }
