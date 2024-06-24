@@ -16,7 +16,7 @@ export default function OwnItems({ ownProducts }: { ownProducts: products[] }) {
                                 <Image alt={product.name} src={product.tumbnailUrl} fill />
                             </div>
                             <div className='acc__product-body'>
-                                <div className='flex justify-between '>
+                                <div className='flex justify-between'>
                                     <h4 className='acc__product-name '>{product.name}</h4>
                                     <Link href={`/items/${product.id}/edit`}>
                                         <FaEdit size={30} />

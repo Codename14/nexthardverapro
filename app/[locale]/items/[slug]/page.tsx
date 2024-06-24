@@ -16,7 +16,7 @@ export default async function Page({ params }: Props) {
         <>
             {products.map((product) => (
                 <div className='product__item glass-card' key={product.id}>
-                    <div className='product__image size-10 relative'>
+                    <div className='product__image'>
                         <Image alt={product.name} src={product.tumbnailUrl} fill />
                     </div>
                     <p className='product__name'>{product.name}</p>
