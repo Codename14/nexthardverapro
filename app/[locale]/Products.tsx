@@ -8,7 +8,8 @@ import SearchBar from '@/components/SearchBar';
 import { Link } from '@/navigation';
 import { CiHeart } from 'react-icons/ci';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaUser } from 'react-icons/fa';
+import LikeButton from '@/components/LikeButton';
 
 export default async function Products({ categoryID, query }: { categoryID: string | undefined; query: string | undefined }) {
     const user = await readUserData();
@@ -40,15 +41,25 @@ export default async function Products({ categoryID, query }: { categoryID: stri
             )}
             <section className='products-grid mb-6'>
                 {products.map((product) => (
-                    <Link href={`/items/${product.id}`} className='product__item glass-card' key={product.id}>
+                    <div className='product__item glass-card' key={product.id}>
                         <div className='product__image'>
-                            <Image alt={product.name} src={product.tumbnailUrl} fill />
+                            <Link href={`/items/${product.id}`}>
+                                <Image alt={product.name} src={product.tumbnailUrl} fill />
+                            </Link>
+                            {user && (
+                                <LikeButton likesLength={product.likes.length} productID={product.id} likeState={product.likes.includes(user?.id)} />
+                            )}
                         </div>
-                        <p className='product__name'>{product.name}</p>
-                        <p className='product__price'>{product.price} Ft</p>
-                        {/* <p className=' text--light'>{product.user_id}</p> */}
-                        <button className='product__like'>{true ? <IoIosHeart size={45} /> : <IoIosHeartEmpty size={45} />}</button>
-                    </Link>
+                        <div className='product__body'>
+                            <p className='product__name text--light'>{product.name}</p>
+                            <p className='product__des text--light'>{product.description}</p>
+                            {/* <div className='product__user product__line'>
+                                <FaUser />
+                                <p>{product.user_email}</p>
+                            </div> */}
+                            <p className='product__price'>{product.price} Ft</p>
+                        </div>
+                    </div>
                 ))}{' '}
             </section>
         </>

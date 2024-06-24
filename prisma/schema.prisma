@@ -327,8 +327,8 @@ model user_role {
   created_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String?  @db.Uuid
   role_id    BigInt?
-  roles      roles?   @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  roles      roles?   @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -340,7 +340,7 @@ model user_data {
   email      String?
   name       String?
   user_id    String?  @db.Uuid
-  users      users?   @relation(fields: [user_id], references: [id])
+  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -361,8 +361,8 @@ model products {
   id                                          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                                        String
   description                                 String?
-  created_at                                  DateTime?      @default(now()) @db.Timestamptz(6)
-  updated_at                                  DateTime?      @default(now()) @db.Timestamptz(6)
+  created_at                                  DateTime       @default(now()) @db.Timestamptz(6)
+  updated_at                                  DateTime       @default(now()) @db.Timestamptz(6)
   place                                       String
   likes                                       String[]
   new                                         Boolean
@@ -374,9 +374,10 @@ model products {
   videoUrl                                    String?
   category_id                                 String         @db.Uuid
   images                                      String[]
+  user_email                                  String?
   comments                                    comments[]
   categories_products_category_idTocategories categories     @relation("products_category_idTocategories", fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users                                       users?         @relation(fields: [user_id], references: [id])
+  users                                       users          @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_messages                               user_message[] @relation("ProductMessages")
 
   @@schema("public")

@@ -22,7 +22,7 @@ export async function handleAddNewProduct(formData: unknown) {
         try {
             console.log('validatedProductData', validatedProductData);
             await prisma.products.create({
-                data: { ...validatedProductData.data, user_id: user.id, status: 'active' },
+                data: { ...validatedProductData.data, user_id: user.id, status: 'active', user_email: user.email },
             });
         } catch (error) {
             return {

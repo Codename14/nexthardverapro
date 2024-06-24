@@ -295,22 +295,59 @@ textarea {
         overflow: hidden;
         height: 400px;
     }
-    // position: relative;
-    // .product__name {
-    // }
-    .product__price {
-        font-weight: 600;
-    }
     .product__image {
         position: relative;
-        height: 300px;
+        height: 280px;
         width: 100%;
 
         // background: linear-gradient(rgba(255, 0, 0, 0), rgb(255, 62, 255));
         img {
-            opacity: 0.8;
+            // display: none;
             object-fit: cover;
         }
+    }
+    .product__user {
+        p,
+        svg {
+            @include textLight();
+        }
+    }
+    .product__body {
+        padding: 0.5em;
+        height: 120px;
+        @include flexCenter();
+        flex-direction: column;
+    }
+    // position: relative;
+    // text-align: left;
+    .product__name {
+        font-weight: 700;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 0.5em;
+    }
+
+    .product__des {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .product__price {
+        margin-top: auto;
+        font-weight: 600;
+    }
+
+    .product__line {
+        svg {
+            flex-shrink: 0;
+        }
+        @include flexCenter();
+        margin-bottom: 0.5em;
+        justify-content: start;
+        gap: 0.5em;
     }
 }
 
@@ -359,21 +396,20 @@ textarea {
             opacity: 0.8;
             object-fit: cover;
         }
-        .item__like {
-            @include glassSurface();
-            padding: 0.2em 0.4em;
-            position: absolute;
-            bottom: 1em;
-            right: 1em;
-            z-index: 99;
-        }
     }
-
     //PC
     @media (min-width: $break1) {
         height: calc(100svh - 80px);
         grid-template-columns: 1fr 300px;
     }
+}
+.item__like {
+    @include glassSurface();
+    padding: 0.2em 0.4em;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    z-index: 99;
 }
 
 //-----------------------------------------------
