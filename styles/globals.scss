@@ -305,6 +305,7 @@ textarea {
         position: relative;
         height: 300px;
         width: 100%;
+
         // background: linear-gradient(rgba(255, 0, 0, 0), rgb(255, 62, 255));
         img {
             opacity: 0.8;
@@ -315,11 +316,9 @@ textarea {
 
 .item-page {
     display: grid;
-    grid-template-columns: 1fr 300px;
     gap: 1em;
     text-align: left;
     margin-bottom: 1em;
-    height: calc(100svh - 80px);
     .item__details {
         @include glassSurface();
         padding: 1em;
@@ -355,6 +354,7 @@ textarea {
         overflow: hidden;
         position: relative;
         width: 100%;
+        min-height: 50vh;
         img {
             opacity: 0.8;
             object-fit: cover;
@@ -368,7 +368,14 @@ textarea {
             z-index: 99;
         }
     }
+
+    //PC
+    @media (min-width: $break1) {
+        height: calc(100svh - 80px);
+        grid-template-columns: 1fr 300px;
+    }
 }
+
 //-----------------------------------------------
 //--------------------Contact--------------------
 //-----------------------------------------------
