@@ -12,23 +12,22 @@ import { FaSearch } from 'react-icons/fa';
 
 export default async function Products({ categoryID, query }: { categoryID: string | undefined; query: string | undefined }) {
     const user = await readUserData();
-    console.log('query:', query);
-
-    const products = await prisma.products.findMany({
-        where: {
-            category_id: categoryID,
-            name: { contains: query?.toLowerCase(), mode: 'insensitive' },
-            // user_id: user?.id?.toLowerCase(),
-
-            // price: { gt: 105000 },
-        },
-    });
+    // console.log('query:', query);
 
     // const supabase = createClient();
     // const { data: products, error } = await supabase.from('products').select('*');
     // if (error) {
     //     return <div>{error.message}</div>;
     // }
+    const products = await prisma.products.findMany({
+        where: {
+            category_id: categoryID,
+            name: { contains: query?.toLowerCase(), mode: 'insensitive' },
+            // user_id: user?.id?.toLowerCase(),
+            // price: { gt: 105000 },
+        },
+    });
+
     return (
         <>
             {products.length === 0 ? (
@@ -47,40 +46,10 @@ export default async function Products({ categoryID, query }: { categoryID: stri
                         </div>
                         <p className='product__name'>{product.name}</p>
                         <p className='product__price'>{product.price} Ft</p>
-                        <p className=' text--light'>{product.user_id}</p>
+                        {/* <p className=' text--light'>{product.user_id}</p> */}
                         <button className='product__like'>{true ? <IoIosHeart size={45} /> : <IoIosHeartEmpty size={45} />}</button>
                     </Link>
                 ))}{' '}
-                {products.map((product) => (
-                    <Link href={`/items/${product.id}`} className='product__item glass-card' key={product.id}>
-                        <div className='product__image'>
-                            <Image alt={product.name} src={product.tumbnailUrl} fill />
-                        </div>
-                        <p className='product__name'>{product.name}</p>
-                        <p className='product__price'>{product.price} Ft</p>
-                        <p className=' text--light'>{product.user_id}</p>
-                    </Link>
-                ))}{' '}
-                {products.map((product) => (
-                    <Link href={`/items/${product.id}`} className='product__item glass-card' key={product.id}>
-                        <div className='product__image'>
-                            <Image alt={product.name} src={product.tumbnailUrl} fill />
-                        </div>
-                        <p className='product__name'>{product.name}</p>
-                        <p className='product__price'>{product.price} Ft</p>
-                        <p className=' text--light'>{product.user_id}</p>
-                    </Link>
-                ))}{' '}
-                {products.map((product) => (
-                    <Link href={`/items/${product.id}`} className='product__item glass-card' key={product.id}>
-                        <div className='product__image'>
-                            <Image alt={product.name} src={product.tumbnailUrl} fill />
-                        </div>
-                        <p className='product__name'>{product.name}</p>
-                        <p className='product__price'>{product.price} Ft</p>
-                        <p className=' text--light'>{product.user_id}</p>
-                    </Link>
-                ))}
             </section>
         </>
     );
