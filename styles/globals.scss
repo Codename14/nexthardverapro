@@ -320,20 +320,29 @@ textarea {
     text-align: left;
     margin-bottom: 1em;
     height: calc(100svh - 80px);
-
+    .item__details {
+        @include glassSurface();
+        padding: 1em;
+        overflow-y: hidden;
+    }
     .item__line {
         display: grid;
+        align-items: center;
         width: 100%;
         grid-template-columns: 30px 1fr;
         gap: 0.2em;
         margin-bottom: 0.5em;
+        flex-shrink: 0;
     }
-    .item__details {
-        @include glassSurface();
-        padding: 1em;
+    .item__des {
+        // flex-grow: 0;
+        align-items: flex-start;
+        flex-shrink: 10;
+        overflow-y: auto;
     }
     .item__price {
         font-weight: 600;
+        text-align: left;
         @include titleFontSize();
     }
     .item__name {

@@ -1,7 +1,7 @@
 'use client';
 import { DEFAULT_IMG } from '@/lib/constants';
 import prisma from '@/lib/pismaDB';
-import { productFormSchema, productZodFormType } from '@/lib/validation';
+import { detailsMaxLength, nameMaxLength, productFormSchema, productZodFormType } from '@/lib/validation';
 import { handleAddNewProduct } from './action/action';
 import { categories } from '@prisma/client';
 import { useForm } from 'react-hook-form';
@@ -23,11 +23,15 @@ export default function AddProductForm({ categories }: { categories: categories[
     const {
         register,
         reset,
+        watch,
         getValues,
         handleSubmit, //ez pedig onSubmitnál lenne jó
         trigger, //azért kell mert action attributumot használjuk
         formState: { errors, isValid, isDirty, isSubmitting },
     } = useForm<productZodFormType>({ resolver: zodResolver(productFormSchema) });
+
+    const name = watch('name');
+    const description = watch('description');
 
     return (
         <>
@@ -58,6 +62,10 @@ export default function AddProductForm({ categories }: { categories: categories[
                     <input {...register('tumbnailUrl')} className='input--primary' type='text' />
                     <label htmlFor=''>Hirdetés címe</label>
                     <input className='input--primary' placeholder='name' {...register('name')} />
+                    <span>
+                        {name ? name.length : 0} / {nameMaxLength}
+                    </span>
+
                     <input className='input--primary' type='number' placeholder='price' {...register('price')} />
                     <select className='input--primary' {...register('category_id')}>
                         {categories.map((category) => (
@@ -68,7 +76,13 @@ export default function AddProductForm({ categories }: { categories: categories[
                     </select>
                     <p>{isValid ? 'valid' : 'invalid'}</p>
                     <input {...register('place')} className='input--primary' type='text' placeholder='place' />
-                    <input {...register('description')} className='input--primary' type='text' placeholder='description' />
+                    <textarea {...register('description')} className='input--primary' rows={10} placeholder='description' />
+                    <span>
+                        {' '}
+                        <span>
+                            {description ? description.length : 0} / {detailsMaxLength}
+                        </span>
+                    </span>
                     <input {...register('new', { valueAsNumber: true })} type='checkbox' className='input--primary' />
                     {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     {errors.price && <p className='text-red-500'>{errors.price.message}</p>}

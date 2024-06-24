@@ -2,7 +2,7 @@ import prisma from '@/lib/pismaDB';
 import React from 'react';
 import Image from 'next/image';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-import { FaPlaceOfWorship, FaUser } from 'react-icons/fa';
+import { FaMoneyBill, FaPlaceOfWorship, FaUser } from 'react-icons/fa';
 import { MdCategory, MdOutlineFiberNew, MdOutlineWorkspaces, MdOutlineWysiwyg } from 'react-icons/md';
 import { Link } from '@/navigation';
 import LikeButton from '@/components/LikeButton';
@@ -41,7 +41,10 @@ export default async function Page({ params }: Props) {
                     {user && <LikeButton likesLength={product.likes.length} productID={product.id} likeState={product.likes.includes(user?.id)} />}
                 </div>
                 <div className='item__details flex flex-col justify-start'>
-                    <p className='item__price'>{product.price} Ft</p>
+                    <div className='item__line'>
+                        <FaMoneyBill size='20' />
+                        <p className='item__price'>{product.price} Ft</p>
+                    </div>
                     <p className='item__name'>{product.name}</p>
                     <div className='item__line'>
                         <MdCategory size='20' />
@@ -58,7 +61,7 @@ export default async function Page({ params }: Props) {
                         <p className='item__new'>{product.new ? 'Új' : 'Régi'}</p>
                     </div>
 
-                    <div className='item__line'>
+                    <div className='item__line item__des'>
                         <MdOutlineWysiwyg size='20' />
                         <p className='item__description'>{product.description}</p>
                         {/* <p className='item__price'>{product.created_at}</p> */}
