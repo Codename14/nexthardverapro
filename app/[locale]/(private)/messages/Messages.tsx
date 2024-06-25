@@ -112,9 +112,14 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                                             {/* {senderID} */}
                                             {senderUser?.email}
                                         </h4>
-                                        <p className='header__message'>{message.message}</p>
+                                        <p className='header__message text--light'>{product?.name}</p>
+                                        {/* <p className='header__message'>{message.message}</p> */}
                                         <span className='flex gap-0 justify-start text--light'>
-                                            {ownID === product?.user_id && <MdSell size={20} />} saját
+                                            {ownID === product?.user_id && (
+                                                <>
+                                                    <MdSell size={20} /> saját
+                                                </>
+                                            )}
                                         </span>
                                     </div>
                                 </button>
