@@ -193,14 +193,38 @@ textarea {
 //---------------------------------------------------------
 //------------------------      ---------------------------
 //---------------------------------------------------------
+.input-control {
+    position: relative;
+    width: min(100%, 300px); // 100%;
+    margin-top: 1em;
+    .form-message {
+        z-index: 9;
+        position: absolute;
+        top: -10px;
+        left: 0;
+        font-size: 80%;
+        font-style: italic;
+        background: color-mix(in srgb, var(--primary) 70%, transparent);
+        opacity: 0.8;
+        margin-left: 10px;
+        padding-inline: 5px;
+        border-radius: $borderRad;
+        &.error {
+            color: $color-danger;
+        }
+        &.right {
+            left: 80%;
+        }
+    }
+}
 
 .input--primary {
     @include glassSurface();
+    width: min(100%, 300px); // 100%;
     border-radius: $borderRad;
     border: none;
     padding: 0.5em 1em;
 
-    width: min(100%, 300px); // 100%;
     &:focus {
         outline: 2px solid var(--primary);
     }

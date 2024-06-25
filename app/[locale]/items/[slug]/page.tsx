@@ -71,10 +71,16 @@ export default async function Page({ params }: Props) {
                         <FaUser size='20' />
                         <p className='item__user'>{userData?.email}</p>
                     </div>
-                    {user && user.id !== product.user_id && (
+                    {user && user.id !== product.user_id ? (
                         <div className='flex mt-auto'>
                             <Link href={`/messages?param=${product.id}&param2=${product.user_id}`} className='btn btn--primary'>
                                 Írok a feladónak
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className='flex mt-auto'>
+                            <Link href={`/items/${product.id}/edit`} className='btn btn--primary'>
+                                Szerkesztés
                             </Link>
                         </div>
                     )}

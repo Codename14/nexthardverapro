@@ -55,7 +55,7 @@ export default async function Page({ searchParams }: { searchParams: MessagePara
 
     return (
         <>
-            <p>{user.email}</p>
+            {/* <p>{user.email}</p> */}
             <div className='under-navbar text-center'>
                 <Messages
                     messageUsers={messageUsers}

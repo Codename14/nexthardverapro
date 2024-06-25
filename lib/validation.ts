@@ -4,6 +4,8 @@ import { DEFAULT_IMG } from './constants';
 export const detailsMaxLength = 900;
 export const nameMaxLength = 40;
 
+export const productIdSchema = z.string().min(1, { message: 'Id is required' });
+
 export const productFormSchema = z
     .object({
         name: z.string().trim().min(1, { message: 'Name is required' }).max(nameMaxLength, { message: 'more than 40' }),
