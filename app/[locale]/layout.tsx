@@ -43,10 +43,11 @@ export default function RootLayout({ children, params: { locale } }: Readonly<Ro
                         <LoginWindowContextProvider>
                             <Header />
                             <LoginWindow />
+                            <NextTopLoader color={'var(--primary)'} showSpinner={false} />
+                            <main className='main-content'>{children}</main>
+                            <Footer />
                         </LoginWindowContextProvider>
-                        <NextTopLoader color={'var(--primary)'} showSpinner={false} />
-                        <main className='main-content'>{children}</main>
-                        <Footer />
+
                         <Toaster position='bottom-left' className='toaster' />
                     </LoadingContextProvider>
                 </NextIntlClientProvider>

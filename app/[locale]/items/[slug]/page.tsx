@@ -7,6 +7,7 @@ import { MdCategory, MdOutlineFiberNew, MdOutlineWorkspaces, MdOutlineWysiwyg } 
 import { Link } from '@/navigation';
 import LikeButton from '@/components/LikeButton';
 import { readUserData } from '@/lib/actions';
+import LoginButton from '@/components/header/LoginButton';
 interface Props {
     params: { slug: string };
 }
@@ -70,9 +71,15 @@ export default async function Page({ params }: Props) {
                         <FaUser size='20' />
                         <p className='item__user'>{userData?.email}</p>
                     </div>
-                    <div className='flex mt-auto'>
-                        <button className='btn btn--primary'>Írok a feladónak</button>
-                    </div>
+                    {user ? (
+                        <div className='flex mt-auto'>
+                            <Link href={`/messages?productID=${product.id}`} className='btn btn--primary'>
+                                Írok a feladónak
+                            </Link>
+                        </div>
+                    ) : (
+                        <LoginButton className='btn btn--primary'>Bejelentkezek</LoginButton>
+                    )}
                 </div>
             </div>
         </>
