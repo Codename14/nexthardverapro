@@ -48,7 +48,7 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
         if (res && !res.success) {
             toast.error(res.error);
         }
-        // reset();
+        reset({ message: '' });
     };
     useEffect(() => {
         setValue('receiver_id', receiverID);
@@ -85,7 +85,7 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                                                 <p>{message.message}</p>
                                                 <span className='text--light'>{JSON.stringify(message.createdAt)}</span>
                                             </div>
-                                            <p className='header__message'>{message.product_id.slice(-4)}</p>
+                                            {/* <p className='header__message'>{message.product_id.slice(-4)}</p> */}
 
                                             {/* <p>{message.sender_id.slice(-4)}</p> */}
                                         </div>
@@ -96,8 +96,8 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                     <p>{isValid ? '' : "Message can't be empty"}</p>
                     <form className='message-action' onSubmit={handleSubmit(onSubmit)}>
                         <FaImage size={25} />
-                        <input className='' {...register('receiver_id')} />
-                        <input className='' {...register('product_id')} />
+                        <input className='hidden' {...register('receiver_id')} />
+                        <input className='hidden' {...register('product_id')} />
                         <input
                             {...register('message')}
                             onKeyDown={(event) => {
