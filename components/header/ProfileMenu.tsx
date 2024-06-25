@@ -6,14 +6,14 @@ import { DEFAULT_IMG } from '@/lib/constants';
 import { Link } from '@/navigation';
 import SignOutButton from './SignOutButton';
 
-export default function ProfileMenu() {
+export default function ProfileMenu({ userImg }: { userImg?: string }) {
     let close = useClose();
     return (
         <>
             <Popover className='popover'>
                 <PopoverButton className={'popover-button'}>
                     <div className='profile_img '>
-                        <Image src={DEFAULT_IMG} alt={'profile'} fill className='rounded-xl w-full h-full object-cover' />
+                        <Image src={userImg ?? DEFAULT_IMG} alt={'profile'} fill className='rounded-xl w-full h-full object-cover' />
                     </div>
                 </PopoverButton>
                 <PopoverPanel anchor='bottom' className='popover-list'>

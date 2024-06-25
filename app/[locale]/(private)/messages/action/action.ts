@@ -23,9 +23,10 @@ export async function handleSendMessage(formData: unknown) {
             error: 'Error wrong data.',
         };
     } else {
-        console.log('valid', validateMessageData);
+        // console.log('valid', validateMessageData);
         try {
             console.log('validatedProductData', validateMessageData);
+            console.log('senderID', user.id);
             await prisma.user_message.create({
                 data: { ...validateMessageData.data, sender_id: user.id },
             });

@@ -1,18 +1,16 @@
 'use client';
+import { DEFAULT_IMG } from '@/lib/constants';
+import { messageScema, messageZodFormType } from '@/lib/validation';
+import { Link } from '@/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { products, user_message } from '@prisma/client';
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { FaIcons, FaImage } from 'react-icons/fa6';
-import { DEFAULT_IMG } from '@/lib/constants';
-import Image from 'next/image';
-import { products, user_message } from '@prisma/client';
-import { handleSendMessage } from './action/action';
-import { isValid } from 'zod';
-import { SubmitButton } from '@/components/SubmitButton';
-import { messageScema, messageZodFormType } from '@/lib/validation';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import { Link } from '@/navigation';
+import { handleSendMessage } from './action/action';
 
 interface Props {
     // activeProductMessageID: string | null;
@@ -59,7 +57,6 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
             setValue('product_id', activeProduct.id);
         }
     }, [activeProduct, setValue]);
-
     return (
         <>
             {activeProduct?.id && (
@@ -93,7 +90,7 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                             )}
                         </div>
                     </div>
-                    <p>{isValid ? '' : "Message can't be empty"}</p>
+                    {/* <p>{isValid ? '' : "Message can't be empty"}</p> */}
                     <form className='message-action' onSubmit={handleSubmit(onSubmit)}>
                         <FaImage size={25} />
                         <input className='hidden' {...register('receiver_id')} />

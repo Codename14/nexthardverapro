@@ -3,7 +3,7 @@ import { useLoginWindowContext } from '@/contexts/LoginWindowContext';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
-export default function LoginButton({ children, className }: { children: React.ReactNode; className: string }) {
+export default function LoginButton({ children, className }: { children: React.ReactNode; className?: string }) {
     const { isOpen, setIsOpen } = useLoginWindowContext();
 
     return (
