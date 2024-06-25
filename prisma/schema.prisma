@@ -385,15 +385,15 @@ model products {
 
 model user_message {
   id                                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  text                                  String
-  createdAt                             DateTime? @db.Timestamptz(6)
-  sender_id                             String?   @db.Uuid
-  receiver_id                           String?   @db.Uuid
+  message                               String
+  createdAt                             DateTime  @default(now()) @db.Timestamptz(6)
+  sender_id                             String    @db.Uuid
+  receiver_id                           String    @db.Uuid
   updated_at                            DateTime? @db.Timestamptz(6)
-  product_id                            String?   @db.Uuid
-  product                               products? @relation("ProductMessages", fields: [product_id], references: [id])
-  users_user_message_receiver_idTousers users?    @relation("user_message_receiver_idTousers", fields: [receiver_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users                                 users?    @relation(fields: [sender_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product_id                            String    @db.Uuid
+  product                               products  @relation("ProductMessages", fields: [product_id], references: [id], onDelete: SetNull)
+  users_user_message_receiver_idTousers users     @relation("user_message_receiver_idTousers", fields: [receiver_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users                                 users     @relation(fields: [sender_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@schema("public")
 }
@@ -402,7 +402,7 @@ model categories {
   id                                        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                                      String
   description                               String?
-  created_at                                DateTime?  @db.Timestamptz(6)
+  created_at                                DateTime?  @default(now()) @db.Timestamptz(6)
   updated_at                                DateTime?  @db.Timestamptz(6)
   products_products_category_idTocategories products[] @relation("products_category_idTocategories")
 
@@ -413,7 +413,7 @@ model categories {
 model comments {
   id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   text         String
-  created_at   DateTime? @db.Timestamptz(6)
+  created_at   DateTime? @default(now()) @db.Timestamptz(6)
   updated_at   DateTime? @db.Timestamptz(6)
   user_id      String?   @db.Uuid
   user_name    String?

@@ -1,24 +1,39 @@
 'use client';
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import { FaIcons, FaImage } from 'react-icons/fa6';
 import { DEFAULT_IMG } from '@/lib/constants';
 import Image from 'next/image';
+import { products, user_message } from '@prisma/client';
+import { handleSendMessage } from './action/action';
+import { isValid } from 'zod';
+import { SubmitButton } from '@/components/SubmitButton';
+import { messageScema, messageZodFormType } from '@/lib/validation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { Link } from '@/navigation';
 
-export default function MessageDetails() {
+interface Props {
+    // activeProductMessageID: string | null;
+    messages: user_message[];
+    ownID: string;
+    receiverID: string;
+    activeProduct: products | undefined;
+}
+
+export default function MessageDetails({ messages, ownID, receiverID, activeProduct }: Props) {
     const [isEmojiOpen, setIsEmojiOpen] = useState(false);
-
     const {
         handleSubmit,
         register,
-        formState: { errors },
+        formState: { errors, isValid, isSubmitting },
         watch,
+        reset,
         setValue,
         setError,
-    } = useForm({});
+    } = useForm<messageZodFormType>({ resolver: zodResolver(messageScema) });
     const messageValue = watch('message');
-
     const handleArrowKeys = (event: React.KeyboardEvent) => {
         if (event.key === 'Escape') {
             setIsEmojiOpen(false);
@@ -28,67 +43,87 @@ export default function MessageDetails() {
         console.log(emoji);
         setValue('message', `${messageValue}${emoji.emoji}`);
     };
+    const onSubmit = async (data: FieldValues) => {
+        const res = await handleSendMessage(data);
+        if (res && !res.success) {
+            toast.error(res.error);
+        }
+        // reset();
+    };
+    useEffect(() => {
+        setValue('receiver_id', receiverID);
+    }, [receiverID, setValue]);
+
+    useEffect(() => {
+        if (activeProduct && activeProduct.id) {
+            setValue('product_id', activeProduct.id);
+        }
+    }, [activeProduct, setValue]);
 
     return (
         <>
-            <div className='message-wrapper'>
-                <div className='messages-container'>
-                    <div className='message'>
-                        <div className='message-details'>
-                            <div className='user-img'>
-                                <Image src={DEFAULT_IMG} alt={'aaa'} fill />
-                            </div>
-                            <div className='message-text'>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab debitis neque molestias, cum corporis
-                                    recusandae perspiciatis autem voluptates itaque.
-                                </p>
-                                <span className='text--light'>5 min ago</span>
-                            </div>
+            {activeProduct?.id && (
+                <div className='message-wrapper'>
+                    <Link href={`/items/${activeProduct.id}`} className='message-product-title'>
+                        <div className='message-title-img'>
+                            <Image src={activeProduct.tumbnailUrl} alt={'aaa'} fill />
                         </div>
-                        <div className='message-details own '>
-                            <div className='user-img'>
-                                <Image src={DEFAULT_IMG} alt={'aaa'} fill />
-                            </div>
-                            <div className='message-text'>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ab debitis neque molestias, cum corporis
-                                    recusandae perspiciatis autem voluptates itaque.
-                                </p>
-                                <span className='text--light'>5 min ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form className='message-action'>
-                    <FaImage size={25} />
-                    <input
-                        {...register('message', {
-                            required: 'Message is required',
-                        })}
-                        onKeyDown={(event) => {
-                            handleArrowKeys(event);
-                        }}
-                        onFocus={() => setIsEmojiOpen(false)}
-                        className='input--primary'
-                    />
-                    <button type='button' onClick={() => setIsEmojiOpen((prev) => !prev)} className='btn--emoji'>
-                        <FaIcons size={25} />
-                    </button>
-                    {/* {isEmojiOpen && ( */}
+                        <h4 className='text-light'>{activeProduct?.name}</h4>
+                        <p className='message-title'>{activeProduct?.price} Ft</p>
+                    </Link>
 
-                    <div
-                        className='emoji-picker'
-                        onKeyDown={(event) => {
-                            handleArrowKeys(event);
-                        }}
-                    >
-                        <EmojiPicker open={isEmojiOpen} onEmojiClick={handleEmoji} />
+                    <div className='messages-container'>
+                        <div className='messages'>
+                            {messages.map(
+                                (message) =>
+                                    activeProduct?.id === message.product_id && (
+                                        <div className={`message-details ${message.sender_id === ownID ? 'own' : ''}`} key={message.id}>
+                                            <div className='user-img'>
+                                                <Image src={DEFAULT_IMG} alt={'aaa'} fill />
+                                            </div>
+                                            <div className='message-text'>
+                                                <p>{message.message}</p>
+                                                <span className='text--light'>{JSON.stringify(message.createdAt)}</span>
+                                            </div>
+                                            <p className='header__message'>{message.product_id.slice(-4)}</p>
+
+                                            {/* <p>{message.sender_id.slice(-4)}</p> */}
+                                        </div>
+                                    )
+                            )}
+                        </div>
                     </div>
-                    {/* )} */}
-                    <button className='btn btn--primary'>Küldés</button>
-                </form>
-            </div>
+                    <p>{isValid ? '' : "Message can't be empty"}</p>
+                    <form className='message-action' onSubmit={handleSubmit(onSubmit)}>
+                        <FaImage size={25} />
+                        <input className='' {...register('receiver_id')} />
+                        <input className='' {...register('product_id')} />
+                        <input
+                            {...register('message')}
+                            onKeyDown={(event) => {
+                                handleArrowKeys(event);
+                            }}
+                            onFocus={() => setIsEmojiOpen(false)}
+                            className='input--primary'
+                        />
+                        <button type='button' onClick={() => setIsEmojiOpen((prev) => !prev)} className='btn--emoji'>
+                            <FaIcons size={25} />
+                        </button>
+                        {/* {isEmojiOpen && ( */}
+                        <div
+                            className='emoji-picker'
+                            onKeyDown={(event) => {
+                                handleArrowKeys(event);
+                            }}
+                        >
+                            <EmojiPicker open={isEmojiOpen} onEmojiClick={handleEmoji} />
+                        </div>
+                        <button disabled={!isValid} className='btn btn--primary'>
+                            {isSubmitting ? 'Sending...' : 'Send'}
+                        </button>
+                    </form>
+                </div>
+            )}
         </>
     );
 }

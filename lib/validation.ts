@@ -23,3 +23,11 @@ export const productFormSchema = z
     }));
 
 export type productZodFormType = z.infer<typeof productFormSchema>;
+
+export const messageScema = z.object({
+    message: z.string().trim().min(1, { message: 'Message is required' }).max(900, { message: 'more than 900' }),
+    receiver_id: z.string(),
+    product_id: z.string(),
+});
+
+export type messageZodFormType = z.infer<typeof messageScema>;
