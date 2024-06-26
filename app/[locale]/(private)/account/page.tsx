@@ -2,7 +2,7 @@ import { readUserData } from '@/lib/actions';
 import { createSerClient } from '@/lib/supabase/server';
 import { DEFAULT_IMG } from '@/lib/constants';
 import Image from 'next/image';
-import { FaLocationDot, FaMedal, FaPlaceOfWorship, FaVoicemail, FaWifi } from 'react-icons/fa6';
+import { FaLocationDot, FaVoicemail, FaWifi } from 'react-icons/fa6';
 import { Link } from '@/navigation';
 import AccountBottonMenu from './AccountBottonMenu';
 import prisma from '@/lib/pismaDB';

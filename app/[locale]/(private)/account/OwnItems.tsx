@@ -1,10 +1,11 @@
 import React from 'react';
 import FavoriteIcon from '../wishlist/FavoriteIcon';
 import { Link } from '@/navigation';
-import { FaAccusoft, FaStar } from 'react-icons/fa6';
+import { FaAccusoft, FaDeleteLeft, FaStar } from 'react-icons/fa6';
 import { FaArrowAltCircleRight, FaEdit, FaHeart, FaPlaceOfWorship } from 'react-icons/fa';
 import { products } from '@prisma/client';
 import Image from 'next/image';
+import ProductDeleteBtn from './ProductDeleteBtn';
 export default function OwnItems({ ownProducts }: { ownProducts: products[] }) {
     return (
         <>
@@ -18,9 +19,12 @@ export default function OwnItems({ ownProducts }: { ownProducts: products[] }) {
                             <div className='acc__product-body'>
                                 <div className='flex justify-between'>
                                     <h4 className='acc__product-name '>{product.name}</h4>
-                                    <Link href={`/items/${product.id}/edit`}>
-                                        <FaEdit size={30} />
-                                    </Link>
+                                    <div className='flex gap-4'>
+                                        <Link href={`/items/${product.id}/edit`}>
+                                            <FaEdit size={30} className='icon' />
+                                        </Link>
+                                        <ProductDeleteBtn />
+                                    </div>
                                 </div>
                                 <div className='flex gap-2 justify-start'>
                                     <FaPlaceOfWorship size={20} />
@@ -32,7 +36,6 @@ export default function OwnItems({ ownProducts }: { ownProducts: products[] }) {
                                     </p>
                                     <p className='acc__product-price'>{product.price} Ft</p>
                                 </div>
-
                                 {/* <p className='acc__product-price'>{product.created_at}</p> */}
                             </div>
                         </Link>

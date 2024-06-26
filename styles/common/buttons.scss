@@ -53,6 +53,18 @@
         text-decoration: underline;
     }
 }
+.btn--delete {
+    svg {
+        @include transFast();
+        fill: $color-danger2;
+        &:hover {
+            fill: $color-danger;
+        }
+        &:active {
+            fill: $color-danger2;
+        }
+    }
+}
 
 // SECONDARY BUTTON
 .btn--secondary {
