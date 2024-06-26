@@ -4,9 +4,12 @@ import prisma from '@/lib/pismaDB';
 import { productFormSchema, productIdSchema } from '@/lib/validation';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { getLocale } from 'next-intl/server';
 
 export async function handleAddNewProduct(formData: unknown) {
+    const locale = await getLocale();
     const user = await readUserData();
+
     if (!user) {
         return {
             success: false,
@@ -33,8 +36,11 @@ export async function handleAddNewProduct(formData: unknown) {
             };
         }
     }
+    revalidatePath('/', 'page');
+    redirect(`/${locale}/account/`);
 }
 export async function handleEditProduct(formData: unknown, id: string) {
+    const locale = await getLocale();
     const user = await readUserData();
     if (!user) {
         return {
@@ -65,6 +71,10 @@ export async function handleEditProduct(formData: unknown, id: string) {
             };
         }
         revalidatePath('/', 'page');
-        // redirect('/items/' + id);
+        redirect(`/${locale}/account/`);
     }
+}
+
+export async function handleDeleteProduct(id: unknown) {
+    console.log('deleted id:', id);
 }

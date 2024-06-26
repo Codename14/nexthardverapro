@@ -341,6 +341,7 @@ model user_data {
   name       String?
   user_id    String?  @db.Uuid
   users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  country    String   @default("Hungary")
 
   @@schema("public")
 }

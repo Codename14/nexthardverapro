@@ -1,7 +1,7 @@
 'use client';
 import { DEFAULT_IMG } from '@/lib/constants';
 import { detailsMaxLength, nameMaxLength, productFormSchema, productZodFormType } from '@/lib/validation';
-import { handleAddNewProduct, handleEditProduct } from './action/action';
+import { handleAddNewProduct, handleEditProduct } from '../../(private)/account/action/action';
 import { categories, products } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import { Toaster, toast } from 'sonner';

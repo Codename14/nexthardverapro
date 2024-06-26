@@ -13,6 +13,8 @@ export default async function AccountPage() {
         return <p>There is no user</p>;
     }
     const ownProducts = await prisma.products.findMany({ where: { user_id: user.id } });
+    const userData = await prisma.user_data.findFirst({ where: { user_id: user.id } });
+
     return (
         <div className='under-navbar screen-container'>
             <section className='own-profile'>
@@ -22,7 +24,7 @@ export default async function AccountPage() {
                     </div>
                     <div className='profile__details'>
                         <div className='profile__title'>
-                            <h4 className='small-title'>Nagy Adam</h4>
+                            <h4 className='small-title'>{userData?.name || user.email}</h4>
                             <p>Még nincs értékelés</p>
                         </div>
                         <div className='profile__info'>
@@ -32,7 +34,7 @@ export default async function AccountPage() {
                             </div>
                             <div className='flex'>
                                 <FaLocationDot size={25} />
-                                <p>Hungary</p>
+                                <p>{userData?.country}</p>
                             </div>
                             <div className='flex'>
                                 <FaWifi size={25} />
