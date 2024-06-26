@@ -24,7 +24,9 @@ export default function AccountBottonMenu({ ownProducts, itsMe }: Props) {
                     </button>
                 </div>
             </section>
-            <section>{menu === 'products' ? <OwnItems ownProducts={ownProducts} itsMe={itsMe} /> : <OwnRatings />}</section>
+            <section className='account__details'>
+                {menu === 'products' ? <OwnItems ownProducts={ownProducts} itsMe={itsMe} /> : <OwnRatings />}
+            </section>
         </div>
     );
 }

@@ -605,6 +605,9 @@ textarea {
         margin-bottom: 1em;
     }
 }
+.account__details {
+    overflow-y: auto;
+}
 .acc__product-list {
     display: grid;
     padding-inline: 0.5em;
