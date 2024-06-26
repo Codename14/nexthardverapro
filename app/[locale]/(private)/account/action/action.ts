@@ -3,11 +3,11 @@ import { readUserData } from '@/lib/actions';
 import prisma from '@/lib/pismaDB';
 import { productFormSchema, productIdSchema } from '@/lib/validation';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { getLocale } from 'next-intl/server';
+import { redirect } from '@/navigation';
 
 export async function handleAddNewProduct(formData: unknown) {
-    const locale = await getLocale();
+    // const locale = await getLocale();
     const user = await readUserData();
 
     if (!user) {
@@ -37,10 +37,10 @@ export async function handleAddNewProduct(formData: unknown) {
         }
     }
     revalidatePath('/', 'page');
-    redirect(`/${locale}/account/`);
+    redirect(`/account/`);
 }
 export async function handleEditProduct(formData: unknown, id: string) {
-    const locale = await getLocale();
+    // const locale = await getLocale();
     const user = await readUserData();
     if (!user) {
         return {
@@ -71,12 +71,12 @@ export async function handleEditProduct(formData: unknown, id: string) {
             };
         }
         revalidatePath('/', 'page');
-        redirect(`/${locale}/account/`);
+        redirect(`/account/`);
     }
 }
 
 export async function handleDeleteProduct(id: string) {
-    const locale = await getLocale();
+    // const locale = await getLocale();
     const user = await readUserData();
     if (!user) {
         return {
@@ -105,5 +105,5 @@ export async function handleDeleteProduct(id: string) {
         };
     }
     revalidatePath('/', 'page');
-    redirect(`/${locale}/account/`);
+    redirect(`/account/`);
 }

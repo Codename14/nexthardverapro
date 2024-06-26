@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MdSell } from 'react-icons/md';
+import { redirect } from '@/navigation';
 interface MessageUserType {
     user_id: string | null;
     email: string | null;
@@ -67,6 +68,10 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
         console.log('banane');
         paramSenderData = messageUsers.find((user: MessageUserType) => user.user_id === paramUserID);
         paramProductData = messageProducts.find((product: products) => product.id === paramProductID);
+
+        if (paramProductData?.status !== 'active') {
+            redirect('/messages');
+        }
 
         console.log('paramSenderName', paramSenderData);
     }
