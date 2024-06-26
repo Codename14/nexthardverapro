@@ -25,10 +25,10 @@ export default async function Page({ params }: Props) {
         return null;
     }
 
-    const userData = await prisma.users.findFirst({
+    const userData = await prisma.user_data.findFirst({
         where: {
             // price: { gt: 105000 },
-            id: product.user_id,
+            user_id: product.user_id,
         },
     });
     const category = await prisma.categories.findFirst({
@@ -37,6 +37,11 @@ export default async function Page({ params }: Props) {
         },
     });
     const user = await readUserData();
+
+    if (!userData) {
+        redirect('/');
+        return null;
+    }
 
     return (
         <>
@@ -73,7 +78,7 @@ export default async function Page({ params }: Props) {
                     </div>
                     <Link href={`/profile/${product.user_id}`} className='item__line'>
                         <FaUser size='20' />
-                        <p className='item__user'>{userData?.email}</p>
+                        <p className='item__user'>{userData.name}</p>
                     </Link>
                     {user ? (
                         user.id === product.user_id ? (

@@ -17,10 +17,10 @@ export default function AccountBottonMenu({ ownProducts, itsMe }: Props) {
             <section className='account__menu'>
                 <div className='flex gap-2 action'>
                     <button onClick={() => setMenu('products')} className={`btn btn--outlined acc__title ${menu === 'products' ? 'active' : ''}`}>
-                        {itsMe ? 'Hirdetéseim' : 'Hirdetések'}
+                        {itsMe ? 'Hirdetéseim' : 'Hirdetései'}
                     </button>
                     <button onClick={() => setMenu('ratings')} className={`btn btn--outlined acc__title ${menu === 'ratings' ? 'active' : ''}`}>
-                        {itsMe ? 'Értékeléseim' : 'Értékelesek'}
+                        {itsMe ? 'Értékeléseim' : 'Értékelesei'}
                     </button>
                 </div>
             </section>
