@@ -246,6 +246,20 @@ textarea {
     }
 }
 
+.delete--background {
+    background: rgba(0, 0, 0, 0.4);
+}
+.popper--danger {
+    background: rgba(208, 208, 208, 0.65);
+    padding: 1em;
+    border-radius: $borderRad;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba($color-danger, 0.2);
+    box-shadow: rgba(189, 1, 1, 0.2) 0px 2px 18px 2px, inset rgba(189, 1, 1, 0.1) 0px 2px 30px 0px;
+    .title {
+        margin-bottom: 2em;
+    }
+}
 //---------------------------------------------------------
 //------------------------      ---------------------------
 //---------------------------------------------------------
@@ -256,6 +270,16 @@ textarea {
     }
     &:active {
         fill: var(--text-100);
+    }
+}
+.icon--delete {
+    @include transFast();
+    fill: $color-danger2;
+    &:hover {
+        fill: $color-danger;
+    }
+    &:active {
+        fill: $color-danger2;
     }
 }
 
@@ -359,6 +383,7 @@ textarea {
     // position: relative;
     // text-align: left;
     .product__name {
+        width: 100%;
         font-weight: 700;
         display: -webkit-box;
         -webkit-line-clamp: 1;

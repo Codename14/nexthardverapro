@@ -7,13 +7,18 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MdSell } from 'react-icons/md';
+interface MessageUserType {
+    user_id: string;
+    email: string;
+}
 interface Props {
     uniqueMessages: user_message[];
     messages: user_message[];
     ownID: string;
     messageProducts: products[];
-    messageUsers: any;
+    messageUsers: MessageUserType[];
 }
+
 export default function Messages({ messageUsers, uniqueMessages, messages, ownID, messageProducts }: Props) {
     const [searchTerm, setSearchTerm] = useState('');
     const searchParams = useSearchParams();
@@ -54,10 +59,17 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
             supabase.removeChannel(channel);
         };
     }, [supabase, router]);
-    console.log('fasz', messageUsers);
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
+    let paramSenderData, paramProductData;
+    if (paramUserID && paramProductID) {
+        console.log('banane');
+        paramSenderData = messageUsers.find((user: MessageUserType) => user.user_id === paramUserID);
+        paramProductData = messageProducts.find((product: products) => product.id === paramProductID);
+
+        console.log('paramSenderName', paramSenderData);
+    }
 
     return (
         <>
@@ -80,17 +92,17 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                         </div>
                     </form> */}
                     <div className='message__header-wrapper'>
-                        {searchParams.get('param') && !isSentMessage && (
+                        {paramProductID && paramUserID && !isSentMessage && (
                             <button
                                 onClick={() => setAtiveProductMessageID(paramProductID)}
-                                className={`message__header-item ${activeProductMessageID === paramProductID ? 'active' : ''}`}
+                                className={`message__header-item opacity-50 ${activeProductMessageID === paramProductID ? 'active' : ''}`}
                             >
                                 <div className='header__img'>
-                                    <Image src={DEFAULT_IMG} alt='fasz' fill />
+                                    <Image src={DEFAULT_IMG} alt='img' fill />
                                 </div>
                                 <div className='header__body'>
-                                    <h4 className='header__sender-name'>{paramUserID?.slice(-4)}</h4>
-                                    <p className='header__message'></p>
+                                    <h4 className='header__sender-name'>{paramSenderData?.email}</h4>
+                                    <p className='header__message'>{paramProductData?.name}</p>
                                 </div>
                             </button>
                         )}

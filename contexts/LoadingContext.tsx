@@ -21,6 +21,6 @@ export default function LoadingContextProvider({ children }: { children: React.R
 export function useLoadingContext() {
     const context = useContext(LoadingContext);
     if (!context) {
-        throw new Error('PopperContext must should be used within a PopperContextProvider');
+        throw new Error('LoadingContext must should be used within a LoadingContextProvider');
     } else return context;
 }

@@ -32,7 +32,7 @@ export async function handleAddNewProduct(formData: unknown) {
         } catch (error) {
             return {
                 success: false,
-                error: 'Error here.',
+                error: 'Error has occured. Please try again.',
             };
         }
     }
@@ -67,7 +67,7 @@ export async function handleEditProduct(formData: unknown, id: string) {
         } catch (error) {
             return {
                 success: false,
-                error: 'Error here.',
+                error: 'Error has occured. Please try again.',
             };
         }
         revalidatePath('/', 'page');
@@ -75,6 +75,32 @@ export async function handleEditProduct(formData: unknown, id: string) {
     }
 }
 
-export async function handleDeleteProduct(id: unknown) {
-    console.log('deleted id:', id);
+export async function handleDeleteProduct(id: string) {
+    const locale = await getLocale();
+    const user = await readUserData();
+    if (!user) {
+        return {
+            success: false,
+            error: 'There is no user.',
+        };
+    }
+
+    try {
+        const isOwn = await prisma.products.findUnique({
+            where: { id: id },
+            select: { user_id: true },
+        });
+        if (isOwn && isOwn.user_id === user.id) {
+            await prisma.products.delete({
+                where: { id: id },
+            });
+        }
+    } catch (error) {
+        return {
+            success: false,
+            error: 'Error has occured. Please try again.',
+        };
+    }
+    revalidatePath('/', 'page');
+    redirect(`/${locale}/account/`);
 }

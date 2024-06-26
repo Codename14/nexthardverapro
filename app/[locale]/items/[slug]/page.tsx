@@ -59,7 +59,7 @@ export default async function Page({ params }: Props) {
                     </div>
                     <div className='item__line'>
                         <MdOutlineWorkspaces size='20' />
-                        <p className='item__new'>{product.new ? 'Új' : 'Régi'}</p>
+                        <p className='item__new'>{product.new ? 'Új' : 'Használt'}</p>
                     </div>
 
                     <div className='item__line item__des'>

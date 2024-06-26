@@ -12,18 +12,20 @@ export default function OwnItems({ ownProducts }: { ownProducts: products[] }) {
             {ownProducts && ownProducts.length > 0 ? (
                 <div className='acc__product-list '>
                     {ownProducts.map((product) => (
-                        <Link href={`/items/${product.id}`} className='acc__product-item' key={product.id}>
-                            <div className='acc__product-image'>
+                        <div className='acc__product-item' key={product.id}>
+                            <Link href={`/items/${product.id}`} className='acc__product-image'>
                                 <Image alt={product.name} src={product.tumbnailUrl} fill />
-                            </div>
+                            </Link>
                             <div className='acc__product-body'>
                                 <div className='flex justify-between'>
-                                    <h4 className='acc__product-name '>{product.name}</h4>
+                                    <Link href={`/items/${product.id}`} className='acc__product-name '>
+                                        {product.name}
+                                    </Link>
                                     <div className='flex gap-4'>
                                         <Link href={`/items/${product.id}/edit`}>
                                             <FaEdit size={30} className='icon' />
                                         </Link>
-                                        <ProductDeleteBtn />
+                                        <ProductDeleteBtn product={product} />
                                     </div>
                                 </div>
                                 <div className='flex gap-2 justify-start'>
@@ -38,7 +40,7 @@ export default function OwnItems({ ownProducts }: { ownProducts: products[] }) {
                                 </div>
                                 {/* <p className='acc__product-price'>{product.created_at}</p> */}
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             ) : (

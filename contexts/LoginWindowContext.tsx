@@ -21,6 +21,6 @@ export default function LoginWindowContextProvider({ children }: { children: Rea
 export function useLoginWindowContext() {
     const context = useContext(LoginWindowContext);
     if (!context) {
-        throw new Error('PopperContext must should be used within a PopperContextProvider');
+        throw new Error('LoginWindowContext must should be used within a LoginWindowContextProvider');
     } else return context;
 }

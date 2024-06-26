@@ -1,16 +1,21 @@
 import type { Metadata } from 'next';
-import AnimatedBg from '@/components/AnimatedBg';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
-import { Inter } from 'next/font/google';
+
+import NextTopLoader from 'nextjs-toploader';
+import { Toaster } from 'sonner';
+
+import LoginWindowContextProvider from '@/contexts/LoginWindowContext';
+import LoadingContextProvider from '@/contexts/LoadingContext';
+import DeleteContextProvider from '@/contexts/DeleteContext';
+
+import AnimatedBg from '@/components/AnimatedBg';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Toaster } from 'sonner';
-import LoginWindowContextProvider from '@/contexts/LoginWindowContext';
+import DeleteDialog from '@/components/DeleteDialog';
 import LoginWindow from '@/components/login/LoginWindow';
-import { createSerClient } from '@/lib/supabase/server';
-import { unstable_setRequestLocale } from 'next-intl/server';
-import LoadingContextProvider from '@/contexts/LoadingContext';
-import NextTopLoader from 'nextjs-toploader';
+
+import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -30,25 +35,23 @@ interface RootLayoutProps {
 export default function RootLayout({ children, params: { locale } }: Readonly<RootLayoutProps>) {
     const messages = useMessages();
     unstable_setRequestLocale(locale);
-    // const t = useTranslations('Hero');
-    // const supabase = await createSerClient();
-    // const user = await supabase.auth.getUser();
-    // console.log('user', user);
 
     return (
         <html lang='en'>
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
                     <LoadingContextProvider>
-                        <LoginWindowContextProvider>
-                            <Header />
-                            <LoginWindow />
-                            <NextTopLoader color={'var(--primary)'} showSpinner={false} />
-                            <main className='main-content'>{children}</main>
-                            <Footer />
-                        </LoginWindowContextProvider>
-
-                        <Toaster position='bottom-left' className='toaster' />
+                        <DeleteContextProvider>
+                            <LoginWindowContextProvider>
+                                <Header />
+                                <LoginWindow />
+                                <NextTopLoader color={'var(--primary)'} showSpinner={false} />
+                                <main className='main-content'>{children}</main>
+                                <DeleteDialog />
+                                <Footer />
+                            </LoginWindowContextProvider>
+                            <Toaster position='bottom-left' className='toaster' />
+                        </DeleteContextProvider>
                     </LoadingContextProvider>
                 </NextIntlClientProvider>
                 <AnimatedBg />

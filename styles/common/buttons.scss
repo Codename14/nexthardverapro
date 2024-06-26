@@ -54,15 +54,13 @@
     }
 }
 .btn--delete {
-    svg {
-        @include transFast();
-        fill: $color-danger2;
-        &:hover {
-            fill: $color-danger;
-        }
-        &:active {
-            fill: $color-danger2;
-        }
+    background: $color-danger2;
+    color: white;
+    &:hover {
+        background: $color-danger;
+    }
+    &:active {
+        background: $color-danger2;
     }
 }
 
