@@ -1,7 +1,7 @@
 'use server';
 import { readUserData } from '@/lib/actions';
 import prisma from '@/lib/pismaDB';
-import { productFormSchema, productIdSchema } from '@/lib/validation';
+import { productFormSchema, productIdSchema, profileFormSchema } from '@/lib/validation';
 import { revalidatePath } from 'next/cache';
 import { getLocale } from 'next-intl/server';
 import { redirect } from '@/navigation';
@@ -118,6 +118,39 @@ export async function handleDeleteProduct(id: string) {
             success: false,
             error: 'Error has occured. Please try again.',
         };
+    }
+    revalidatePath('/', 'page');
+    redirect(`/account/`);
+}
+
+export async function handleEditProfileData(formData: unknown) {
+    const user = await readUserData();
+    if (!user) {
+        return {
+            success: false,
+            error: 'There is no user.',
+        };
+    }
+
+    const validatedProfileData = profileFormSchema.safeParse(formData);
+    if (!validatedProfileData.success) {
+        return {
+            success: false,
+            error: 'Error wrong data.',
+        };
+    } else {
+        console.log('validatedProfileData', validatedProfileData);
+        try {
+            await prisma.user_data.update({
+                where: { user_id: user.id },
+                data: { country: validatedProfileData.data.country, name: validatedProfileData.data.username },
+            });
+        } catch (error) {
+            return {
+                success: false,
+                error: 'Error has occured. Please try again.',
+            };
+        }
     }
     revalidatePath('/', 'page');
     redirect(`/account/`);

@@ -354,8 +354,14 @@ textarea {
     gap: 1em;
     margin-top: 1em;
     .product__item {
+        border: 2px solid transparent;
+        @include transFast();
         overflow: hidden;
         height: 400px;
+        &:hover {
+            border-color: var(--primary);
+            scale: 1.01;
+        }
     }
     .product__image {
         position: relative;

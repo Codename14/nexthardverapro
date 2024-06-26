@@ -301,10 +301,10 @@ model users {
   follow_follow_follower_idTousers             follow[]          @relation("follow_follower_idTousers")
   follow_follow_following_idTousers            follow[]          @relation("follow_following_idTousers")
   products                                     products[]
-  user_data                                    user_data[]
+  user_data                                    user_data?
   user_message_user_message_receiver_idTousers user_message[]    @relation("user_message_receiver_idTousers")
   user_message                                 user_message[]
-  user_role                                    user_role[]
+  user_role                                    user_role?
 
   @@index([instance_id])
   @@index([is_anonymous])
@@ -325,10 +325,10 @@ model roles {
 model user_role {
   id         BigInt   @id @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  user_id    String?  @db.Uuid
+  user_id    String   @unique @db.Uuid
   role_id    BigInt?
   roles      roles?   @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -339,9 +339,9 @@ model user_data {
   created_at DateTime @default(now()) @db.Timestamptz(6)
   email      String?
   name       String?
-  user_id    String?  @db.Uuid
-  users      users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String   @unique @db.Uuid
   country    String   @default("Hungary")
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -392,7 +392,7 @@ model user_message {
   receiver_id                           String    @db.Uuid
   updated_at                            DateTime? @db.Timestamptz(6)
   product_id                            String    @db.Uuid
-  product                               products  @relation("ProductMessages", fields: [product_id], references: [id], onDelete: SetNull)
+  product                               products  @relation("ProductMessages", fields: [product_id], references: [id], onDelete: Cascade)
   users_user_message_receiver_idTousers users     @relation("user_message_receiver_idTousers", fields: [receiver_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   users                                 users     @relation(fields: [sender_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 

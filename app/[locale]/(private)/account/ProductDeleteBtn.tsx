@@ -1,8 +1,8 @@
 import React from 'react';
-import { FaDeleteLeft } from 'react-icons/fa6';
 import { handleDeleteProduct } from './action/action';
 import { useDeleteContext } from '@/contexts/DeleteContext';
 import { products } from '@prisma/client';
+import { MdDelete } from 'react-icons/md';
 
 export default function ProductDeleteBtn({ product }: { product: products }) {
     const { isOpen, setIsOpen, setActiveProduct } = useDeleteContext();
@@ -14,7 +14,7 @@ export default function ProductDeleteBtn({ product }: { product: products }) {
                 setIsOpen(true), setActiveProduct(product);
             }}
         >
-            <FaDeleteLeft size={30} className='icon--delete' />
+            <MdDelete size={30} className='icon--delete' />
         </button>
     );
 }

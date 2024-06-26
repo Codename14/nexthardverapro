@@ -5,6 +5,10 @@ export const detailsMaxLength = 900;
 export const nameMaxLength = 40;
 
 export const productIdSchema = z.string().min(1, { message: 'Id is required' });
+export const profileFormSchema = z.object({
+    username: z.string().min(1, { message: 'Name is required' }).max(nameMaxLength, { message: 'more than 40' }),
+    country: z.string().min(1, { message: 'Country is required' }).max(nameMaxLength, { message: 'more than 40' }),
+});
 
 export const productFormSchema = z
     .object({
@@ -24,8 +28,6 @@ export const productFormSchema = z
         tumbnailUrl: data?.tumbnailUrl || DEFAULT_IMG,
     }));
 
-export type productZodFormType = z.infer<typeof productFormSchema>;
-
 export const messageScema = z.object({
     message: z.string().trim().min(1, { message: 'Message is required' }).max(900, { message: 'more than 900' }),
     receiver_id: z.string(),
@@ -33,3 +35,5 @@ export const messageScema = z.object({
 });
 
 export type messageZodFormType = z.infer<typeof messageScema>;
+export type productZodFormType = z.infer<typeof productFormSchema>;
+export type profileZodFormType = z.infer<typeof profileFormSchema>;

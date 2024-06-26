@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from '@/navigation';
-import { FaAccusoft, FaDeleteLeft, FaStar } from 'react-icons/fa6';
-import { FaArrowAltCircleRight, FaEdit, FaHeart, FaPlaceOfWorship } from 'react-icons/fa';
+import { FaAccusoft } from 'react-icons/fa6';
+import { FaArrowAltCircleRight, FaHeart, FaPlaceOfWorship } from 'react-icons/fa';
 import { products } from '@prisma/client';
 import Image from 'next/image';
 import ProductDeleteBtn from './ProductDeleteBtn';
+import { MdEdit } from 'react-icons/md';
 export default function OwnItems({ ownProducts, itsMe }: { ownProducts: products[]; itsMe: boolean }) {
     return (
         <>
@@ -21,9 +22,9 @@ export default function OwnItems({ ownProducts, itsMe }: { ownProducts: products
                                         {product.name}
                                     </Link>
                                     {itsMe && (
-                                        <div className='flex gap-4'>
+                                        <div className='flex gap-2'>
                                             <Link href={`/items/${product.id}/edit`}>
-                                                <FaEdit size={30} className='icon' />
+                                                <MdEdit size={30} className='icon' />
                                             </Link>
                                             <ProductDeleteBtn product={product} />
                                         </div>
