@@ -94,26 +94,25 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                         {errors.price && <p className='form-message error'>{errors.price.message}</p>}
                         <input className='input--primary' type='number' placeholder='price*' {...register('price')} />
                     </div>
-                    <select className='input--primary' {...register('category_id')}>
-                        {categories.map((category) => (
-                            <option key={category.id} value={category.id}>
-                                {category.name}
-                            </option>
-                        ))}
-                    </select>
-                    <p>{isValid ? 'valid' : 'invalid'}</p>
+                    <div className='input-control'>
+                        <select className='input--primary' {...register('category_id')}>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     <div className='input-control'>
                         <input {...register('place')} className='input--primary' type='text' placeholder='place*' />
                     </div>
                     <div className='input-control'>
                         <textarea {...register('description')} className='input--primary' rows={10} placeholder='description*' />
                         {errors.description && <p className='form-message error'>{errors.description.message}</p>}
-                    </div>
-                    <span>
-                        <span>
+                        <span className='form-message right'>
                             {description ? description.length : 0} / {detailsMaxLength}
                         </span>
-                    </span>
+                    </div>
                     <div className='input-control'>
                         <div className='flex my-2'>
                             <p>Új</p>

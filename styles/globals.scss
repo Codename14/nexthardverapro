@@ -195,8 +195,8 @@ textarea {
 //---------------------------------------------------------
 .input-control {
     position: relative;
-    width: min(100%, 300px); // 100%;
-    margin-top: 1em;
+    width: min(100%, 400px); // 100%;
+    margin-top: 0.7em;
     .form-message {
         z-index: 9;
         position: absolute;
@@ -213,14 +213,15 @@ textarea {
             color: $color-danger;
         }
         &.right {
-            left: 80%;
+            left: initial;
+            right: 0;
         }
     }
 }
 
 .input--primary {
     @include glassSurface();
-    width: min(100%, 300px); // 100%;
+    width: min(100%, 400px); // 100%;
     border-radius: $borderRad;
     border: none;
     padding: 0.5em 1em;
