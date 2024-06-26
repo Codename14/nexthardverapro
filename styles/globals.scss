@@ -466,13 +466,14 @@ textarea {
         grid-template-columns: 1fr 300px;
     }
 }
-.item__like {
+.like-button {
     @include glassSurface();
     padding: 0.2em 0.4em;
     position: absolute;
     bottom: 1em;
     right: 1em;
-    z-index: 99;
+    z-index: 9;
+    border: 1px solid var(--primary);
 }
 
 //-----------------------------------------------

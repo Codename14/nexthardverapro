@@ -8,9 +8,6 @@ export default function About() {
     return (
         <>
             <div>
-                <button className='btn btn--primary' onClick={() => toast.success('bor')}>
-                    bor
-                </button>
                 <p>{t('contact')}</p>
             </div>
         </>

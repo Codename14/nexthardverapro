@@ -28,6 +28,7 @@ export default async function Products({ categoryID, query }: { categoryID: stri
             // user_id: user?.id?.toLowerCase(),
             // price: { gt: 105000 },
         },
+        orderBy: { created_at: 'desc' },
     });
 
     return (

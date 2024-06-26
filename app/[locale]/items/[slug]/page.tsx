@@ -71,10 +71,10 @@ export default async function Page({ params }: Props) {
                         <p className='item__description'>{product.description}</p>
                         {/* <p className='item__price'>{product.created_at}</p> */}
                     </div>
-                    <div className='item__line'>
+                    <Link href={`/profile/${product.user_id}`} className='item__line'>
                         <FaUser size='20' />
                         <p className='item__user'>{userData?.email}</p>
-                    </div>
+                    </Link>
                     {user ? (
                         user.id === product.user_id ? (
                             <div className='flex mt-auto'>

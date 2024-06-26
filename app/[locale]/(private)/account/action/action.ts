@@ -60,10 +60,21 @@ export async function handleEditProduct(formData: unknown, id: string) {
     } else {
         try {
             console.log('validatedProductData', validatedProductData);
-            await prisma.products.update({
+            const isItOwn = await prisma.products.findUnique({
                 where: { id: id },
-                data: { ...validatedProductData.data },
+                select: { user_id: true },
             });
+            if (isItOwn && isItOwn.user_id === user.id) {
+                await prisma.products.update({
+                    where: { id: id },
+                    data: { ...validatedProductData.data },
+                });
+            } else {
+                return {
+                    success: false,
+                    error: 'Permission Denied',
+                };
+            }
         } catch (error) {
             return {
                 success: false,
@@ -74,7 +85,6 @@ export async function handleEditProduct(formData: unknown, id: string) {
         redirect(`/account/`);
     }
 }
-
 export async function handleDeleteProduct(id: string) {
     // const locale = await getLocale();
     const user = await readUserData();
@@ -86,17 +96,22 @@ export async function handleDeleteProduct(id: string) {
     }
 
     try {
-        const isOwn = await prisma.products.findUnique({
+        const isItOwn = await prisma.products.findUnique({
             where: { id: id },
             select: { user_id: true },
         });
-        if (isOwn && isOwn.user_id === user.id) {
+        if (isItOwn && isItOwn.user_id === user.id) {
             await prisma.products.update({
                 where: { id: id },
                 data: {
                     status: 'deleted',
                 },
             });
+        } else {
+            return {
+                success: false,
+                error: 'Permission Denied',
+            };
         }
     } catch (error) {
         return {

@@ -10,7 +10,7 @@ export default function LikeButton({ likesLength, productID, likeState }: { like
         <>
             <form action={async () => handleLike({ productID })}>
                 <SubmitButton
-                    className='item__like'
+                    className='like-button'
                     pendingText={
                         <p className='flex'>
                             {likeState ? <IoIosHeart size={30} /> : <IoIosHeartEmpty size={30} />}
