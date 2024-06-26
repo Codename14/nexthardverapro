@@ -24,6 +24,7 @@ export default async function Products({ categoryID, query }: { categoryID: stri
         where: {
             category_id: categoryID,
             name: { contains: query?.toLowerCase(), mode: 'insensitive' },
+            status: 'active',
             // user_id: user?.id?.toLowerCase(),
             // price: { gt: 105000 },
         },

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 import { FaMoneyBill, FaPlaceOfWorship, FaUser } from 'react-icons/fa';
 import { MdCategory, MdOutlineFiberNew, MdOutlineWorkspaces, MdOutlineWysiwyg } from 'react-icons/md';
-import { Link } from '@/navigation';
+import { Link, redirect } from '@/navigation';
 import LikeButton from '@/components/LikeButton';
 import { readUserData } from '@/lib/actions';
 import LoginButton from '@/components/header/LoginButton';
@@ -16,10 +16,14 @@ export default async function Page({ params }: Props) {
         where: {
             // price: { gt: 105000 },
             id: params.slug,
+            status: 'active',
         },
     });
 
-    if (!product) return <div>404</div>;
+    if (!product) {
+        redirect('/');
+        return null;
+    }
 
     const userData = await prisma.users.findFirst({
         where: {

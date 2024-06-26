@@ -8,8 +8,8 @@ import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MdSell } from 'react-icons/md';
 interface MessageUserType {
-    user_id: string;
-    email: string;
+    user_id: string | null;
+    email: string | null;
 }
 interface Props {
     uniqueMessages: user_message[];

@@ -11,6 +11,7 @@ export default async function Page({ params }: Props) {
     const product = await prisma.products.findFirst({
         where: {
             id: params.slug,
+            status: 'active',
         },
     });
 

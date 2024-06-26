@@ -16,6 +16,7 @@ export default async function Page() {
             likes: {
                 has: user?.id,
             },
+            status: 'active',
         },
     });
 

@@ -91,8 +91,11 @@ export async function handleDeleteProduct(id: string) {
             select: { user_id: true },
         });
         if (isOwn && isOwn.user_id === user.id) {
-            await prisma.products.delete({
+            await prisma.products.update({
                 where: { id: id },
+                data: {
+                    status: 'deleted',
+                },
             });
         }
     } catch (error) {

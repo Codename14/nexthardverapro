@@ -62,11 +62,17 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
             {activeProduct?.id && (
                 <div className='message-wrapper'>
                     <Link href={`/items/${activeProduct.id}`} className='message-product-title'>
-                        <div className='message-title-img'>
-                            <Image src={activeProduct.tumbnailUrl} alt={'aaa'} fill />
-                        </div>
-                        <h4 className='text-light'>{activeProduct?.name}</h4>
-                        <p className='message-title'>{activeProduct?.price} Ft</p>
+                        {activeProduct.status === 'active' ? (
+                            <>
+                                <div className='message-title-img'>
+                                    <Image src={activeProduct.tumbnailUrl} alt={'product image'} fill />
+                                </div>
+                                <h3 className='text-light'>{activeProduct?.name}</h3>
+                                <h4 className='message-title'>{activeProduct?.price} Ft</h4>
+                            </>
+                        ) : (
+                            <h4 className='text-center flex small-title'>{activeProduct?.name} - Törölt hirdetés</h4>
+                        )}
                     </Link>
 
                     <div className='messages-container'>

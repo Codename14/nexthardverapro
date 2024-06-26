@@ -12,7 +12,7 @@ export default async function AccountPage() {
     if (!user) {
         return <p>There is no user</p>;
     }
-    const ownProducts = await prisma.products.findMany({ where: { user_id: user.id } });
+    const ownProducts = await prisma.products.findMany({ where: { user_id: user.id, status: 'active' } });
     const userData = await prisma.user_data.findFirst({ where: { user_id: user.id } });
 
     return (
