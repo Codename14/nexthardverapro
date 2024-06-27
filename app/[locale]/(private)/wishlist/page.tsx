@@ -4,8 +4,18 @@ import { readUserData } from '@/lib/actions';
 import prisma from '@/lib/pismaDB';
 import LikeButton from '@/components/LikeButton';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-export default async function Page() {
+interface Props {
+    params: { locale: string };
+}
+
+export default async function IndexPage({ params: { locale } }: Props) {
+    unstable_setRequestLocale(locale);
+
+    // const t = useTranslations('Wishlist');
+
     const user = await readUserData();
     if (!user) {
         redirect('/');
@@ -23,7 +33,7 @@ export default async function Page() {
     return (
         <>
             <div className='under-navbar text-center screen-container card-padding'>
-                <h1 className='section-title font-semibold'>Kedvenc termékek</h1>
+                {/* <h1 className='section-title font-semibold'>{t('wishlist')}</h1> */}
                 {products.length > 0 ? (
                     <section className='products-grid mb-6'>
                         {products.map((product) => (
@@ -58,11 +68,11 @@ export default async function Page() {
                             <div className='flex mb-2 mt-4'>
                                 <FavoriteIcon />
                             </div>
-                            <h2 className='small-title'>Mentsd el a kedvenceid</h2>
-                            <p className='mx-auto'>A kedvencként megjelölt terméket itt láthatod</p>
+                            {/* <h2 className='small-title'>{t('wishlist_not_found_title')}</h2> */}
+                            {/* <p className='mx-auto'>{t('wishlist_not_found_description')}</p> */}
                         </div>
                         <Link href={'/'} className='btn btn--primary mt-4'>
-                            Böngészés
+                            {/* {t('wishlist_not_found_button')} */}
                         </Link>
                     </>
                 )}

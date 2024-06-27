@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MdSell } from 'react-icons/md';
 import { redirect } from '@/navigation';
+import { useTranslations } from 'next-intl';
 interface MessageUserType {
     user_id: string | null;
     email: string | null;
@@ -21,6 +22,8 @@ interface Props {
 }
 
 export default function Messages({ messageUsers, uniqueMessages, messages, ownID, messageProducts }: Props) {
+    const t = useTranslations('Messages');
+
     const [searchTerm, setSearchTerm] = useState('');
     const searchParams = useSearchParams();
     const paramProductID = searchParams.get('param');
@@ -84,7 +87,7 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                             <input
                                 className={` mb-1 ${uniqueMessages.length === 0 && 'not-found'}`}
                                 type='text'
-                                placeholder='Kereső'
+                                placeholder={t('search_placeholder')}
                                 value={searchTerm}
                                 onChange={handleSearchChange}
                             />
@@ -133,7 +136,7 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                                         <span className='flex gap-0 justify-start text--light'>
                                             {ownID === product?.user_id && (
                                                 <>
-                                                    <MdSell size={20} /> saját
+                                                    <MdSell size={20} /> {t('own')}
                                                 </>
                                             )}
                                         </span>

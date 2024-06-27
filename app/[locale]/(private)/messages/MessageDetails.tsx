@@ -11,6 +11,8 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { FaIcons, FaImage } from 'react-icons/fa6';
 import { toast } from 'sonner';
 import { handleSendMessage } from './action/action';
+import { useTranslations } from 'next-intl';
+import LoadingIcon from '@/components/LoadingIcon';
 
 interface Props {
     // activeProductMessageID: string | null;
@@ -21,6 +23,8 @@ interface Props {
 }
 
 export default function MessageDetails({ messages, ownID, receiverID, activeProduct }: Props) {
+    const t = useTranslations('Messages');
+
     const [isEmojiOpen, setIsEmojiOpen] = useState(false);
     const {
         handleSubmit,
@@ -71,7 +75,9 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                                 <h4 className='message-title'>{activeProduct?.price} Ft</h4>
                             </>
                         ) : (
-                            <h4 className='text-center flex small-title'>{activeProduct?.name} - Törölt hirdetés</h4>
+                            <h4 className='text-center flex small-title'>
+                                {activeProduct?.name} - {t('deleted_product')}
+                            </h4>
                         )}
                     </Link>
 
@@ -122,7 +128,10 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                             <EmojiPicker open={isEmojiOpen} onEmojiClick={handleEmoji} />
                         </div>
                         <button disabled={!isValid} className='btn btn--primary'>
-                            {isSubmitting ? 'Sending...' : 'Send'}
+                            <span className='flex gap-2'>
+                                {t('send')}
+                                {isSubmitting && <LoadingIcon />}
+                            </span>
                         </button>
                     </form>
                 </div>

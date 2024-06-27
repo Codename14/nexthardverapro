@@ -12,6 +12,9 @@ interface Props {
     params: { slug: string };
 }
 export default async function Page({ params }: Props) {
+    //TODO: FIX IT
+    // const t = useTranslations('Products');
+
     const product = await prisma.products.findFirst({
         where: {
             // price: { gt: 105000 },

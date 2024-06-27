@@ -8,6 +8,8 @@ import { Toaster, toast } from 'sonner';
 import { SubmitButton } from '@/components/SubmitButton';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import LoadingIcon from '@/components/LoadingIcon';
 
 interface Props {
     categories: categories[];
@@ -15,6 +17,8 @@ interface Props {
 }
 
 export default function ManageProductForm({ categories, productEdit }: Props) {
+    const t = useTranslations('form');
+
     const pathName = usePathname();
     const isEdit = pathName.includes('edit');
     // console.log('productEdit', productEdit);
@@ -49,7 +53,7 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
     return (
         <>
             <section>
-                <h1 className='section-title'>{isEdit ? 'Hirdetés szerkesztése' : 'Új hirdetés'}</h1>
+                <h1 className='section-title'>{isEdit ? t('edit_product') : t('add_new_product')}</h1>
                 <form
                     action={async (formData) => {
                         // REACT HOOK FORMS
@@ -72,7 +76,7 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                         if (res && !res.success) {
                             toast.error(res?.error);
                         } else {
-                            toast.success(isEdit ? 'Sikeresen mentve a változtatások.' : 'Sikeresen létrehoztuk a hirdetésed');
+                            toast.success(isEdit ? t('product_update_message') : t('product_add_message'));
                             reset();
                         }
                     }}
@@ -80,11 +84,11 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                 >
                     {/* <input {...register('tumbnailUrl')} className='input--primary' type='file' /> */}
                     <div className='input-control'>
-                        <input {...register('tumbnailUrl')} className='input--primary' type='text' placeholder='kép url' />
+                        <input {...register('tumbnailUrl')} className='input--primary' type='text' placeholder={t('product_img_url') + '*'} />
                         {errors.tumbnailUrl && <p className='form-message error'>{errors.tumbnailUrl.message}</p>}
                     </div>
                     <div className='input-control'>
-                        <input className='input--primary' placeholder='Hirdetés címe*' {...register('name')} />
+                        <input className='input--primary' placeholder={t('product_title') + '*'} {...register('name')} />
                         <span className='form-message right'>
                             {name ? name.length : 0} / {nameMaxLength}
                         </span>
@@ -92,7 +96,7 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                     </div>
                     <div className='input-control'>
                         {errors.price && <p className='form-message error'>{errors.price.message}</p>}
-                        <input className='input--primary' type='number' placeholder='price*' {...register('price')} />
+                        <input className='input--primary' type='number' placeholder={t('product_price') + '*'} {...register('price')} />
                     </div>
                     <div className='input-control'>
                         <select className='input--primary' {...register('category_id')}>
@@ -104,11 +108,11 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                         </select>
                     </div>
                     <div className='input-control'>
-                        <input {...register('place')} className='input--primary' type='text' placeholder='place*' />
+                        <input {...register('place')} className='input--primary' type='text' placeholder={t('product_place') + '*'} />
                         {errors.place && <p className='form-message error'>{errors.place.message}</p>}
                     </div>
                     <div className='input-control'>
-                        <textarea {...register('description')} className='input--primary' rows={10} placeholder='description*' />
+                        <textarea {...register('description')} className='input--primary' rows={10} placeholder={t('porduct_details') + '*'} />
                         {errors.description && <p className='form-message error'>{errors.description.message}</p>}
                         <span className='form-message right'>
                             {description ? description.length : 0} / {detailsMaxLength}
@@ -124,9 +128,14 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                     <SubmitButton
                         disabled={isSubmitting || !isDirty}
                         className='btn btn--primary'
-                        pendingText={isEdit ? 'Updating...' : 'Sending...'}
+                        pendingText={
+                            <span className='flex gap-2'>
+                                <span>{isEdit ? t('update_btn') : t('save_btn')}</span>
+                                {<LoadingIcon />}
+                            </span>
+                        }
                     >
-                        {isEdit ? 'Update' : 'Submit'}
+                        {isEdit ? t('update_btn') : t('save_btn')}
                     </SubmitButton>
                 </form>
             </section>

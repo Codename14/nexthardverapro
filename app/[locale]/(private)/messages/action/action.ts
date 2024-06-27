@@ -7,7 +7,6 @@ import { messageScema } from '@/lib/validation';
 import { revalidatePath } from 'next/cache';
 
 export async function handleSendMessage(formData: unknown) {
-    // await sleep(1000);
     const user = await readUserData();
     if (!user) {
         return {
@@ -37,6 +36,6 @@ export async function handleSendMessage(formData: unknown) {
                 error: 'Message not sent. Try again.' + error,
             };
         }
-        // revalidatePath('/messages', 'page');
+        revalidatePath('/messages', 'page');
     }
 }
