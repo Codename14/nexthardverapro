@@ -78,7 +78,7 @@ export default async function Page({ params }: Props) {
                     </div>
                     <Link href={`/profile/${product.user_id}`} className='item__line'>
                         <FaUser size='20' />
-                        <p className='item__user'>{userData.name}</p>
+                        <p className='item__user'>{userData.user_name}</p>
                     </Link>
                     {user ? (
                         user.id === product.user_id ? (

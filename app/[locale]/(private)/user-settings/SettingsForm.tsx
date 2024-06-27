@@ -20,7 +20,7 @@ export default function SettingsForm({ userData }: { userData: user_data }) {
     } = useForm<profileZodFormType>({
         resolver: zodResolver(profileFormSchema),
         defaultValues: {
-            username: userData.name || '',
+            username: userData.user_name || '',
             country: userData.country,
         },
     });

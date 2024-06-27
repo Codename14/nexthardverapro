@@ -143,7 +143,7 @@ export async function handleEditProfileData(formData: unknown) {
         try {
             await prisma.user_data.update({
                 where: { user_id: user.id },
-                data: { country: validatedProfileData.data.country, name: validatedProfileData.data.username },
+                data: { country: validatedProfileData.data.country, user_name: validatedProfileData.data.username },
             });
         } catch (error) {
             return {

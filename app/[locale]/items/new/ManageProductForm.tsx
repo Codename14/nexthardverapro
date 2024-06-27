@@ -105,6 +105,7 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                     </div>
                     <div className='input-control'>
                         <input {...register('place')} className='input--primary' type='text' placeholder='place*' />
+                        {errors.place && <p className='form-message error'>{errors.place.message}</p>}
                     </div>
                     <div className='input-control'>
                         <textarea {...register('description')} className='input--primary' rows={10} placeholder='description*' />

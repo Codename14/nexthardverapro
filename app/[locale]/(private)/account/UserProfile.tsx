@@ -23,7 +23,7 @@ export default function UserProfile({ userData, ownProducts, itsMe }: Props) {
                         </div>
                         <div className='profile__details'>
                             <div className='profile__title'>
-                                <h4 className='small-title'>{userData?.name || userData.email}</h4>
+                                <h4 className='small-title'>{userData.user_name ?? userData.email}</h4>
                                 <p>Még nincs értékelés</p>
                             </div>
                             <div className='profile__info'>
