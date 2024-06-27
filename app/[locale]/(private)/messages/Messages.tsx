@@ -39,7 +39,6 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
     //NOT WORKING
     const supabase = createClient();
     const router = useRouter();
-    // console.log('receiverID', receiverID);
     useEffect(() => {
         const channel = supabase
             .channel('realtime messages')
@@ -55,17 +54,17 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                 }
             )
             .subscribe();
-
+        console.log('update');
         return () => {
             supabase.removeChannel(channel);
         };
     }, [supabase, router]);
+
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
     let paramSenderData, paramProductData;
     if (paramUserID && paramProductID) {
-        console.log('banane');
         paramSenderData = messageUsers.find((user: MessageUserType) => user.user_id === paramUserID);
         paramProductData = messageProducts.find((product: products) => product.id === paramProductID);
 
@@ -73,7 +72,7 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
             redirect('/messages');
         }
 
-        console.log('paramSenderName', paramSenderData);
+        // console.log('paramSenderName', paramSenderData);
     }
 
     return (

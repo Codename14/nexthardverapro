@@ -30,9 +30,9 @@ export default async function Header() {
             <ul className='nav-list'>
                 {user ? (
                     <>
-                        <li>
+                        {/* <li>
                             <NotificationDropDown />
-                        </li>
+                        </li> */}
                         <li>
                             <Link href={'/wishlist'}>
                                 <GoHeart size={25} />
@@ -43,7 +43,6 @@ export default async function Header() {
                                 <LuMessageCircle size={25} />
                             </Link>
                         </li>
-
                         <li>
                             <ProfileMenu />
                             {/* <Link href={'/account'}>{t('account')}</Link> */}

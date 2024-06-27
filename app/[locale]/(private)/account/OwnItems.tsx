@@ -6,7 +6,10 @@ import { products } from '@prisma/client';
 import Image from 'next/image';
 import ProductDeleteBtn from './ProductDeleteBtn';
 import { MdEdit } from 'react-icons/md';
+import { useTranslations } from 'next-intl';
 export default function OwnItems({ ownProducts, itsMe }: { ownProducts: products[]; itsMe: boolean }) {
+    const t = useTranslations('Profile');
+
     return (
         <>
             {ownProducts && ownProducts.length > 0 ? (
@@ -50,11 +53,11 @@ export default function OwnItems({ ownProducts, itsMe }: { ownProducts: products
                         <div className='flex mb-2 mt-4'>
                             <FaAccusoft size={50} color={'var(--primary)'} />
                         </div>
-                        <h2 className='small-title'>Sajnos nincs aktív hirdetésed</h2>
-                        <p className='mx-auto'>Itt láthatod a hirdetéseid</p>
+                        <h2 className='small-title'>{t('noproduct_title')}</h2>
+                        <p className='mx-auto'>{t('noproduct_text')}</p>
                     </div>
                     <Link href={'/items/new'} className='btn btn--primary mt-4 btn--wicon'>
-                        Feladok <FaArrowAltCircleRight size={25} />
+                        {t('noproduct_button')} <FaArrowAltCircleRight size={25} />
                     </Link>
                 </>
             )}

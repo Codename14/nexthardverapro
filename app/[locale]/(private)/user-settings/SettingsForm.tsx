@@ -7,8 +7,12 @@ import { toast } from 'sonner';
 import { handleEditProfileData } from '../account/action/action';
 import { SubmitButton } from '@/components/SubmitButton';
 import { user_data } from '@prisma/client';
+import { useTranslations } from 'next-intl';
+import LoadingIcon from '@/components/LoadingIcon';
 
 export default function SettingsForm({ userData }: { userData: user_data }) {
+    const t = useTranslations('form');
+
     const {
         register,
         reset,
@@ -35,20 +39,29 @@ export default function SettingsForm({ userData }: { userData: user_data }) {
                     if (res && !res.success) {
                         toast.error(res?.error);
                     } else {
-                        toast.success('Sikeresen frissítettük az adataidat!');
+                        toast.success(t('success_message'));
                         reset();
                     }
                 }}
                 className='my-6'
             >
                 <div className='input-control mx-auto'>
-                    <input {...register('username')} className='input--primary' type='text' placeholder='Ország' />
+                    <input {...register('username')} className='input--primary' type='text' placeholder={t('username')} />
                 </div>
                 <div className='input-control mx-auto'>
-                    <input {...register('country')} className='input--primary' type='text' placeholder='Felhasználónév' />
+                    <input {...register('country')} className='input--primary' type='text' placeholder={t('country')} />
                 </div>
-                <SubmitButton disabled={isSubmitting || !isDirty} className='btn btn--primary mt-4' pendingText={'Updating...'}>
-                    Update
+                <SubmitButton
+                    disabled={isSubmitting || !isDirty}
+                    className='btn btn--primary mt-4'
+                    pendingText={
+                        <span className='flex gap-2'>
+                            <span>{t('btn_update')}</span>
+                            <LoadingIcon />
+                        </span>
+                    }
+                >
+                    {t('btn_update')}
                 </SubmitButton>
             </form>
         </>

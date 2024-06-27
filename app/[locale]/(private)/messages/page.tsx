@@ -2,6 +2,8 @@ import { readUserData } from '@/lib/actions';
 import prisma from '@/lib/pismaDB';
 import { redirect } from 'next/navigation';
 import Messages from './Messages';
+import { createClient } from '@/lib/supabase/client';
+import { createSerClient } from '@/lib/supabase/server';
 
 interface MessageParams {
     param: string; //productID
@@ -13,7 +15,7 @@ export default async function Page({ searchParams }: { searchParams: MessagePara
     if (!user) {
         redirect('/');
     }
-    // csak a saját üzenetek lekérdezése
+    // // csak a saját üzenetek lekérdezése
     const messages = await prisma.user_message.findMany({
         where: {
             OR: [{ sender_id: user?.id }, { receiver_id: user?.id }],
@@ -22,10 +24,22 @@ export default async function Page({ searchParams }: { searchParams: MessagePara
             createdAt: 'asc',
         },
     });
+    // const supabase = createSerClient();
+    // const { data: messages, error } = await supabase
+    //     .from('user_message') // A tábla neve
+    //     .select('*'); // Minden oszlopot lekér
+    // // .or(`sender_id.eq.${user?.id},receiver_id.eq.${user?.id}`) // OR feltétel a sender_id és receiver_id-re
+    // // .order('createdAt', { ascending: true }); // Rendezés createdAt szerint növekvő sorrendben
+
+    // if (error) {
+    //     console.error('Hiba a lekérdezés során', error);
+    //     return;
+    // }
+
     //a címekhez minden egyes termékből legyen 1 üzi
     //TODO: itt érdemes lenne utolsó üzit tárolni
     const uniqueMessages = messages.filter((message, index, self) => index === self.findIndex((m) => m.product_id === message.product_id));
-    console.log('uniqueMessages', uniqueMessages.length);
+    // console.log('uniqueMessages', uniqueMessages.length);
 
     const messageProducts = await prisma.products.findMany({
         where: {

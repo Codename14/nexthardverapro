@@ -9,11 +9,7 @@ export default function Footer() {
             <footer>
                 <div className='limit-width'>
                     <ThemeToggle />
-                    <small className='block'>
-                        Ez egy hobby portfolió project, Felhívom a figyelmed, hogy az itt található tartalmak és funkciók éles használatra nem
-                        alkalmasak. Kérlek, vedd figyelembe, hogy semmilyen felelősséget nem vállalok az esetlegesen felmerülő problémákért vagy
-                        károkért.
-                    </small>
+                    <small className='block'>{t('project_details')}</small>
                     <small>Sell Stuff &copy; {t('rights')} 2024.</small>
                 </div>
             </footer>

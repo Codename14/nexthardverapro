@@ -5,8 +5,11 @@ import Image from 'next/image';
 import { DEFAULT_IMG } from '@/lib/constants';
 import { Link } from '@/navigation';
 import SignOutButton from './SignOutButton';
+import { useTranslations } from 'next-intl';
 
 export default function ProfileMenu({ userImg }: { userImg?: string }) {
+    const t = useTranslations('Navigation');
+
     let close = useClose();
     return (
         <>
@@ -18,13 +21,13 @@ export default function ProfileMenu({ userImg }: { userImg?: string }) {
                 </PopoverButton>
                 <PopoverPanel anchor='bottom' className='popover-list'>
                     <Link onClick={() => close()} href='/account'>
-                        Profil
+                        {t('profile')}
                     </Link>
                     <Link onClick={() => close()} href='/user-settings'>
-                        Settings
+                        {t('settings')}
                     </Link>
                     <Link onClick={() => close()} href='/' className='flex'>
-                        <SignOutButton text='Kijelentkezés' />
+                        <SignOutButton text={t('logout')} />
                     </Link>
                 </PopoverPanel>
             </Popover>

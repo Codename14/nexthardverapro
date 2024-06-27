@@ -6,6 +6,7 @@ import AccountBottonMenu from './AccountBottonMenu';
 import { products, user_data, users } from '@prisma/client';
 import Image from 'next/image';
 import { DEFAULT_IMG } from '@/lib/constants';
+import { useTranslations } from 'next-intl';
 type Props = {
     // user: users;
     userData: user_data;
@@ -13,6 +14,8 @@ type Props = {
     itsMe: boolean;
 };
 export default function UserProfile({ userData, ownProducts, itsMe }: Props) {
+    const t = useTranslations('Profile');
+
     return (
         <>
             <div className='under-navbar screen-container'>
@@ -24,7 +27,7 @@ export default function UserProfile({ userData, ownProducts, itsMe }: Props) {
                         <div className='profile__details'>
                             <div className='profile__title'>
                                 <h4 className='small-title'>{userData.user_name ?? userData.email}</h4>
-                                <p>Még nincs értékelés</p>
+                                <p>{t('not_rated')}</p>
                             </div>
                             <div className='profile__info'>
                                 <div className='flex'>
@@ -44,7 +47,7 @@ export default function UserProfile({ userData, ownProducts, itsMe }: Props) {
                     </div>
                     {itsMe && (
                         <Link href='/user-settings' className='btn btn--primary'>
-                            Profil szerkesztése
+                            {t('profile_edit')}
                         </Link>
                     )}
                 </section>

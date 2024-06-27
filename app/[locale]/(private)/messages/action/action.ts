@@ -37,6 +37,6 @@ export async function handleSendMessage(formData: unknown) {
                 error: 'Message not sent. Try again.' + error,
             };
         }
-        revalidatePath('/messages', 'page');
+        // revalidatePath('/messages', 'page');
     }
 }
