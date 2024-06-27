@@ -6,16 +6,13 @@ import LikeButton from '@/components/LikeButton';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
+import NoFav from './NoFav';
 
 interface Props {
     params: { locale: string };
 }
 
-export default async function IndexPage({ params: { locale } }: Props) {
-    unstable_setRequestLocale(locale);
-
-    // const t = useTranslations('Wishlist');
-
+export default async function Page() {
     const user = await readUserData();
     if (!user) {
         redirect('/');
@@ -63,18 +60,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
                         ))}
                     </section>
                 ) : (
-                    <>
-                        <div className='mt-10 mb-6'>
-                            <div className='flex mb-2 mt-4'>
-                                <FavoriteIcon />
-                            </div>
-                            {/* <h2 className='small-title'>{t('wishlist_not_found_title')}</h2> */}
-                            {/* <p className='mx-auto'>{t('wishlist_not_found_description')}</p> */}
-                        </div>
-                        <Link href={'/'} className='btn btn--primary mt-4'>
-                            {/* {t('wishlist_not_found_button')} */}
-                        </Link>
-                    </>
+                    <NoFav />
                 )}
             </div>
         </>

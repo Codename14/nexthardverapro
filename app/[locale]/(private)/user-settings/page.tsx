@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 export default async function Page() {
-    const t = useTranslations('Profile');
+    // const t = useTranslations('Profile');
 
     const user = await readUserData();
 
@@ -24,9 +24,7 @@ export default async function Page() {
             <div className='under-navbar screen-container card-padding'>
                 <section className='mysettings'>
                     <div className='settings__sidebar'>
-                        <h1 className='section-title'>{t('profile_edit')}</h1>
                         <SettingsForm userData={userData} />
-                        <button className='btn btn--outline font-semibold'>{t('delete_account_btn')}</button>
                     </div>
                 </section>
             </div>

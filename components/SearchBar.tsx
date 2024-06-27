@@ -3,10 +3,12 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import LoadingIcon from './LoadingIcon';
+import { useTranslations } from 'next-intl';
 // import { useTranslations } from 'next-intl';
 
 export default function SearchBar() {
-    // const t = useTranslations('form');
+    const t = useTranslations('form');
+
     const searchParams = useSearchParams();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
@@ -44,11 +46,11 @@ export default function SearchBar() {
                         required: true,
                     })}
                     type='text'
-                    placeholder='keresés'
+                    placeholder={t('search') + '...'}
                     className='search-input input--primary'
                 />
                 <button disabled={!isDirty || isLoading} className='btn btn--primary flex gap-2'>
-                    Keresés {isLoading && <LoadingIcon />}
+                    {t('search')} {isLoading && <LoadingIcon />}
                 </button>
             </form>
         </>

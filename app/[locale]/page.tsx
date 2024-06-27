@@ -2,6 +2,7 @@ import SearchBar from '@/components/SearchBar';
 import Products from './Products';
 import prisma from '@/lib/pismaDB';
 import { Link } from '@/navigation';
+import SearchResultCounter from '@/components/SearchResultCounter';
 
 export default async function Page({ searchParams }: { searchParams: SearchParamsType }) {
     const categories = await prisma.categories.findMany();

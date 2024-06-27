@@ -12,6 +12,7 @@ import LoadingIcon from '@/components/LoadingIcon';
 
 export default function SettingsForm({ userData }: { userData: user_data }) {
     const t = useTranslations('form');
+    const p = useTranslations('Profile');
 
     const {
         register,
@@ -30,6 +31,7 @@ export default function SettingsForm({ userData }: { userData: user_data }) {
     });
     return (
         <>
+            <h1 className='section-title'>{p('profile_edit')}</h1>
             <form
                 action={async () => {
                     const result = await trigger();
@@ -64,6 +66,7 @@ export default function SettingsForm({ userData }: { userData: user_data }) {
                     {t('btn_update')}
                 </SubmitButton>
             </form>
+            <button className='btn btn--outline font-semibold'>{p('delete_account_btn')}</button>
         </>
     );
 }

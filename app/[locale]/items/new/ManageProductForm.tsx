@@ -120,7 +120,7 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                     </div>
                     <div className='input-control'>
                         <div className='flex my-2'>
-                            <p>Új</p>
+                            <p>{t('new')}</p>
                             <input {...register('new', { valueAsNumber: true })} type='checkbox' className='' />
                         </div>
                         {errors.new && <p className='form-message error'>{errors.new.message}</p>}

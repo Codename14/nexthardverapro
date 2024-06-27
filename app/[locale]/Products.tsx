@@ -10,10 +10,10 @@ import { CiHeart } from 'react-icons/ci';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 import { FaSearch, FaUser } from 'react-icons/fa';
 import LikeButton from '@/components/LikeButton';
-import { useTranslations } from 'next-intl';
+import SearchResultCounter from '@/components/SearchResultCounter';
 
 export default async function Products({ categoryID, query }: { categoryID: string | undefined; query: string | undefined }) {
-    const t = useTranslations('Products');
+    // const t = useTranslations('Products');
 
     const user = await readUserData();
     // console.log('query:', query);
@@ -36,16 +36,7 @@ export default async function Products({ categoryID, query }: { categoryID: stri
 
     return (
         <>
-            {products.length === 0 ? (
-                <div className='flex flex-col'>
-                    <FaSearch size={40} className='mb-2 mt-6' />
-                    <p className='font-bold'>{t('no_search_result')}</p>
-                </div>
-            ) : (
-                <p className='text--light mx-auto'>
-                    {t('search_count')} {products.length}:
-                </p>
-            )}
+            <SearchResultCounter length={products.length} />
             <section className='products-grid mb-6'>
                 {products.map((product) => (
                     <div className='product__item glass-card' key={product.id}>
