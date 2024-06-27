@@ -8,11 +8,13 @@ import { Link, redirect } from '@/navigation';
 import LikeButton from '@/components/LikeButton';
 import { readUserData } from '@/lib/actions';
 import LoginButton from '@/components/header/LoginButton';
+import { getTranslations } from 'next-intl/server';
+
 interface Props {
     params: { slug: string };
 }
 export default async function Page({ params }: Props) {
-    //TODO: FIX IT Translation
+    const t = await getTranslations('Products');
 
     const product = await prisma.products.findFirst({
         where: {
@@ -86,20 +88,20 @@ export default async function Page({ params }: Props) {
                         user.id === product.user_id ? (
                             <div className='flex mt-auto'>
                                 <Link href={`/items/${product.id}/edit`} className='btn btn--primary'>
-                                    Szerkesztés
+                                    {t('edit_btn')}
                                 </Link>
                             </div>
                         ) : (
                             <div className='flex mt-auto'>
                                 <Link href={`/messages?param=${product.id}&param2=${product.user_id}`} className='btn btn--primary'>
-                                    Írok a feladónak
+                                    {t('message_send_btn')}
                                 </Link>
                             </div>
                         )
                     ) : (
                         <></>
                     )}
-                    {!user && <LoginButton className='btn btn--primary'>Bejelentkezek</LoginButton>}
+                    {!user && <LoginButton className='btn btn--primary'>{t('login_btn')}</LoginButton>}
                 </div>
             </div>
         </>
