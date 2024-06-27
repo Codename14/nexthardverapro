@@ -3,8 +3,11 @@ import { Dialog, DialogPanel } from '@headlessui/react';
 import { useDeleteContext } from '@/contexts/DeleteContext';
 import { handleDeleteProduct } from '@/app/[locale]/(private)/account/action/action';
 import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 
 export default function DeleteDialog() {
+    const t = useTranslations('form');
+
     const { isOpen, setIsOpen, activeProduct, setActiveProduct } = useDeleteContext();
 
     const handleDelete = async () => {
@@ -14,7 +17,7 @@ export default function DeleteDialog() {
             if (res && !res.success) {
                 toast.error(res.error);
             } else {
-                toast.success('Sikeresen törölve: ' + activeProduct.name);
+                toast.success(t('delete_message') + activeProduct.name);
             }
             setActiveProduct(undefined);
         }
@@ -25,7 +28,7 @@ export default function DeleteDialog() {
             <Dialog open={isOpen} onClose={() => setIsOpen(false)} className='z9999 relative p-5 text-center'>
                 <div className='delete--background fixed inset-0 flex items-center justify-center p-4'>
                     <DialogPanel className='popper--danger w-full max-w-sm rounded'>
-                        <h4 className='small-title'> Biztosan törölni szeretnéd?</h4>
+                        <h4 className='small-title'> {t('delete')}</h4>
                         <p className='title'>{activeProduct?.name}</p>
                         <div className='flex gap-4'>
                             <button
@@ -35,7 +38,7 @@ export default function DeleteDialog() {
                                 }}
                                 className='btn btn--primary'
                             >
-                                Vissza
+                                {t('go_back_btn')}
                             </button>
                             <button
                                 type='button'
@@ -44,7 +47,7 @@ export default function DeleteDialog() {
                                 }}
                                 className='btn btn--delete'
                             >
-                                Törlés Mindenképp
+                                {t('delete_btn')}
                             </button>
                         </div>
                     </DialogPanel>

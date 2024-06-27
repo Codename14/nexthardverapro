@@ -5,12 +5,11 @@ import prisma from '@/lib/pismaDB';
 import LikeButton from '@/components/LikeButton';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
 import NoFav from './NoFav';
 
-interface Props {
-    params: { locale: string };
-}
+// interface Props {
+//     params: { locale: string };
+// }
 
 export default async function Page() {
     const user = await readUserData();
@@ -30,7 +29,7 @@ export default async function Page() {
     return (
         <>
             <div className='under-navbar text-center screen-container card-padding'>
-                {/* <h1 className='section-title font-semibold'>{t('wishlist')}</h1> */}
+                <WishlistTitle />
                 {products.length > 0 ? (
                     <section className='products-grid mb-6'>
                         {products.map((product) => (
@@ -63,6 +62,15 @@ export default async function Page() {
                     <NoFav />
                 )}
             </div>
+        </>
+    );
+}
+function WishlistTitle() {
+    const t = useTranslations('Wishlist');
+
+    return (
+        <>
+            <h1 className='section-title font-semibold'>{t('wishlist')}</h1>
         </>
     );
 }
