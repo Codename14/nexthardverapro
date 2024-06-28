@@ -1,1 +1,77 @@
-{"form":{"add_new_product":"neue Werbung","btn_update":"Aktualisieren","country":"Land","delete":"Sind Sie sicher, dass Sie es löschen möchten?","delete_btn":"auf jeden Fall löschen","delete_message":"Erfolgreich gelöscht:","edit_product":"Anzeige bearbeiten","go_back_btn":"zurück","new":"neu","porduct_details":"Beschreibung","product_add_message":"Wir haben Ihre Anzeige erfolgreich erstellt","product_img_url":"Bild URL","product_place":"Standort","product_price":"Produktpreis","product_title":"Titel der Anzeige","product_update_message":"Änderungen erfolgreich gespeichert.","save_btn":"Rettung","search":"suchen","success_message":"Wir haben Ihre Daten erfolgreich aktualisiert!","update_btn":"Aktualisieren","username":"Nutzername"},"Navigation":{"account":"Profil","contact":"Kontakt","login":"Eintrag","login_register":"Anmelden | Anmeldung","logout":"Kasse","mainpage":"Hauptseite","profile":"Mein Profil","rights":"Alle Rechte vorbehalten. © Banai Alex 2024","sellnow":"Verkauf","settings":"Meine Daten","signout":"Kasse"},"Products":{"edit_btn":"Bearbeitung","login_btn":"Ich melde mich an","message_send_btn":"Ich schreibe an den Absender","new":"Neu","no_search_result":"Leider keine Ergebnisse","search_count":"Anzahl der Treffer","used":"Gebraucht"},"Footer":{"project_details":"Da es sich hierbei um ein Hobby-Portfolioprojekt handelt, mache ich Sie darauf aufmerksam, dass die hier vorgefundenen Inhalte und Funktionen nicht für den Live-Einsatz geeignet sind. Bitte beachten Sie, dass ich nicht für eventuell auftretende Probleme oder Schäden verantwortlich bin.","rights":"Alle Rechte vorbehalten"},"Profile":{"delete_account_btn":"Kontokündigung","noproduct_button":"ich gebe auf","noproduct_text":"Hier können Sie Ihre Anzeigen sehen","noproduct_title":"Leider haben Sie keine aktiven Anzeigen","noratings_text":"Ihre Bewertungen werden hier angezeigt","noratings_title":"Leider hat es noch niemand bewertet","not_rated":"Es liegen noch keine Bewertungen vor","own_products":"Meine Anzeigen","own_ratings":"Meine Bewertungen","profile_edit":"Profil bearbeiten","their_produts":"Ihre Anzeigen","their_ratings":"Seine Einschätzungen"},"Messages":{"deleted_product":"Anzeige gelöscht","own":"eigen","search_placeholder":"suchen...","send":"Senden"},"Wishlist":{"wishlist":"Lieblingsprodukte","wishlist_not_found_button":"Durchsuchen","wishlist_not_found_description":"Das als Favorit markierte Produkt können Sie hier sehen","wishlist_not_found_title":"Speichern Sie Ihre Favoriten"}}
+{
+    "form": {
+      "add_new_product": "New listing",
+      "btn_update": "Update",
+      "country": "Country",
+      "delete": "Are you sure you want to delete?",
+      "delete_btn": "delete anyway",
+      "delete_message": "Successfully deleted:",
+      "edit_product": "Edit listing",
+      "go_back_btn": "back",
+      "new": "new",
+      "porduct_details": "description",
+      "product_add_message": "Your ad was created successfully",
+      "product_img_url": "image url",
+      "product_place": "location",
+      "product_price": "product price",
+      "product_title": "Listing title",
+      "product_update_message": "Changes saved successfully.",
+      "save_btn": "Save",
+      "search": "search",
+      "success_message": "Your information has been updated successfully!",
+      "update_btn": "Update",
+      "username": "Username"
+    },
+    "Navigation": {
+      "account": "Profile",
+      "contact": "Contact",
+      "login": "Login",
+      "login_register": "Login | Register",
+      "logout": "Log out",
+      "mainpage": "Main page",
+      "profile": "My profile",
+      "rights": "All rights reserved. © Alex Banai 2024",
+      "sellnow": "Sell now",
+      "settings": "My data",
+      "signout": "Sign out"
+    },
+    "Products": {
+      "edit_btn": "Edit",
+      "login_btn": "I log in",
+      "message_send_btn": "Message the seller",
+      "new": "New",
+      "no_search_result": "Unfortunately, no results",
+      "search_count": "Number of results",
+      "used": "Used"
+    },
+    "Footer": {
+      "project_details": "This is a hobby portfolio project. Please note that the contents and functionalities found here are not suitable for live use. Please consider that I take no responsibility for any problems or damages that may arise.",
+      "rights": "All rights reserved"
+    },
+    "Profile": {
+      "delete_account_btn": "Delete account",
+      "noproduct_button": "Post now",
+      "noproduct_text": "Here you can see your ads",
+      "noproduct_title": "Unfortunately, you have no active listings",
+      "noratings_text": "Here your ratings will be displayed",
+      "noratings_title": "Unfortunately, no one has rated yet",
+      "not_rated": "Not rated yet",
+      "own_products": "My ads",
+      "own_ratings": "My ratings",
+      "profile_edit": "Edit profile",
+      "their_produts": "Their ads",
+      "their_ratings": "Their ratings"
+    },
+    "Messages": {
+      "deleted_product": "deleted listing",
+      "own": "own",
+      "search_placeholder": "search...",
+      "send": "send"
+    },
+    "Wishlist": {
+      "wishlist": "Favorite products",
+      "wishlist_not_found_button": "Browse",
+      "wishlist_not_found_description": "You can see the product you marked as favorite here",
+      "wishlist_not_found_title": "Save your favorites"
+    }
+  }

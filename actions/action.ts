@@ -2,6 +2,7 @@
 
 import { readUserData } from '@/lib/actions';
 import prisma from '@/lib/pismaDB';
+import { createSerClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function handleLike({ productID }: { productID: string }) {
@@ -67,3 +68,23 @@ export async function handleLike({ productID }: { productID: string }) {
     }
     revalidatePath('/items/[slug]', 'page');
 }
+
+export const signIn = async (formData: FormData) => {
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const supabase = createSerClient();
+    const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    });
+    if (error) {
+        console.log('error', error);
+        return {
+            success: false,
+            error: error.message,
+        };
+    }
+    return {
+        success: true,
+    };
+};

@@ -18,7 +18,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
             return `?categoryID=${categoryIdenfier}`;
         }
     };
-    console.log('par:', searchParams);
+    // console.log('params:', searchParams);
     return (
         <>
             <section className='under-navbar'>
