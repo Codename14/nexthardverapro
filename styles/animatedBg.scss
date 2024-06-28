@@ -56,7 +56,7 @@
     height: 100vh;
     position: fixed;
     z-index: -1;
-    opacity: 0.4;
+    opacity: var(--bg-opacity);
     overflow: hidden;
     background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
     top: 0;
@@ -66,13 +66,13 @@
         svg {
             display: none;
         }
-        opacity: 0.4;
+        opacity: var(--bg-opacity);
     }
     @media (max-width: 900px) {
         svg {
             display: none;
         }
-        opacity: 0.4;
+        opacity: var(--bg-opacity);
     }
     .gradients-container {
         filter: url(#goo) blur(40px);

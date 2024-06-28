@@ -1,5 +1,8 @@
 :root:has(.light-theme),
 .light-theme {
+    --color-bg1: rgb(75, 57, 84);
+    --color-bg2: rgb(137, 158, 243);
+    --bg-opacity: 0.4;
     --primary: white;
     // --primary-hover: #9ed6bc;
     --secondary: #9e9fbe;
@@ -10,21 +13,28 @@
 
 :root:has(.superdark-theme),
 .superdark-theme {
-    --primary: #0fbaba;
+    --color-bg1: #2f3645;
+    --color-bg2: #393833;
+    --bg-opacity: 0.45;
+
+    --primary: #e6b9a6;
     // --primary-hover: #3e9f11;
-    --secondary: #006c67;
-    --accent: #d6c6e1;
-    --text-100: white;
+    --secondary: #102c57;
+    --accent: #ffb1b1;
+    --text-100: #2f3645;
     --bg-100: #0f0d0e;
 }
 
 :root:has(.superdark-orange-theme),
 .superdark-orange-theme {
-    --primary: #c97900;
-    // --primary-hover: #c9b500;
-    --secondary: #823a00;
-    --accent: #8e5b9a;
-    --text-100: white;
+    --color-bg1: #9cafaa;
+    --color-bg2: #393833;
+    --bg-opacity: 0.45;
+
+    --primary: #9cafaa;
+    // --primary-hover: #3e9f11;
+    --secondary: #9cafaa;
+    --accent: #9cafaa;
+    --text-100: #2f3645;
     --bg-100: #0f0d0e;
-    // --bg-100: black;
 }
