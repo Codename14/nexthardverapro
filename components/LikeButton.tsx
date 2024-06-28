@@ -1,9 +1,8 @@
 'use client';
 import { handleLike } from '@/actions/action';
-import React, { useTransition } from 'react';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-import { SubmitButton } from './SubmitButton';
 import LoadingIcon from './LoadingIcon';
+import { SubmitButton } from './SubmitButton';
 
 export default function LikeButton({ likesLength, productID, likeState }: { likesLength: number; productID: string; likeState: boolean }) {
     return (

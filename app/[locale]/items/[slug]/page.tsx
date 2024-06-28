@@ -1,14 +1,12 @@
-import prisma from '@/lib/pismaDB';
-import React from 'react';
-import Image from 'next/image';
-import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-import { FaMoneyBill, FaPlaceOfWorship, FaUser } from 'react-icons/fa';
-import { MdCategory, MdOutlineFiberNew, MdOutlineWorkspaces, MdOutlineWysiwyg } from 'react-icons/md';
-import { Link, redirect } from '@/navigation';
 import LikeButton from '@/components/LikeButton';
-import { readUserData } from '@/lib/actions';
 import LoginButton from '@/components/header/LoginButton';
+import { readUserData } from '@/lib/actions';
+import prisma from '@/lib/pismaDB';
+import { Link, redirect } from '@/navigation';
 import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
+import { FaMoneyBill, FaPlaceOfWorship, FaUser } from 'react-icons/fa';
+import { MdCategory, MdOutlineWorkspaces, MdOutlineWysiwyg } from 'react-icons/md';
 
 interface Props {
     params: { slug: string };

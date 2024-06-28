@@ -547,13 +547,18 @@ textarea {
     margin-top: 1em;
     width: min(200px, 100%);
     a {
-        display: block;
-        width: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
         text-align: left;
+        width: 100%;
         padding: 0.5em 1em;
         @include transFast();
         &:hover {
             text-decoration: line-through;
+            svg {
+                opacity: 0.5;
+            }
         }
         // border: 1px solid red;
     }

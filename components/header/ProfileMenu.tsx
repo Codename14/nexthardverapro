@@ -6,6 +6,7 @@ import { DEFAULT_IMG } from '@/lib/constants';
 import { Link } from '@/navigation';
 import SignOutButton from './SignOutButton';
 import { useTranslations } from 'next-intl';
+import { CiLogout, CiSettings, CiUser } from 'react-icons/ci';
 
 export default function ProfileMenu({ userImg }: { userImg?: string }) {
     const t = useTranslations('Navigation');
@@ -20,14 +21,17 @@ export default function ProfileMenu({ userImg }: { userImg?: string }) {
                     </div>
                 </PopoverButton>
                 <PopoverPanel anchor='bottom' className='popover-list'>
-                    <Link onClick={() => close()} href='/account'>
+                    <Link onClick={() => close()} href='/account' className='flex gap-2'>
+                        <CiUser size={25} className='icon' />
                         {t('profile')}
                     </Link>
-                    <Link onClick={() => close()} href='/user-settings'>
+                    <Link onClick={() => close()} href='/user-settings' className='flex gap-2'>
+                        <CiSettings size={25} className='icon' />
                         {t('settings')}
                     </Link>
-                    <Link onClick={() => close()} href='/' className='flex'>
-                        <SignOutButton text={t('logout')} />
+                    <Link onClick={() => close()} href='/' className='flex gap-2'>
+                        <CiLogout size={25} className='icon' />
+                        {t('logout')}
                     </Link>
                 </PopoverPanel>
             </Popover>

@@ -1,16 +1,9 @@
-import prisma from '@/lib/pismaDB';
-import React from 'react';
-import Image from 'next/image';
-import { createClient } from '@/lib/supabase/client';
-import { readUserData } from '@/lib/actions';
-import { toast } from 'sonner';
-import SearchBar from '@/components/SearchBar';
-import { Link } from '@/navigation';
-import { CiHeart } from 'react-icons/ci';
-import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-import { FaSearch, FaUser } from 'react-icons/fa';
 import LikeButton from '@/components/LikeButton';
 import SearchResultCounter from '@/components/SearchResultCounter';
+import { readUserData } from '@/lib/actions';
+import prisma from '@/lib/pismaDB';
+import { Link } from '@/navigation';
+import Image from 'next/image';
 
 export default async function Products({ categoryID, query }: { categoryID: string | undefined; query: string | undefined }) {
     // const t = useTranslations('Products');

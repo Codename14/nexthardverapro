@@ -1,17 +1,15 @@
 import { readUserData } from '@/lib/actions';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import { CiHeart, CiLogout, CiSettings, CiUser } from 'react-icons/ci';
 import { FcMoneyTransfer } from 'react-icons/fc';
-import { GoHeart } from 'react-icons/go';
 import { LuMessageCircle } from 'react-icons/lu';
 import LangToggle from './LangToggle';
 import Logo from './Logo';
-import LoginButton from './header/LoginButton';
-import NotificationDropDown from './header/NotificationDropDown';
-import SignOutButton from './header/SignOutButton';
-import ThemeToggle from './header/ThemeToggle';
-import ProfileMenu from './header/ProfileMenu';
 import BurgerButton from './header/BurgerButton';
+import LoginButton from './header/LoginButton';
+import ProfileMenu from './header/ProfileMenu';
+import SignOutButton from './header/SignOutButton';
 
 export default async function Header() {
     const t = useTranslations('Navigation');
@@ -34,18 +32,33 @@ export default async function Header() {
                             <NotificationDropDown />
                         </li> */}
                         <li>
-                            <Link href={'/wishlist'}>
-                                <GoHeart size={25} />
+                            <Link href={'/wishlist'} className='icon-text flex gap-2'>
+                                <CiHeart size={30} className='icon' />
+                                <span>{t('likes')}</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href={'/messages'}>
-                                <LuMessageCircle size={25} />
+                            <Link href={'/messages'} className='icon-text flex gap-2'>
+                                <LuMessageCircle size={25} className='icon' />
+                                <span>{t('messages')}</span>
                             </Link>
                         </li>
-                        <li>
+                        <li className='profile_nav-mobile flex'>
+                            <CiUser size={30} className='icon' />
+                            <Link href='/account'>{t('profile')}</Link>
+                        </li>
+                        <li className='profile_nav-mobile flex icon-text'>
+                            <CiSettings size={30} className='icon' />
+                            <Link href='/user-settings'>{t('settings')}</Link>
+                        </li>
+                        <li className='profile_nav-mobile'>
+                            <Link href='/' className='flex icon-text'>
+                                <CiLogout size={30} className='icon' />
+                                <SignOutButton text={t('logout')} />
+                            </Link>
+                        </li>
+                        <li className='profile_nav-pc'>
                             <ProfileMenu />
-                            {/* <Link href={'/account'}>{t('account')}</Link> */}
                         </li>
                         <li className=''>
                             <Link href={'/items/new'} className='btn btn--primary flex gap-2'>

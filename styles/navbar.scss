@@ -2,21 +2,23 @@
     z-index: 10;
     width: min($maxWidth, 100%);
     margin-inline: auto;
-    &:has(.burger--active) {
-        padding-bottom: 1em;
-        background: color-mix(in srgb, var(--primary) 50%, transparent);
-        .nav-list {
-            opacity: 1;
-            max-height: 100vh;
-            overflow: initial;
-            pointer-events: all;
+    justify-content: space-between;
+    @media (max-width: $navBreakPoint) {
+        &:has(.burger--active) {
+            padding-bottom: 1em;
+            background: color-mix(in srgb, var(--primary) 50%, transparent);
+            .nav-list {
+                opacity: 1;
+                max-height: 100vh;
+                overflow: initial;
+                pointer-events: all;
+            }
         }
     }
 }
 .navbar__mobile {
     @include flexCenter();
     justify-content: space-between;
-    width: 100%;
     // border: 1px solid red;
 }
 .nav-list {
@@ -25,6 +27,7 @@
     gap: 1em;
     flex-direction: column;
 }
+
 .nav__toggle {
     // border: 1px solid red;
     right: 0px;
@@ -61,20 +64,25 @@
             top: 5px;
         }
     }
-    .burger--active {
-        &::after {
-            transform: rotate(45deg);
-            top: -2px;
-        }
-        &::before {
-            transform: rotate(-45deg);
-            top: 0px;
+    @media (max-width: $navBreakPoint) {
+        .burger--active {
+            &::after {
+                transform: rotate(45deg);
+                top: -2px;
+            }
+            &::before {
+                transform: rotate(-45deg);
+                top: 0px;
+            }
         }
     }
 }
 
 //MOBILE
 @media (max-width: $navBreakPoint) {
+    .profile_nav-pc {
+        display: none;
+    }
     .navbar {
         position: sticky;
         top: 0;
@@ -91,8 +99,19 @@
 
 //DESKTOP
 @media (min-width: $navBreakPoint) {
+    .nav-list {
+        .profile_nav-mobile {
+            display: none;
+        }
+    }
+    .icon-text {
+        span {
+            display: none;
+        }
+    }
     .navbar {
         @include flexCenter();
+        justify-content: space-between;
         padding: 0.5em 1em;
     }
     .nav-list {

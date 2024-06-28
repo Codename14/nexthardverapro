@@ -9,6 +9,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { MdSell } from 'react-icons/md';
 import { redirect } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import { DiVim } from 'react-icons/di';
+import { LuMessageCircle } from 'react-icons/lu';
+import Link from 'next/link';
 interface MessageUserType {
     user_id: string | null;
     email: string | null;
@@ -144,6 +147,17 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                                 </button>
                             );
                         })}
+                        {uniqueMessages.length === 0 && (
+                            <>
+                                <div className='glass-card flex p-2 py-4 text-left gap-4 active'>
+                                    <LuMessageCircle size={35} className='mt-4 mb-2' />
+                                    <p>{t('no_messages')}</p>
+                                </div>
+                                <Link href={'/'} className='btn btn--primary mt-2'>
+                                    {t('no_messages_desc')}
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
                 <MessageDetails activeProduct={activeProduct} messages={messages} ownID={ownID} receiverID={receiverID} />
