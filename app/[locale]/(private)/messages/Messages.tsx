@@ -31,12 +31,12 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
     const searchParams = useSearchParams();
     const paramProductID = searchParams.get('param');
     const paramUserID = searchParams.get('param2');
-    // Ez azért kell hogy a létező beszélgetésnél ne jelenjen meg új is
+    // Ez azért kell hogy ha írnánk egy új hirdetésre, de már írtunk rá, akkor azt dobja fel ne újat
     const isSentMessage = uniqueMessages.some(
         (item) => item.product_id === paramProductID && (item.sender_id === paramUserID || item.receiver_id === paramUserID)
     );
-    const [activeProductMessageID, setAtiveProductMessageID] = useState<null | string>(paramProductID);
 
+    const [activeProductMessageID, setAtiveProductMessageID] = useState<null | string>(paramProductID);
     const csakID = messages[0]?.receiver_id === ownID ? messages[0]?.sender_id : messages[0]?.receiver_id;
     const receiverID = paramUserID ? (activeProductMessageID === paramProductID ? paramUserID : csakID) : csakID;
 
@@ -80,11 +80,14 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
 
         // console.log('paramSenderName', paramSenderData);
     }
+    const handleGoBackOnMobile = () => {
+        setAtiveProductMessageID(null);
+    };
 
     return (
         <>
-            <section className='message-section  screen-container'>
-                <div className='message-sidebar'>
+            <section className='message-section screen-container'>
+                <div className={`message-sidebar ${activeProduct ? 'message-mobile-inactive' : 'message-mobile-active'}`}>
                     <div className='message-search'>
                         <div className='search-input'>
                             <input
@@ -160,7 +163,13 @@ export default function Messages({ messageUsers, uniqueMessages, messages, ownID
                         )}
                     </div>
                 </div>
-                <MessageDetails activeProduct={activeProduct} messages={messages} ownID={ownID} receiverID={receiverID} />
+                <MessageDetails
+                    activeProduct={activeProduct}
+                    messages={messages}
+                    ownID={ownID}
+                    receiverID={receiverID}
+                    onGoBackMobile={handleGoBackOnMobile}
+                />
             </section>
         </>
     );

@@ -4,6 +4,27 @@
     // gap: 1em;
     // padding: 0.8em;
     margin-bottom: 1em;
+    .message-back-mobile {
+        display: none;
+    }
+    @media (max-width: $break2) {
+        .message-back-mobile {
+            display: block;
+        }
+        display: block;
+        .message-wrapper {
+            height: 100%;
+            // outline: 2px solid red;
+            // background: red !important;
+        }
+        .message-mobile-inactive {
+            display: none;
+        }
+        .message-mobile-active {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }
 .message-sidebar {
     // padding: 1em;

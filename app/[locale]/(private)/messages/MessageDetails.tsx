@@ -13,6 +13,7 @@ import { toast } from 'sonner';
 import { handleSendMessage } from './action/action';
 import { useTranslations } from 'next-intl';
 import LoadingIcon from '@/components/LoadingIcon';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 interface Props {
     // activeProductMessageID: string | null;
@@ -20,9 +21,10 @@ interface Props {
     ownID: string;
     receiverID: string;
     activeProduct: products | undefined;
+    onGoBackMobile: () => void;
 }
 
-export default function MessageDetails({ messages, ownID, receiverID, activeProduct }: Props) {
+export default function MessageDetails({ messages, ownID, receiverID, activeProduct, onGoBackMobile }: Props) {
     const t = useTranslations('Messages');
 
     const [isEmojiOpen, setIsEmojiOpen] = useState(false);
@@ -64,7 +66,10 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
     return (
         <>
             {activeProduct?.id && (
-                <div className='message-wrapper'>
+                <div className={`message-wrapper ${activeProduct ? 'message-mobile-active' : 'message-mobile-inactive'}`}>
+                    <button onClick={() => onGoBackMobile()} className='message-back-mobile'>
+                        <RiArrowGoBackFill size={30} className='icon' />
+                    </button>
                     <Link href={`/items/${activeProduct.id}`} className='message-product-title'>
                         {activeProduct.status === 'active' ? (
                             <>
