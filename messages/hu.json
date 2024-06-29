@@ -35,7 +35,8 @@
         "settings": "Adataim",
         "signout": "Kijelentkezés",
         "messages": "Üzenetek",
-        "likes": "Kedvencek"
+        "likes": "Kedvencek",
+        "home": "Hirdetések"
     },
     "Products": {
         "edit_btn": "Szerkesztés",

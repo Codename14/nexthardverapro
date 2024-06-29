@@ -35,7 +35,8 @@
         "settings": "My Data",
         "signout": "Sign out",
         "messages": "Messages",
-        "likes": "Favorites"
+        "likes": "Favorites",
+        "home": "Listings"
     },
     "Products": {
         "edit_btn": "Edit",

@@ -35,7 +35,8 @@
         "settings": "Meine Daten",
         "signout": "Abmelden",
         "messages": "Nachrichten",
-        "likes": "Favoriten"
+        "likes": "Favoriten",
+        "home": "Hirdetungen"
     },
     "Products": {
         "edit_btn": "Bearbeiten",

@@ -1,7 +1,7 @@
 import { readUserData } from '@/lib/actions';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { CiHeart, CiLogout, CiSettings, CiUser } from 'react-icons/ci';
+import { CiBookmark, CiHeart, CiLogout, CiSettings, CiUser } from 'react-icons/ci';
 import { FcMoneyTransfer } from 'react-icons/fc';
 import { LuMessageCircle } from 'react-icons/lu';
 import LangToggle from './LangToggle';
@@ -31,6 +31,12 @@ export default async function Header() {
                         {/* <li>
                             <NotificationDropDown />
                         </li> */}
+                        <li>
+                            <Link href={'/'} className='icon-text flex gap-2'>
+                                <CiBookmark size={25} className='icon' />
+                                <span>{t('home')}</span>
+                            </Link>
+                        </li>
                         <li>
                             <Link href={'/wishlist'} className='icon-text flex gap-2'>
                                 <CiHeart size={30} className='icon' />
