@@ -22,6 +22,15 @@
         "update_btn": "Aktualisieren",
         "username": "Benutzername"
     },
+    "form_errors": {
+        "name": "Sie müssen den Produktnamen angeben",
+        "price": "Sie müssen den Produktpreis angeben",
+        "price_to_high": "Der Preis ist zu hoch",
+        "text_to_long": "Die maximale Anzahl an Zeichen beträgt: ",
+        "place": "Sie müssen den Ort angeben",
+        "description": "Sie müssen eine Beschreibung des Produkts angeben",
+        "url": "Ungültige URL"
+    },
     "Navigation": {
         "account": "Profil",
         "contact": "Kontakt",

@@ -19,6 +19,10 @@ interface Props {
 export default function ManageProductForm({ categories, productEdit }: Props) {
     const t = useTranslations('form');
 
+    // az error translationon miatt kell
+    const e = useTranslations('form_errors');
+    const formSchema = productFormSchema(e);
+
     const pathName = usePathname();
     const isEdit = pathName.includes('edit');
     // console.log('productEdit', productEdit);
@@ -33,7 +37,7 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
         trigger, //azért kell mert action attributumot használjuk
         formState: { errors, isValid, isDirty, isSubmitting },
     } = useForm<productZodFormType>({
-        resolver: zodResolver(productFormSchema),
+        resolver: zodResolver(formSchema),
         defaultValues:
             isEdit && productEdit
                 ? {

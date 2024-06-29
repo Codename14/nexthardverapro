@@ -22,6 +22,15 @@
         "update_btn": "Frissítés",
         "username": "Felhasználónév"
     },
+    "form_errors": {
+        "name": "Szükséges a termék nevét megadnod",
+        "price": "Szükséges a termék árát is megadod",
+        "price_to_high": "Az ár túl magas",
+        "text_to_long": "A maximális karakterek száma: ",
+        "place": "Szükséges a helyszínt is megadod",
+        "description": "Szükséges a termék leírását is megadnod",
+        "url": "Helytelen url"
+    },
     "Navigation": {
         "account": "Profil",
         "contact": "Kapcsolat",

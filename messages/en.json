@@ -22,6 +22,15 @@
         "update_btn": "Update",
         "username": "Username"
     },
+    "form_errors": {
+        "name": "You need to provide the product name",
+        "price": "You need to provide the product price",
+        "price_to_high": "The price is too high",
+        "text_to_long": "The maximum number of characters is: ",
+        "place": "You need to provide the location",
+        "description": "You need to provide the product description",
+        "url": "Invalid url"
+    },
     "Navigation": {
         "account": "Profile",
         "contact": "Contact",

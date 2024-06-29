@@ -3,12 +3,15 @@ import { readUserData } from '@/lib/actions';
 import prisma from '@/lib/pismaDB';
 import { productFormSchema, productIdSchema, profileFormSchema } from '@/lib/validation';
 import { revalidatePath } from 'next/cache';
-import { getLocale } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { redirect } from '@/navigation';
 
 export async function handleAddNewProduct(formData: unknown) {
     // const locale = await getLocale();
     const user = await readUserData();
+    //language miatt kell így
+    const e = await getTranslations('form_errors');
+    const formSchema = productFormSchema(e);
 
     if (!user) {
         return {
@@ -17,7 +20,7 @@ export async function handleAddNewProduct(formData: unknown) {
         };
     }
 
-    const validatedProductData = productFormSchema.safeParse(formData);
+    const validatedProductData = formSchema.safeParse(formData);
     if (!validatedProductData.success) {
         return {
             success: false,
@@ -42,6 +45,10 @@ export async function handleAddNewProduct(formData: unknown) {
 export async function handleEditProduct(formData: unknown, id: string) {
     // const locale = await getLocale();
     const user = await readUserData();
+    //language miatt kell így
+    const e = await getTranslations('form_errors');
+    const formSchema = productFormSchema(e);
+
     if (!user) {
         return {
             success: false,
@@ -49,7 +56,7 @@ export async function handleEditProduct(formData: unknown, id: string) {
         };
     }
     console.log('id', id);
-    const validatedProductData = productFormSchema.safeParse(formData);
+    const validatedProductData = formSchema.safeParse(formData);
     // const validatedProductId = productIdSchema.safeParse(id);
     // if (!validatedProductData.success || !validatedProductId) {
     if (!validatedProductData.success) {
