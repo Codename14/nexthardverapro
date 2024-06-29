@@ -54,7 +54,7 @@ export default function SettingsForm({ userData }: { userData: user_data }) {
                     <input {...register('country')} className='input--primary' type='text' placeholder={t('country')} />
                 </div>
                 <SubmitButton
-                    disabled={isSubmitting || !isDirty}
+                    disabled={!isDirty || isSubmitting}
                     className='btn btn--primary mt-4'
                     pendingText={
                         <span className='flex gap-2'>
