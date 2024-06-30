@@ -1,3 +1,4 @@
+import CalculateTimeAgo from '@/components/CalculateTimeAgo';
 import LikeButton from '@/components/LikeButton';
 import LoginButton from '@/components/header/LoginButton';
 import { readUserData } from '@/lib/actions';
@@ -6,7 +7,7 @@ import { Link, redirect } from '@/navigation';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { FaMoneyBill, FaPlaceOfWorship, FaUser } from 'react-icons/fa';
-import { MdCategory, MdOutlineWorkspaces, MdOutlineWysiwyg } from 'react-icons/md';
+import { MdCategory, MdDateRange, MdOutlineWorkspaces, MdOutlineWysiwyg } from 'react-icons/md';
 
 interface Props {
     params: { slug: string };
@@ -82,6 +83,10 @@ export default async function Page({ params }: Props) {
                         <FaUser size='20' />
                         <p className='item__user'>{userData.user_name}</p>
                     </Link>
+                    <div className='item__line'>
+                        <MdDateRange size='20' />
+                        <CalculateTimeAgo date={product.created_at} className='item__new' />
+                    </div>
                     {user ? (
                         user.id === product.user_id ? (
                             <div className='flex mt-auto'>
