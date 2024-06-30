@@ -4,7 +4,7 @@ import { ReactNode, type ComponentProps } from 'react';
 
 type Props = ComponentProps<'button'> & {
     pendingText?: ReactNode | string;
-    disabled: boolean;
+    disabled?: boolean;
 };
 
 export function SubmitButton({ children, disabled, pendingText, ...props }: Props) {
