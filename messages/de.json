@@ -75,6 +75,10 @@
         "their_ratings": "Ihre Bewertungen"
     },
     "Messages": {
+        "minute": "vor einer Minute",
+        "hour": "vor einer Stunde",
+        "day": "vor einem Tag",
+        "now": "jetzt",
         "deleted_product": "gelöschtes Inserat",
         "own": "eigen",
         "search_placeholder": "suchen...",

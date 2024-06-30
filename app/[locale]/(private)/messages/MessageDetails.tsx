@@ -97,7 +97,8 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                                             </div>
                                             <div className='message-text'>
                                                 <p>{message.message}</p>
-                                                <span className='text--light'>{JSON.stringify(message.createdAt)}</span>
+                                                <CalculateTimeAgo date={message.createdAt} />
+                                                {/* <span className='text--light'>{JSON.stringify(message.createdAt)}</span> */}
                                             </div>
                                             {/* <p className='header__message'>{message.product_id.slice(-4)}</p> */}
 
@@ -143,4 +144,24 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
             )}
         </>
     );
+}
+
+function CalculateTimeAgo({ date }: { date: Date }) {
+    const t = useTranslations('Messages');
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    let message: string;
+    if (minutes < 60) {
+        message = minutes === 0 ? t('now') : `${minutes} ${t('minute')}`;
+    } else if (hours < 24) {
+        message = `${hours} ${t('hour')}`;
+    } else {
+        message = `${days} ${t('day')}`;
+    }
+
+    return <p className='text--light mt-1'>{message}</p>;
 }

@@ -75,6 +75,10 @@
         "their_ratings": "Értékelesei"
     },
     "Messages": {
+        "minute": "perce",
+        "hour": "órája",
+        "day": "napja",
+        "now": "most",
         "deleted_product": "törölt hirdetés",
         "own": "saját",
         "search_placeholder": "keresés...",

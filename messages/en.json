@@ -75,6 +75,10 @@
         "their_ratings": "Their Ratings"
     },
     "Messages": {
+        "minute": "minute ago",
+        "hour": "hour ago",
+        "day": "day ago",
+        "now": "now",
         "deleted_product": "deleted listing",
         "own": "own",
         "search_placeholder": "search...",
