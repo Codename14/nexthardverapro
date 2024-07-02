@@ -19,8 +19,8 @@ export default function UserProfile({ userData, ownProducts, itsMe }: Props) {
     return (
         <>
             <div className='under-navbar screen-container'>
-                <section className='own-profile'>
-                    <div className='flex gap-5'>
+                <section className='profile-container'>
+                    <div className='profile flex gap-5'>
                         <div className='profile__img relative size-10'>
                             <Image src={DEFAULT_IMG} alt={'asd'} fill />
                         </div>

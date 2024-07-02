@@ -575,15 +575,21 @@ textarea {
 // OWN PROFILE
 //=======================================================
 
-.own-profile {
+.profile-container {
     @include flexCenter();
     justify-content: initial;
     padding: $cardPadding;
     gap: 1em;
+    flex-direction: column;
     justify-content: space-around;
+    .profile {
+        @include flexCenter();
+        width: 100%;
+        justify-content: flex-start;
+    }
     .profile__img {
-        height: 12vw;
-        width: 12vw;
+        height: min(25vw, 150px);
+        width: min(25vw, 150px);
         position: relative;
         border-radius: 50vw;
         @include imageBoxShadow();
@@ -604,6 +610,17 @@ textarea {
     .profile__info {
         div {
             justify-content: flex-start;
+        }
+    }
+    @media (min-width: $break1) {
+        flex-direction: row;
+        .profile__img {
+            height: 12vw;
+            width: 12vw;
+        }
+        .profile {
+            // display: initial;
+            width: initial;
         }
     }
 }
