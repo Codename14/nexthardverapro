@@ -111,7 +111,7 @@ export default function MessageDetails({ messages, ownID, receiverID, activeProd
                     </div>
                     {/* <p>{isValid ? '' : "Message can't be empty"}</p> */}
                     <form className='message-action' onSubmit={handleSubmit(onSubmit)}>
-                        <FaImage size={25} />
+                        {/* <FaImage size={25} /> */}
                         <input className='hidden' {...register('receiver_id')} />
                         <input className='hidden' {...register('product_id')} />
                         <input

@@ -24,12 +24,16 @@
             display: flex;
             flex-direction: column;
         }
+        .message-sidebar {
+            border: none;
+        }
     }
 }
 .message-sidebar {
     // padding: 1em;
     padding: $cardPadding;
     overflow-y: auto;
+    border-right: 2px dotted var(--primary);
 }
 
 .message__title {
