@@ -12,7 +12,7 @@ export default function Footer() {
                     <small className='block font-semibold mb-2'>{t('project_details')}</small>
                     <small>Sell Stuff &copy; {t('rights')} 2024.</small>
                     <ThemeToggle />
-                    <p className='mt-2 mx-auto'>
+                    <p className='mt-2 mx-auto text-center'>
                         {t('madeby')}{' '}
                         <Link href='https://www.alexbanai.cc/' className='font-semibold'>
                             Alex Banai
