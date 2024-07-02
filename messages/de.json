@@ -58,7 +58,8 @@
     },
     "Footer": {
         "project_details": "Dies ist ein Hobby-Portfolio-Projekt. Bitte beachten Sie, dass die Inhalte und Funktionalitäten dieser Seite nicht für den Live-Gebrauch gedacht sind. Ich entschuldige mich für etwaige Unannehmlichkeiten und übernehme keine Verantwortung für Probleme oder Schäden.",
-        "rights": "Alle Rechte vorbehalten"
+        "rights": "Alle Rechte vorbehalten",
+        "madeby": "Webseite erstellt von:"
     },
     "Profile": {
         "delete_account_btn": "Konto löschen",

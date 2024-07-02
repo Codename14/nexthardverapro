@@ -44,12 +44,16 @@ export default function ThemeToggle() {
     };
 
     return (
-        <div className='theme-container'>
-            <label className={`theme-toggle ${theme ? theme : 'light'}-theme sr-only`}>{theme}</label>
-            <label className={`theme-switch ${theme === 'superdark' || theme === 'superdark-orange' ? 'dark' : ''}`} onClick={handleTheme}>
-                <input type='checkbox' />
-                <span className='slider'></span>
-            </label>
-        </div>
+        <>
+            <div className='theme-wrapper'>
+                <div className='theme-container'>
+                    <label className={`theme-toggle ${theme ? theme : 'light'}-theme sr-only`}>{theme}</label>
+                    <label className={`theme-switch ${theme === 'superdark' || theme === 'superdark-orange' ? 'dark' : ''}`} onClick={handleTheme}>
+                        <input type='checkbox' />
+                        <span className='slider'></span>
+                    </label>
+                </div>
+            </div>
+        </>
     );
 }

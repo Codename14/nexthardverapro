@@ -58,7 +58,8 @@
     },
     "Footer": {
         "project_details": "This is a hobby portfolio project. Please note that the content and functionality on this site are not intended for live use. I apologize for any inconvenience caused and take no responsibility for any problems or damage.",
-        "rights": "All rights reserved"
+        "rights": "All rights reserved",
+        "madeby": "Website created by:"
     },
     "Profile": {
         "delete_account_btn": "Delete Account",

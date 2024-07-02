@@ -58,7 +58,8 @@
     },
     "Footer": {
         "project_details": "Ez egy hobby portfolió project, Felhívom a figyelmed, hogy az itt található tartalmak és funkciók éles használatra nem alkalmasak. Kérlek, vedd figyelembe, hogy semmilyen felelősséget nem vállalok az esetlegesen felmerülő problémákért vagy károkért.",
-        "rights": "Minden jog fenntartva"
+        "rights": "Minden jog fenntartva",
+        "madeby": "A weboldalt készítette:"
     },
     "Profile": {
         "delete_account_btn": "Fiók megszűntetése",
