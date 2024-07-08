@@ -32,13 +32,13 @@ export default async function Header() {
                             <NotificationDropDown />
                         </li> */}
                         <li>
-                            <Link href={'/'} className='icon-text flex gap-2'>
+                            <Link prefetch={true} href={'/'} className='icon-text flex gap-2'>
                                 <CiBookmark size={25} className='icon' />
                                 <span>{t('home')}</span>
                             </Link>
                         </li>
                         <li>
-                            <Link href={'/wishlist'} className='icon-text flex gap-2'>
+                            <Link prefetch={true} href={'/wishlist'} className='icon-text flex gap-2'>
                                 <CiHeart size={30} className='icon' />
                                 <span>{t('likes')}</span>
                             </Link>
@@ -51,14 +51,18 @@ export default async function Header() {
                         </li>
                         <li className='profile_nav-mobile flex'>
                             <CiUser size={30} className='icon' />
-                            <Link href='/account'>{t('profile')}</Link>
+                            <Link prefetch={true} href='/account'>
+                                {t('profile')}
+                            </Link>
                         </li>
                         <li className='profile_nav-mobile flex icon-text'>
                             <CiSettings size={30} className='icon' />
-                            <Link href='/user-settings'>{t('settings')}</Link>
+                            <Link prefetch={true} href='/user-settings'>
+                                {t('settings')}
+                            </Link>
                         </li>
                         <li className='profile_nav-mobile'>
-                            <Link href='/' className='flex icon-text'>
+                            <Link prefetch={true} href='/' className='flex icon-text'>
                                 <CiLogout size={30} className='icon' />
                                 <SignOutButton text={t('logout')} />
                             </Link>
@@ -67,7 +71,7 @@ export default async function Header() {
                             <ProfileMenu />
                         </li>
                         <li className=''>
-                            <Link href={'/items/new'} className='btn btn--primary flex gap-2'>
+                            <Link prefetch={true} href={'/items/new'} className='btn btn--primary flex gap-2'>
                                 {t('sellnow')} <FcMoneyTransfer />
                             </Link>
                         </li>

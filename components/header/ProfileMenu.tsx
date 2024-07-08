@@ -21,13 +21,13 @@ export default function ProfileMenu({ userImg }: { userImg?: string }) {
                 </MenuButton>
                 <MenuItems anchor='bottom' className='menu-list'>
                     <MenuItem>
-                        <Link href='/account' className='flex gap-2'>
+                        <Link prefetch={true} href='/account' className='flex gap-2'>
                             <CiUser size={25} className='icon' />
                             {t('profile')}
                         </Link>
                     </MenuItem>
                     <MenuItem>
-                        <Link href='/user-settings' className='flex gap-2'>
+                        <Link prefetch={true} href='/user-settings' className='flex gap-2'>
                             <CiSettings size={25} className='icon' />
                             {t('settings')}
                         </Link>

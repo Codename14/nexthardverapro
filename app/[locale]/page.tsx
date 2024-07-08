@@ -27,6 +27,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
                     {categories.map((category) => (
                         <>
                             <Link
+                                prefetch={true}
                                 // href={`?categoryID=${category.id}`}
                                 href={createHref(category.id)}
                                 className={`glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
