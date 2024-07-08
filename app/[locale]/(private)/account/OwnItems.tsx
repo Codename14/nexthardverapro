@@ -16,7 +16,7 @@ export default function OwnItems({ ownProducts, itsMe }: { ownProducts: products
                 <div className='acc__product-list '>
                     {ownProducts.map((product) => (
                         <div className='acc__product-item' key={product.id}>
-                            <Link href={`/items/${product.id}`} className='acc__product-image'>
+                            <Link prefetch={true} href={`/items/${product.id}`} className='acc__product-image'>
                                 <Image alt={product.name} src={product.tumbnailUrl} fill />
                             </Link>
                             <div className='acc__product-body'>

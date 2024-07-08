@@ -35,7 +35,7 @@ export default async function Page() {
                         {products.map((product) => (
                             <div className='product__item glass-card' key={product.id}>
                                 <div className='product__image'>
-                                    <Link href={`/items/${product.id}`}>
+                                    <Link prefetch={true} href={`/items/${product.id}`}>
                                         <Image alt={product.name} src={product.tumbnailUrl} fill />
                                     </Link>
                                     {user && (
