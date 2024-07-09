@@ -22,6 +22,10 @@
         "update_btn": "Frissítés",
         "username": "Felhasználónév"
     },
+    "login": {
+        "login_title": "Belépés/Regisztráció",
+        "login_helper": "Ha hiba lépne fel bejelentkezéskor, próbáld meg a külön böngészőből megnyitni a weboldalt."
+    },
     "form_errors": {
         "name": "Szükséges a termék nevét megadnod",
         "price": "Szükséges a termék árát is megadod",

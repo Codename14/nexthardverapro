@@ -22,6 +22,10 @@
         "update_btn": "Aktualisieren",
         "username": "Benutzername"
     },
+    "login": {
+        "login_title": "Anmeldung/Registrierung",
+        "login_helper": "Wenn beim Anmelden ein Fehler auftritt, versuchen Sie, die Website in einem separaten Browser zu öffnen."
+    },
     "form_errors": {
         "name": "Sie müssen den Produktnamen angeben",
         "price": "Sie müssen den Produktpreis angeben",

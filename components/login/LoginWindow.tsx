@@ -10,8 +10,10 @@ import { useState } from 'react';
 import { signIn } from '@/actions/action';
 import { toast } from 'sonner';
 import { MdAdminPanelSettings } from 'react-icons/md';
+import { useTranslations } from 'next-intl';
 
 export default function LoginWindow() {
+    const t = useTranslations('login');
     const [emailLogin, setEmailLogin] = useState(false);
     const { isOpen, setIsOpen } = useLoginWindowContext();
 
@@ -28,10 +30,8 @@ export default function LoginWindow() {
                             className='fixed inset-0 flex w-screen items-center justify-center p-4'
                         >
                             <DialogPanel className='max-w-lg border glass-card px-10 py-6'>
-                                <DialogTitle className='font-bold text-2xl mb-2'>Belépés/Regisztráció</DialogTitle>
-                                <HelperText className='flex helper-text'>
-                                    Ha hiba lépne fel bejelentkezéskor, próbáld meg a külön böngészőből megnyitni a weboldalt.
-                                </HelperText>
+                                <DialogTitle className='font-bold text-2xl mb-2'>{t('login_title')}</DialogTitle>
+                                <HelperText className='flex helper-text'>{t('login_helper')} </HelperText>
                                 <div className=' mt-10'>
                                     <button className='absolute bottom-2 left-2' onClick={() => setEmailLogin(!emailLogin)}>
                                         <MdAdminPanelSettings />
@@ -55,9 +55,7 @@ export default function LoginWindow() {
                                                     }
                                                 }}
                                             >
-                                                <div>
-                                                    <p className='side-lines'>vagy</p>
-                                                    <p>Admin belépés</p>
+                                                <div className='mt-10'>
                                                     <input
                                                         className='input--primary my-1 px-2 py-2'
                                                         name='email'

@@ -22,6 +22,10 @@
         "update_btn": "Update",
         "username": "Username"
     },
+    "login": {
+        "login_title": "Login/Registration",
+        "login_helper": "If an error occurs during login, try opening the website from a separate browser."
+    },
     "form_errors": {
         "name": "You need to provide the product name",
         "price": "You need to provide the product price",
