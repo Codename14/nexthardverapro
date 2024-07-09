@@ -180,6 +180,7 @@ textarea {
     height: calc(100vh - $headerSize);
     height: calc(100svh - $headerSize);
     margin-bottom: 1em;
+    overflow-y: auto;
 }
 .card-padding {
     padding: $cardPadding;
@@ -636,13 +637,14 @@ textarea {
     }
 }
 .account__details {
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 .acc__product-list {
     display: grid;
     padding-inline: 0.5em;
     grid-template-columns: repeat(auto-fill, minmax(min(600px, 100%), 1fr));
     gap: 0.5em;
+    overflow-y: scroll;
 }
 
 .acc__product-item {

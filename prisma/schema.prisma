@@ -313,7 +313,7 @@ model users {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model roles {
-  id         BigInt   @id @default(autoincrement())
+  id         BigInt   @id @unique @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
   role_name  String?
 
@@ -322,7 +322,7 @@ model roles {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_role {
-  id         BigInt   @id @default(autoincrement())
+  id         BigInt   @id @unique @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
   user_id    String   @unique @db.Uuid
   role_id    Int?     @db.SmallInt
@@ -333,7 +333,7 @@ model user_role {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_data {
-  id         BigInt   @id @default(autoincrement())
+  id         BigInt   @id @unique @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
   email      String?
   user_name  String?
@@ -345,7 +345,7 @@ model user_data {
 }
 
 model follow {
-  id                               BigInt   @id @default(autoincrement())
+  id                               BigInt   @id @unique @default(autoincrement())
   follower_id                      String   @db.Uuid
   following_id                     String   @db.Uuid
   created_at                       DateTime @default(now()) @db.Timestamptz(6)
@@ -357,7 +357,7 @@ model follow {
 }
 
 model products {
-  id                                          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                                          String         @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                                        String
   description                                 String
   created_at                                  DateTime       @default(now()) @db.Timestamptz(6)
@@ -383,7 +383,7 @@ model products {
 }
 
 model user_message {
-  id                                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                                    String    @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   message                               String
   createdAt                             DateTime  @default(now()) @db.Timestamptz(6)
   sender_id                             String    @db.Uuid
@@ -398,7 +398,7 @@ model user_message {
 }
 
 model categories {
-  id                                        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                                        String     @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                                      String
   description                               String?
   created_at                                DateTime?  @default(now()) @db.Timestamptz(6)
@@ -410,7 +410,7 @@ model categories {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model comments {
-  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id           String    @id @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   text         String
   created_at   DateTime? @default(now()) @db.Timestamptz(6)
   updated_at   DateTime? @db.Timestamptz(6)

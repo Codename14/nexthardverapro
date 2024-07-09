@@ -13,7 +13,7 @@ export default function SearchResultCounter({ length }: { length: number }) {
                     <p className='font-bold'>{t('no_search_result')}</p>
                 </div>
             ) : (
-                <p className='text--light mx-auto'>
+                <p className='text--light mx-auto text-center'>
                     {t('search_count')}: {length}
                 </p>
             )}
