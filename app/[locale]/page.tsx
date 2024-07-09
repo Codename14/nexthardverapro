@@ -24,17 +24,15 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
                 <SearchBar />
                 <div className='porduct-categories flex mt-4 mb-6'>
                     {categories.map((category) => (
-                        <>
-                            <Link
-                                prefetch={true}
-                                // href={`?categoryID=${category.id}`}
-                                href={createHref(category.id)}
-                                className={`glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
-                                key={category.id}
-                            >
-                                {category.name}
-                            </Link>
-                        </>
+                        <Link
+                            prefetch={true}
+                            // href={`?categoryID=${category.id}`}
+                            href={createHref(category.id)}
+                            className={`glass-card py-2 px-4 ${searchParams.categoryID === category.id ? 'active' : ''}`}
+                            key={category.id}
+                        >
+                            {category.name}
+                        </Link>
                     ))}
                 </div>
             </section>
