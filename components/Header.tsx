@@ -63,8 +63,7 @@ export default async function Header() {
                         </li>
                         <li className='profile_nav-mobile'>
                             <Link prefetch={true} href='/' className='flex icon-text'>
-                                <CiLogout size={30} className='icon' />
-                                <SignOutButton text={t('logout')} />
+                                <SignOutButton size={30} />
                             </Link>
                         </li>
                         <li className='profile_nav-pc'>

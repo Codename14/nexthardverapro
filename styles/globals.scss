@@ -547,7 +547,8 @@ textarea {
     overflow: hidden;
     margin-top: 1em;
     width: min(200px, 100%);
-    a {
+    a,
+    button {
         display: flex;
         justify-content: left;
         align-items: center;

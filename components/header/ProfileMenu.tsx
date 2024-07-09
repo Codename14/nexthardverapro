@@ -33,10 +33,7 @@ export default function ProfileMenu({ userImg }: { userImg?: string }) {
                         </Link>
                     </MenuItem>
                     <MenuItem>
-                        <Link href='/' className='flex gap-2'>
-                            <CiLogout size={25} className='icon' />
-                            {t('logout')}
-                        </Link>
+                        <SignOutButton />
                     </MenuItem>
                 </MenuItems>
             </Menu>
