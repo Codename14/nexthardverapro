@@ -9,9 +9,6 @@ type DeleteContext = {
     setActiveProduct: React.Dispatch<React.SetStateAction<products | undefined>>;
 };
 
-/* Ilyet nem lehet interface-el */
-// type Theme = "dark" | "light";
-
 const DeleteContext = createContext<DeleteContext | null>(null);
 
 export default function DeleteContextProvider({ children }: { children: React.ReactNode }) {

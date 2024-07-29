@@ -60,15 +60,12 @@ export default function ManageProductForm({ categories, productEdit }: Props) {
                 <h1 className='section-title'>{isEdit ? t('edit_product') : t('add_new_product')}</h1>
                 <form
                     action={async (formData) => {
-                        // REACT HOOK FORMS
                         const result = await trigger();
                         if (!result) return;
                         // flushSync(() => setIsOpen(false)); //előbb fogja megcsinálni, kiveszi az optimalizált state egyszerre updateléséből
                         const productData = getValues();
-                        // console.log('alakítás');
                         // productData.price = Number(productData.price);
                         // console.log('alakítás', typeof productData.price);
-                        // ha üres akkor tegye bele az imaget
                         productData.tumbnailUrl = productData.tumbnailUrl || DEFAULT_IMG;
 
                         let res;
