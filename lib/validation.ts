@@ -30,9 +30,10 @@ export const productFormSchema = (t: (arg: MessageKeys) => string) =>
                 .min(1, { message: t('place') })
                 .max(nameMaxLength, { message: t('text_to_long') + nameMaxLength }),
             new: z.boolean(),
-            price: z
-                .string()
+            price: z.coerce
+                .number()
                 .min(1, { message: t('price') })
+                .positive({ message: t('price') })
                 .max(9999999, { message: t('price_to_high') }),
             tumbnailUrl: z.union([
                 z.literal(''),
