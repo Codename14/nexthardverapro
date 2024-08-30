@@ -16,6 +16,7 @@ import DeleteDialog from '@/components/DeleteDialog';
 import LoginWindow from '@/components/login/LoginWindow';
 
 import { Inter } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -41,17 +42,19 @@ export default function RootLayout({ children, params: { locale } }: Readonly<Ro
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
                     <LoadingContextProvider>
-                        <DeleteContextProvider>
+                        <ThemeProvider>
                             <LoginWindowContextProvider>
-                                <Header />
-                                <LoginWindow />
-                                <NextTopLoader color={'var(--primary)'} showSpinner={false} />
-                                <main className='main-content'>{children}</main>
-                                <DeleteDialog />
-                                <Footer />
+                                <DeleteContextProvider>
+                                    <Header />
+                                    <LoginWindow />
+                                    <NextTopLoader color={'var(--primary)'} showSpinner={false} />
+                                    <main className='main-content'>{children}</main>
+                                    <DeleteDialog />
+                                    <Footer />
+                                    <Toaster position='bottom-left' className='toaster' />
+                                </DeleteContextProvider>
                             </LoginWindowContextProvider>
-                            <Toaster position='bottom-left' className='toaster' />
-                        </DeleteContextProvider>
+                        </ThemeProvider>
                     </LoadingContextProvider>
                 </NextIntlClientProvider>
                 <AnimatedBg />

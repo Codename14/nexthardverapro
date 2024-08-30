@@ -222,6 +222,9 @@ textarea {
 }
 
 .input--primary {
+    &::placeholder {
+        color: var(--text-100);
+    }
     @include glassSurface();
     width: min(100%, 400px); // 100%;
     border-radius: $borderRad;

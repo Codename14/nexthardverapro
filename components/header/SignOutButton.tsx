@@ -1,13 +1,19 @@
 'use client';
 import { createClient } from '@/lib/supabase/client';
 import { redirect, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { GoSignOut } from 'react-icons/go';
 import LoadingIcon from '../LoadingIcon';
 import { CiLogout } from 'react-icons/ci';
 import { useTranslations } from 'next-intl';
 
-export default function SignOutButton({ text, size = 25 }: { text?: string; size?: number }) {
+type Props = {
+    className?: string;
+    text?: string;
+    size?: number;
+};
+
+const SignOutButton = forwardRef(function SignOutButton({ className, size = 25, text }: Props, ref) {
     const t = useTranslations('Navigation');
     const [isLoading, setIsLoading] = useState(false);
     const supabase = createClient();
@@ -30,4 +36,5 @@ export default function SignOutButton({ text, size = 25 }: { text?: string; size
         </button> */}
         </>
     );
-}
+});
+export default SignOutButton;
