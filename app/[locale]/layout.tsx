@@ -38,7 +38,7 @@ export default function RootLayout({ children, params: { locale } }: Readonly<Ro
     unstable_setRequestLocale(locale);
 
     return (
-        <html lang='en'>
+        <html lang={locale} suppressHydrationWarning>
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
                     <LoadingContextProvider>
