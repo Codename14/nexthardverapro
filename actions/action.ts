@@ -27,7 +27,7 @@ export async function handleLike({ productID }: { productID: string }) {
         };
     }
     if (product.likes.includes(user.id)) {
-        console.log('benne van');
+        // console.log('benne van');
         try {
             await prisma.products.update({
                 where: {
